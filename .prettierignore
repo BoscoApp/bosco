@@ -12,5 +12,5 @@ build/
 playwright-report/
 test-results/
 
-# Generated calendar data (emitted minified by scripts/generate-calendar.mjs).
+# Vendored calendar data (minified calendar.json + calendar.meta.json from scripts/refresh-calendar.mjs).
 src/lib/calendar/data/

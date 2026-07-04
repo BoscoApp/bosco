@@ -25,9 +25,21 @@ asset with an unknown license does not get committed. AI-generated artwork is lo
 
 ## Liturgical calendar
 
-The 1962 calendar data is an **independent implementation** (facts are not copyrightable); no code
-was ported. Divinum Officium (MIT, Perl) and `tridentine_calendar` (MIT, Python) were consulted as
-fact cross-references only.
+The 1962 calendar **data** is sourced from **introibo.org** ([github.com/Introibo-App](https://github.com/Introibo-App))
+— the owner's sibling project, a validated 1962 / 1960-rubrics calendar engine. Its compiled calendar
+output is **CC0-1.0** (public-domain dedication; calendar facts are not copyrightable in any case),
+which is clean to vendor into Bosco.
+
+`scripts/refresh-calendar.mjs` fetches whole years from introibo's public API
+(`system=1962&calendar=universal&lang=la`), transforms each day to Bosco's shape, and writes the
+committed `src/lib/calendar/data/calendar.json`. The exact upstream `dataVersion` for the vendored
+snapshot is recorded in `src/lib/calendar/data/calendar.meta.json`.
+
+- **Data license:** CC0-1.0 (introibo's compiled calendar output).
+- **Engine:** the introibo engine itself is **AGPL-3.0** — Bosco consumes its data _output_ over the
+  public API and vendors only that CC0 data; no engine code is ported or bundled.
+- English display names for feasts and Sundays live in `src/lib/calendar/names.ts` (introibo ships
+  Latin only); days without an English mapping fall back to the Latin name.
 
 ## Notes
 

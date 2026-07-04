@@ -8,7 +8,7 @@
 	},
 	"scripts": {
 		"dev": "vite dev",
-		"prebuild": "node scripts/generate-calendar.mjs && node scripts/process-media.mjs",
+		"prebuild": "node scripts/process-media.mjs",
 		"build": "vite build && pagefind --site build",
 		"preview": "vite preview",
 		"serve:build": "sirv build --port 4173 --host",
@@ -18,7 +18,7 @@
 		"lint": "prettier --check . && eslint . && stylelint \"src/**/*.css\"",
 		"format": "prettier --write .",
 		"check:offline": "node scripts/check-no-external-urls.mjs build",
-		"gen:calendar": "node scripts/generate-calendar.mjs",
+		"refresh:calendar": "node scripts/refresh-calendar.mjs",
 		"test:unit": "vitest",
 		"test:e2e": "playwright test",
 		"test": "vitest run"
