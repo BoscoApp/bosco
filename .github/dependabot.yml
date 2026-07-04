@@ -8,6 +8,12 @@ updates:
     commit-message:
       prefix: chore
     open-pull-requests-limit: 5
+    ignore:
+      # @types/node is pinned to the Node runtime major (24). Dependabot otherwise keeps proposing
+      # the latest (26.x); ignore majors so it offers only 24.x patches. Bump deliberately with the
+      # runtime, not ahead of it.
+      - dependency-name: '@types/node'
+        update-types: ['version-update:semver-major']
   - package-ecosystem: github-actions
     directory: /
     schedule:
