@@ -66,7 +66,31 @@ function build(): Topic[] {
 		}
 		topics.push({ slug, path: `${fm.category}/${slug}`, frontmatter: fm, tiers });
 	}
-	return topics.sort((a, b) => a.slug.localeCompare(b.slug));
+	const sorted = topics.sort((a, b) => a.slug.localeCompare(b.slug));
+	assertRelatedResolve(sorted);
+	return sorted;
+}
+
+/**
+ * Referential integrity for `related` cross-links (brief §2.2). Every reference must point to a
+ * topic present in the SAME review-gated set — a dangling target, or (in a production build) one
+ * that is `review_status: pending` and therefore excluded, would otherwise fail the strict
+ * adapter-static prerender with a cryptic `handleHttpError`. Catch it here with a clear content
+ * message, matching the fail-loud frontmatter/tier checks above. Exported for unit testing.
+ */
+export function assertRelatedResolve(all: Topic[]): void {
+	const present = new Set(all.map((t) => `${t.frontmatter.category}/${t.slug}`));
+	for (const t of all) {
+		for (const ref of t.frontmatter.related) {
+			const key = `${ref.category}/${ref.slug}`;
+			if (!present.has(key)) {
+				throw new Error(
+					`[content] ${t.path} lists a related topic that isn't available: ${key} ` +
+						`(no such topic, or it is review_status:pending and excluded from this build)`
+				);
+			}
+		}
+	}
 }
 
 export const topics: Topic[] = build();
@@ -77,4 +101,16 @@ export function topicsByCategory(category: string): Topic[] {
 
 export function getTopic(category: string, slug: string): Topic | undefined {
 	return topics.find((t) => t.frontmatter.category === category && t.slug === slug);
+}
+
+/**
+ * Resolve a topic's `related` references to their Topic objects, in declared order, skipping any
+ * that don't resolve. Build-time integrity (assertRelatedResolve) already guarantees every included
+ * topic's links resolve, so the skip is only defence-in-depth (e.g. a pending topic's link seen in
+ * a preview build). Powers the "See also" block.
+ */
+export function relatedTopics(topic: Topic): Topic[] {
+	return topic.frontmatter.related
+		.map((ref) => getTopic(ref.category, ref.slug))
+		.filter((t): t is Topic => t !== undefined);
 }

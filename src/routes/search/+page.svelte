@@ -24,3 +24,25 @@
 	Search runs in the built site and offline in Docker. It is inactive in dev.
 </p>
 <div id="search"></div>
+
+<style>
+	/*
+	 * Token-theme the bundled Pagefind default-ui (brief §3 — everything wears the Clubhouse skin).
+	 * We only remap Pagefind's OWN CSS variables (see @pagefind/default-ui/css/ui.css) onto Bosco
+	 * semantic tokens — no new assets, no external fonts, so the offline invariant is untouched.
+	 * Setting them on #search (the mount target) scopes the theme to the injected widget and lets it
+	 * follow the active theme + liturgical accent. `--pagefind-ui-primary` maps to the stable link
+	 * colour, not the accent, so search stays legible under every liturgical colour (white/gold too).
+	 */
+	#search {
+		--pagefind-ui-primary: var(--color-link);
+		--pagefind-ui-text: var(--color-text);
+		--pagefind-ui-background: var(--color-surface);
+		--pagefind-ui-border: var(--color-border);
+		--pagefind-ui-tag: var(--color-bg);
+		--pagefind-ui-border-width: var(--border-width-2);
+		--pagefind-ui-border-radius: var(--radius-3);
+		--pagefind-ui-image-border-radius: var(--radius-3);
+		--pagefind-ui-font: var(--font-body);
+	}
+</style>

@@ -17,6 +17,21 @@ export const TIER_LABEL: Record<Tier, string> = {
 export const TIER_ORDER: Tier[] = ['seedling', 'explorer', 'scholar'];
 
 /**
+ * Parse a `#tier=` URL hash into a reading tier, or null if absent/unrecognised. This drives the
+ * per-article tier override — a shareable link like `/library/creatures/red-fox/#tier=seedling`
+ * opens that article at a given level WITHOUT touching the reader's persisted default. The
+ * vocabulary is the app-facing tier words (seedling/explorer/scholar), case-insensitive; anything
+ * else (including the numeric content-tier form) returns null. Pure and client-agnostic.
+ */
+export function parseTierHash(hash: string | null | undefined): Tier | null {
+	if (!hash) return null;
+	const value = new URLSearchParams(hash.replace(/^#/, '')).get('tier');
+	if (!value) return null;
+	const lower = value.toLowerCase();
+	return (TIER_ORDER as string[]).includes(lower) ? (lower as Tier) : null;
+}
+
+/**
  * Resolve the best available tier for a topic: prefer the requested tier, otherwise the nearest
  * one that exists (never render blank — brief §2.8 lets an advanced kid drop down or a young kid
  * peek up, and a topic may not author all three tiers).
