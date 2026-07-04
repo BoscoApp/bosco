@@ -57,11 +57,18 @@ templates: deferred per Decision #4 (#36) — a blank canvas in 1a.**
 - #28 — PNG export (File System Access API + download fallback)
 - #29 — print button
 
-### E6 — Liturgical theming + Portal calendar link (#30)
+### ✅ E6 — Liturgical theming + Portal calendar link (#30, done)
 
-- #31 — Saint-of-the-Day links to its Library Faith article (via the `names.ts` ObservanceId join)
-- #32 — polish season & liturgical theming (now introibo-backed)
-- #33 — Portal calendar surface (today + upcoming)
+Joined the introibo calendar (E1) to the Library engine (E2). Each day carries its introibo
+ObservanceId through the vendored calendar; a Faith topic declares the matching `observanceId` in
+frontmatter and the join links them. Shipped via #59.
+
+- ✅ #31 — Saint-of-the-Day links to its Library Faith article (via the `names.ts` ObservanceId join)
+- ✅ #32 — polish season & liturgical theming (accent now applied app-wide, colour swatch)
+- ✅ #33 — Portal calendar surface (today + a curated "Coming up" look-ahead)
+
+_Upstream note: introibo emits Nov 2 as a second All Saints instead of All Souls' Day (1962
+universal); flagged for an introibo fix, then a Bosco re-vendor + `names.ts` correction._
 
 ### E7 — Parent trust page (#34)
 

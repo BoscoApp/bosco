@@ -25,8 +25,10 @@ for a solo pace: ~6 reviewed topics, not 18.
   [`docs/design/calendar-introibo.md`](docs/design/calendar-introibo.md).
 - ✅ **E2 — Library engine + tier UI:** per-article tier override (`#tier=`), "See also" cross-links,
   token-themed offline search, and category landing pages — shipped via #57.
-- **E3a — six reviewed topics** · **E5a — Art Studio (coloring & print)** · **E6 — liturgical theming
-  & Portal calendar link** · **E7 — parent trust page**.
+- ✅ **E6 — Liturgical theming & calendar link:** today's liturgical colour themes every page, the
+  Saint-of-the-Day links to its Library article, and a Portal "Coming up" look-ahead of feasts —
+  shipped via #59.
+- **E3a — six reviewed topics** · **E5a — Art Studio (coloring & print)** · **E7 — parent trust page**.
 - ✅ **Decision #4 (illustration treatment): deferred** (2026-07-04) — Phase 1a ships
   decorative/typographic art only (placeholder-first); the direction is revisited after the proof
   loop ([#36](https://github.com/BoscoApp/bosco/issues/36)). So E3a/E5a proceed now without art.
