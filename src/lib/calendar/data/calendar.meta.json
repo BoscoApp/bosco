@@ -1,0 +1,15 @@
+{
+  "source": "introibo.org",
+  "sourceUrl": "https://introibo.org/api/v1",
+  "license": "CC0-1.0",
+  "system": "1962",
+  "calendar": "universal",
+  "lang": "la",
+  "dataVersion": "c1.0.0+e0.4.0+d1962-2026-07-02.1",
+  "range": [
+    2024,
+    2032
+  ],
+  "days": 3288,
+  "note": "Compiled 1962 calendar DATA (CC0) from introibo.org, transformed to Bosco shape by scripts/refresh-calendar.mjs. The introibo engine is AGPL; only its CC0 data output is vendored. Regenerate with: npm run refresh:calendar [START END]."
+}
