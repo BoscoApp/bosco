@@ -41,7 +41,7 @@ jobs:
       # --- Artifact B: multi-arch Docker image to GHCR. Builds always (validates the Dockerfile);
       #     pushes only when vars.PUBLISH_IMAGE == 'true'. ---
       - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
+        uses: docker/setup-qemu-action@v4
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v4
       - name: Log in to GHCR
