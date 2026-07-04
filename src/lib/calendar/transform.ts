@@ -37,6 +37,13 @@ export interface CalendarEntry {
 	color: LiturgicalColor;
 	feast: string | null;
 	rank: string;
+	/**
+	 * The winning celebration's stable ObservanceId (introibo's `id`), or null if the day carries no
+	 * celebration. This is the Library↔calendar join key: a Faith article declares the same
+	 * ObservanceId in its frontmatter, so the reader can link a day to its article. It also drives the
+	 * "notable feast" filter for the Portal look-ahead (sanctorale ids + Class I temporal feasts).
+	 */
+	observanceId: string | null;
 }
 
 // introibo season code -> Bosco display label. Insulates Bosco from introibo's still-open season
@@ -82,5 +89,6 @@ export function transformDay(day: IntroiboDay): CalendarEntry {
 	// name (and, later, a Library article) is authored.
 	const feast = c.kind === 'feria' ? englishName(c.id, null) : englishName(c.id, c.names?.la);
 	const rank = c.rank ?? '';
-	return { season, color, feast, rank };
+	const observanceId = c.id ?? null;
+	return { season, color, feast, rank, observanceId };
 }

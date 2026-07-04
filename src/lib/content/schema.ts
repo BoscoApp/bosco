@@ -60,6 +60,11 @@ export const frontmatterSchema = z.object({
 	// built, review-gated set) is enforced at build time in ./index.ts, not here — Zod can't see
 	// other files. Defaults to [] so existing topics need no change.
 	related: z.array(z.object({ category: z.enum(CATEGORIES), slug: z.string() })).default([]),
+	// The calendar↔Library join (brief §2.1). A Faith topic about a saint or feast declares the
+	// introibo ObservanceId it corresponds to (e.g. `roman:sanctorale:ioannes-bosco`); the Portal's
+	// Saint-of-the-Day and look-ahead then link that day to this article. Optional and category-
+	// agnostic; uniqueness across topics is enforced at build time in ./index.ts.
+	observanceId: z.string().optional(),
 	review_status: z.enum(REVIEW_STATUSES).default('pending')
 });
 

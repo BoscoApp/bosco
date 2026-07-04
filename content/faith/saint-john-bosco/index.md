@@ -3,6 +3,7 @@ topic: saint-john-bosco
 title: St. John Bosco
 category: faith
 tiers: ['1', '2', '3']
+observanceId: 'roman:sanctorale:ioannes-bosco'
 summary: A priest who loved boys, taught them a trade, and led them to Heaven with kindness.
 sources:
   - title: Little Pictorial Lives of the Saints

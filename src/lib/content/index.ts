@@ -95,6 +95,34 @@ export function assertRelatedResolve(all: Topic[]): void {
 
 export const topics: Topic[] = build();
 
+/**
+ * Index topics by their declared `observanceId` for the calendar↔Library join (brief §2.1). Fails
+ * loud if two topics claim the same ObservanceId — the day could otherwise link to either
+ * arbitrarily. Exported for unit testing; the module builds the live index from `topics` below.
+ */
+export function indexByObservance(all: Topic[]): Map<string, Topic> {
+	const byId = new Map<string, Topic>();
+	for (const t of all) {
+		const id = t.frontmatter.observanceId;
+		if (!id) continue;
+		const existing = byId.get(id);
+		if (existing) {
+			throw new Error(
+				`[content] two topics share observanceId "${id}": ${existing.path} and ${t.path}`
+			);
+		}
+		byId.set(id, t);
+	}
+	return byId;
+}
+
+const observanceIndex = indexByObservance(topics);
+
+/** The Library topic for a calendar day's ObservanceId, if one has been authored (the join). */
+export function topicForObservance(id: string | null | undefined): Topic | undefined {
+	return id ? observanceIndex.get(id) : undefined;
+}
+
 export function topicsByCategory(category: string): Topic[] {
 	return topics.filter((t) => t.frontmatter.category === category);
 }

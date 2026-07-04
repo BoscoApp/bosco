@@ -35,6 +35,23 @@ describe('frontmatterSchema — related cross-links', () => {
 	});
 });
 
+describe('frontmatterSchema — observanceId (calendar join)', () => {
+	it('is optional (undefined when omitted)', () => {
+		const parsed = frontmatterSchema.safeParse(base);
+		expect(parsed.success).toBe(true);
+		if (parsed.success) expect(parsed.data.observanceId).toBeUndefined();
+	});
+
+	it('accepts an ObservanceId string', () => {
+		const parsed = frontmatterSchema.safeParse({
+			...base,
+			observanceId: 'roman:sanctorale:ioannes-bosco'
+		});
+		expect(parsed.success).toBe(true);
+		if (parsed.success) expect(parsed.data.observanceId).toBe('roman:sanctorale:ioannes-bosco');
+	});
+});
+
 describe('CATEGORY_LABEL', () => {
 	it('has a non-empty label for every category', () => {
 		for (const category of CATEGORIES) {

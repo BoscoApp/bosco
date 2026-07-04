@@ -77,3 +77,46 @@ test('a #tier= link opens an article at that tier without changing the saved def
 
 	expect(external, `external requests were made: ${external.join(', ')}`).toHaveLength(0);
 });
+
+test('the Portal calendar surface renders today + a look-ahead, and the liturgical accent themes every page', async ({
+	page
+}) => {
+	const external = await installOfflineGuard(page);
+	const LIT_COLORS = ['green', 'violet', 'white', 'gold', 'red', 'rose', 'black'];
+
+	// The Portal look-ahead (#33) hydrates from the bundled calendar and lists upcoming feasts.
+	await page.goto('/');
+	await expect(page.getByRole('heading', { name: 'Coming up' })).toBeVisible();
+	const feasts = page.locator('.upcoming li');
+	expect(await feasts.count()).toBeGreaterThan(0);
+
+	// Today's liturgical colour dresses the WHOLE app (#32): the accent is set on <html> from the
+	// root layout, so it's present even on a page with no Saint-of-the-Day (e.g. the Library).
+	await page.goto('/library/');
+	await expect(page.getByRole('heading', { level: 1, name: 'The Library' })).toBeVisible();
+	const lit = await page.evaluate(() => document.documentElement.getAttribute('data-lit'));
+	expect(LIT_COLORS, `data-lit was "${lit}"`).toContain(lit);
+
+	expect(external, `external requests were made: ${external.join(', ')}`).toHaveLength(0);
+});
+
+test('on a feast with a Library article, the Saint-of-the-Day links to it (#31 join)', async ({
+	page
+}) => {
+	const external = await installOfflineGuard(page);
+
+	// Pin "today" to St John Bosco's feast (31 Jan) so the client-side calendar resolves to a day
+	// whose ObservanceId has a Faith article — proving the join renders as a link end to end.
+	await page.clock.setFixedTime(new Date('2026-01-31T12:00:00'));
+	await page.goto('/');
+
+	const link = page.getByRole('link', { name: 'Saint John Bosco' });
+	await expect(link).toBeVisible();
+	await expect(link).toHaveAttribute('href', '/library/faith/saint-john-bosco/');
+
+	// Following it lands on the article — the calendar is a real doorway into the Library.
+	await link.click();
+	await expect(page.getByRole('heading', { level: 1, name: 'St. John Bosco' })).toBeVisible();
+
+	expect(external, `external requests were made: ${external.join(', ')}`).toHaveLength(0);
+});

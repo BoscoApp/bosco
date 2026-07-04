@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Marquee from '$lib/components/Marquee.svelte';
 	import SaintOfTheDay from '$lib/components/SaintOfTheDay.svelte';
+	import UpcomingFeasts from '$lib/components/UpcomingFeasts.svelte';
 	import ArtFrame from '$lib/components/ArtFrame.svelte';
 
 	// The Portal: a tiny web, not an app with tabs (brief §2). Chunky icons to distinct
@@ -37,6 +38,8 @@
 		</a>
 	{/each}
 </nav>
+
+<UpcomingFeasts />
 
 <footer class="portal-footer">
 	<span class="hit-counter" aria-hidden="true">Visitors: 000042</span>
