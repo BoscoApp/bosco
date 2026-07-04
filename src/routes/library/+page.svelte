@@ -1,12 +1,6 @@
 <script lang="ts">
 	import { topicsByCategory } from '$lib/content';
-	import { CATEGORIES } from '$lib/content/schema';
-
-	const categoryLabels: Record<string, string> = {
-		creatures: 'Creatures',
-		faith: 'Faith',
-		world: 'World'
-	};
+	import { CATEGORIES, CATEGORY_LABEL } from '$lib/content/schema';
 </script>
 
 <svelte:head><title>The Library — Bosco</title></svelte:head>
@@ -18,7 +12,7 @@
 	{@const list = topicsByCategory(cat)}
 	{#if list.length}
 		<section class="category">
-			<h2>{categoryLabels[cat]}</h2>
+			<h2><a href="/library/{cat}/">{CATEGORY_LABEL[cat]}</a></h2>
 			<ul>
 				{#each list as t (t.slug)}
 					<li>

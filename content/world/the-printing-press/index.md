@@ -12,5 +12,8 @@ media:
   - kind: image
     alt: An early wooden printing press
 archives: []
+related:
+  - category: faith
+    slug: saint-john-bosco
 review_status: pending
 ---
