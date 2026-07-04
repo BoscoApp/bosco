@@ -14,8 +14,10 @@
 	import '$lib/styles/themes/meadow.css';
 	import '$lib/styles/base.css';
 
+	import { onMount } from 'svelte';
 	import favicon from '$lib/assets/favicon.svg';
 	import { settings } from '$lib/state/store.svelte';
+	import { getToday } from '$lib/calendar';
 	import TierSwitch from '$lib/components/TierSwitch.svelte';
 	import RetroButton from '$lib/components/RetroButton.svelte';
 
@@ -25,6 +27,15 @@
 	// initial value before first paint to avoid a flash.
 	$effect(() => {
 		document.documentElement.setAttribute('data-theme', settings.theme);
+	});
+
+	// Today's liturgical colour dresses the WHOLE app, on every page — the accent (wordmark,
+	// headings, links-in-context) follows the season/feast, not just the Portal. Computed on mount
+	// from the bundled calendar (client-only, offline); when unset semantic.css falls back to green.
+	// Set here (not per-page) so a child sees the same liturgical colour wherever they wander.
+	onMount(() => {
+		const today = getToday();
+		if (today) document.documentElement.setAttribute('data-lit', today.color);
 	});
 
 	function toggleTheme() {
