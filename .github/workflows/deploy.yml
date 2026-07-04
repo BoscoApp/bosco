@@ -1,0 +1,62 @@
+name: deploy
+
+# Runs on a published, non-prerelease GitHub Release (release-please tags it). Builds ONCE, then
+# ships two artifacts (brief §5): (A) static files to DreamHost over SSH, (B) a multi-arch image to
+# GHCR. Both are SKELETON steps: they no-op until enabled by a repo variable + the required secrets
+# exist, so this file is safe to commit in Phase 0. The Phase 0 gate is offline `docker run`, not a
+# public deploy — finish these when DreamHost creds and the GHCR namespace are set (see docs/deploy.md).
+on:
+  release:
+    types: [published]
+
+permissions:
+  contents: read
+  packages: write
+
+jobs:
+  deploy:
+    if: ${{ !github.event.release.prerelease }}
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+      - run: npm run build
+      - name: Re-assert offline invariant before shipping
+        run: npm run check:offline
+
+      # --- Artifact A: DreamHost static hosting (rsync over SSH). Enable with vars.DREAMHOST_ENABLED. ---
+      - name: Deploy static files to DreamHost
+        if: ${{ vars.DREAMHOST_ENABLED == 'true' }}
+        run: |
+          echo "TODO: rsync ./build/ to DreamHost."
+          echo "Uses secrets DREAMHOST_SSH_HOST / DREAMHOST_SSH_USER / DREAMHOST_SSH_KEY / DREAMHOST_DEPLOY_PATH."
+          echo "See docs/deploy.md."
+
+      # --- Artifact B: multi-arch Docker image to GHCR. Builds always (validates the Dockerfile);
+      #     pushes only when vars.PUBLISH_IMAGE == 'true'. ---
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+      - name: Log in to GHCR
+        if: ${{ vars.PUBLISH_IMAGE == 'true' }}
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Build (and optionally push) multi-arch image
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: ${{ vars.PUBLISH_IMAGE == 'true' }}
+          tags: |
+            ghcr.io/${{ github.repository }}:${{ github.event.release.tag_name }}
+            ghcr.io/${{ github.repository }}:latest

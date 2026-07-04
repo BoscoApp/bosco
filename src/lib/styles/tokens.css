@@ -1,0 +1,59 @@
+/*
+ * Primitive design tokens — the raw scales that never change between themes.
+ * Colours live in liturgical.css (fixed) and the theme files (per-skin). This file holds
+ * no theme colours by design. Hardcoded values are permitted HERE ONLY (see .stylelintrc.json).
+ */
+:root {
+	/* Type families. Body/reading text is NEVER a pixel font (brief §3); Press Start 2P is
+	   reserved for chrome and headings. Families are bundled via @fontsource (no CDN). */
+	--font-body: 'Atkinson Hyperlegible', system-ui, -apple-system, 'Segoe UI', roboto, sans-serif;
+	--font-chrome: 'Press Start 2P', var(--font-body);
+
+	/* Modular type scale (~1.2). Chrome/pixel type is sized separately and sparingly. */
+	--font-size-0: 0.75rem;
+	--font-size-1: 0.875rem;
+	--font-size-2: 1rem;
+	--font-size-3: 1.2rem;
+	--font-size-4: 1.44rem;
+	--font-size-5: 1.728rem;
+	--font-size-6: 2.074rem;
+	--font-size-7: 2.488rem;
+	--font-size-8: 2.986rem;
+
+	--line-height-tight: 1.15;
+	--line-height-normal: 1.4;
+	--line-height-relaxed: 1.65;
+
+	/* Reading measure (line length). Tier 1 (Seedling) overrides this shorter in Phase 2. */
+	--measure: 66ch;
+
+	/* Spacing scale (4px base, ~1.5 growth). */
+	--space-0: 0.25rem;
+	--space-1: 0.5rem;
+	--space-2: 0.75rem;
+	--space-3: 1rem;
+	--space-4: 1.5rem;
+	--space-5: 2rem;
+	--space-6: 3rem;
+	--space-7: 4rem;
+	--space-8: 6rem;
+
+	/* Radii, borders, shadows, motion. */
+	--radius-0: 0;
+	--radius-1: 2px;
+	--radius-2: 4px;
+	--radius-3: 8px;
+
+	--border-width-1: 1px;
+	--border-width-2: 2px;
+	--border-width-3: 3px;
+
+	--shadow-1: 0 1px 2px rgb(0, 0, 0, 0.15);
+	--shadow-2: 0 2px 6px rgb(0, 0, 0, 0.2);
+
+	--transition-fast: 120ms ease;
+	--transition-slow: 240ms ease;
+
+	--z-header: 100;
+	--z-overlay: 1000;
+}

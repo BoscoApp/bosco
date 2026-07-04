@@ -1,0 +1,32 @@
+/*
+ * The liturgical colour set (brief §2.1). These are FIXED across both themes — the Church's
+ * colours, not a skin choice. Each accent ships with a foreground partner (`-contrast`) chosen
+ * to pass WCAG AA against it; the calendar sets `data-lit` on <html> and semantic.css maps the
+ * active colour onto --color-accent. Hardcoded values permitted here only.
+ *
+ * NOTE (Phase 1 gate): these are plausible AA-passing stubs. The final palette must be
+ * contrast-audited when the Clubhouse skin is designed (brief §3 — Clubhouse owes full usability
+ * on its own merits). The *contract* — every --lit-* has a passing --lit-*-contrast — is fixed now.
+ */
+:root {
+	--lit-green: #15692f;
+	--lit-green-contrast: #fff;
+
+	--lit-violet: #5b2a86;
+	--lit-violet-contrast: #fff;
+
+	--lit-white: #f5f3e7;
+	--lit-white-contrast: #1a1a1a;
+
+	--lit-gold: #9c6f0a;
+	--lit-gold-contrast: #fff;
+
+	--lit-red: #a4161a;
+	--lit-red-contrast: #fff;
+
+	--lit-rose: #b23a70;
+	--lit-rose-contrast: #fff;
+
+	--lit-black: #1a1a1a;
+	--lit-black-contrast: #fff;
+}

@@ -1,0 +1,26 @@
+{
+	"extends": "stylelint-config-standard",
+	"rules": {
+		"color-no-hex": true,
+		"custom-property-pattern": null,
+		"keyframes-name-pattern": null,
+		"selector-class-pattern": null,
+		"declaration-empty-line-before": null,
+		"custom-property-empty-line-before": null,
+		"no-descending-specificity": null,
+		"alpha-value-notation": null,
+		"color-function-notation": null
+	},
+	"overrides": [
+		{
+			"comment": "Token-definition files are the ONE place raw colours may live (brief §5).",
+			"files": [
+				"src/lib/styles/tokens.css",
+				"src/lib/styles/liturgical.css",
+				"src/lib/styles/semantic.css",
+				"src/lib/styles/themes/*.css"
+			],
+			"rules": { "color-no-hex": null }
+		}
+	]
+}

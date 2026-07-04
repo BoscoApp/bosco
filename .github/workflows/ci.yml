@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - name: Lint
+        run: npm run lint
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit tests
+        run: npm test
+
+      - name: Build
+        run: npm run build
+
+      - name: External-URL guardrail (offline invariant)
+        run: npm run check:offline
+
+      - name: Assert unreviewed content is excluded from production build
+        shell: bash
+        run: |
+          if [ -e build/library/world/the-printing-press/index.html ]; then
+            echo "::error::pending topic 'the-printing-press' leaked into the production build"
+            exit 1
+          fi
+          echo "OK: review_status:pending content excluded from the production build"
+
+      - name: Install Playwright browser
+        run: npx playwright install --with-deps chromium
+
+      - name: Offline smoke (Playwright)
+        run: npm run test:e2e

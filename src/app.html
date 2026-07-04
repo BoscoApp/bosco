@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en" data-theme="clubhouse">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<meta name="text-scale" content="scale" />
+		<script>
+			// Anti-FOUC: apply the persisted theme before first paint so the page never flashes
+			// the default skin. Fully self-contained — no network, no external calls. Any error
+			// (private mode, corrupt value) is swallowed so it can never block rendering.
+			// The liturgical accent (data-lit) is set on mount by the calendar components; only
+			// theme is critical to avoid a flash.
+			(function () {
+				try {
+					var raw = localStorage.getItem('bosco.state');
+					var parsed = raw ? JSON.parse(raw) : null;
+					var theme = parsed && parsed.data && parsed.data.theme;
+					if (theme === 'clubhouse' || theme === 'meadow') {
+						document.documentElement.setAttribute('data-theme', theme);
+					}
+				} catch (e) {
+					/* ignore */
+				}
+			})();
+		</script>
+		%sveltekit.head%
+	</head>
+	<body data-sveltekit-preload-data="hover">
+		<div style="display: contents">%sveltekit.body%</div>
+	</body>
+</html>

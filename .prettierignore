@@ -1,0 +1,16 @@
+# Package Managers
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+bun.lock
+bun.lockb
+
+# Miscellaneous
+/static/
+build/
+.svelte-kit/
+playwright-report/
+test-results/
+
+# Generated calendar data (emitted minified by scripts/generate-calendar.mjs).
+src/lib/calendar/data/

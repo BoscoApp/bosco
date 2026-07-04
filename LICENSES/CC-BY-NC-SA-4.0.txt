@@ -1,0 +1,27 @@
+Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International
+(CC BY-NC-SA 4.0)
+
+SPDX-License-Identifier: CC-BY-NC-SA-4.0
+Canonical legal code: https://creativecommons.org/licenses/by-nc-sa/4.0/legalcode
+Human-readable summary: https://creativecommons.org/licenses/by-nc-sa/4.0/
+
+You are free to:
+  - Share — copy and redistribute the material in any medium or format
+  - Adapt — remix, transform, and build upon the material
+
+Under the following terms:
+  - Attribution — You must give appropriate credit, provide a link to the
+    license, and indicate if changes were made.
+  - NonCommercial — You may not use the material for commercial purposes.
+  - ShareAlike — If you remix, transform, or build upon the material, you must
+    distribute your contributions under the same license as the original.
+
+-------------------------------------------------------------------------------
+PLACEHOLDER NOTICE (Phase 0)
+
+This file currently contains the CC BY-NC-SA 4.0 DEED SUMMARY, not the full legal
+code. Per LICENSING.md, the content-license split is documented now and ratified
+before public launch. BEFORE PUBLIC LAUNCH, replace this file with the verbatim
+official legal code from the canonical URL above. The summary is not a substitute
+for the license.
+-------------------------------------------------------------------------------

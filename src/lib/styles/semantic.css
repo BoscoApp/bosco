@@ -1,0 +1,60 @@
+/*
+ * Semantic tokens — the layer every component consumes. Components reference ONLY these tokens
+ * (or the primitives in tokens.css), never raw colours. Surface/text values come from the active
+ * theme (theme files); accent values come from the active liturgical colour via [data-lit].
+ *
+ * The :root block below is a neutral fallback so the app renders even with no theme attribute.
+ * Theme files ([data-theme=...]) override these with equal specificity but later source order.
+ */
+:root {
+	--color-bg: var(--lit-white);
+	--color-surface: #fff;
+	--color-text: #1a1a1a;
+	--color-text-muted: #55524a;
+	--color-border: #cbc7ba;
+	--color-link: #1a4f8a;
+	--color-danger: #a4161a;
+	--color-focus-ring: #1a4f8a;
+	--bevel-light: #fff;
+	--bevel-dark: #9a978c;
+}
+
+/*
+ * Liturgical accent mapping. The calendar sets data-lit on <html>; unset falls back to green
+ * (Time after Pentecost is the commonest season). Only one matches at a time.
+ */
+:root,
+[data-lit='green'] {
+	--color-accent: var(--lit-green);
+	--color-accent-contrast: var(--lit-green-contrast);
+}
+
+[data-lit='violet'] {
+	--color-accent: var(--lit-violet);
+	--color-accent-contrast: var(--lit-violet-contrast);
+}
+
+[data-lit='white'] {
+	--color-accent: var(--lit-white);
+	--color-accent-contrast: var(--lit-white-contrast);
+}
+
+[data-lit='gold'] {
+	--color-accent: var(--lit-gold);
+	--color-accent-contrast: var(--lit-gold-contrast);
+}
+
+[data-lit='red'] {
+	--color-accent: var(--lit-red);
+	--color-accent-contrast: var(--lit-red-contrast);
+}
+
+[data-lit='rose'] {
+	--color-accent: var(--lit-rose);
+	--color-accent-contrast: var(--lit-rose-contrast);
+}
+
+[data-lit='black'] {
+	--color-accent: var(--lit-black);
+	--color-accent-contrast: var(--lit-black-contrast);
+}

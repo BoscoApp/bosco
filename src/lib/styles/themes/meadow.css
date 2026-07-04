@@ -1,0 +1,19 @@
+/*
+ * Meadow theme — modern, soft, low-stimulus, quieter type and spacing (brief §3). The theme HOOK
+ * exists from Phase 0 with the identical token contract so the toggle works; the real Meadow
+ * palette is designed in Phase 2. Values here are a calm neutral stub. Never a component fork.
+ */
+[data-theme='meadow'] {
+	--color-bg: #f3f5f2;
+	--color-surface: #fff;
+	--color-text: #23302a;
+	--color-text-muted: #5c6b63;
+	--color-border: #d3ddd5;
+	--color-link: #2f6d54;
+	--color-danger: #9b2c2c;
+	--color-focus-ring: #2f6d54;
+
+	/* Meadow is flat/soft — bevels collapse toward the surface. */
+	--bevel-light: #fff;
+	--bevel-dark: #d3ddd5;
+}

@@ -1,0 +1,14 @@
+# Normalise line endings: authored on Windows, built in Linux CI/Docker. LF everywhere keeps the
+# "byte-for-byte identical build" invariant (brief §5) true across checkouts.
+* text=auto eol=lf
+
+# Binary assets — never normalise.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.webp binary
+*.avif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.mp3 binary

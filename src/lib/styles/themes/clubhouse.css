@@ -1,0 +1,21 @@
+/*
+ * Clubhouse theme — the 90s identity skin (brief §3), the default and the only fully-designed
+ * skin in Phase 0/1. A theme is a token file, never a component fork: it redefines the semantic
+ * token set only. These values are legible, high-contrast stubs; the full 90s palette is Phase 1
+ * design work and must pass WCAG AA (Clubhouse owes usability on its own merits — not an apology
+ * for Meadow).
+ */
+[data-theme='clubhouse'] {
+	--color-bg: #c8c0a8;
+	--color-surface: #f4f1e6;
+	--color-text: #1a1a1a;
+	--color-text-muted: #4a4740;
+	--color-border: #6b6656;
+	--color-link: #1a4f8a;
+	--color-danger: #a4161a;
+	--color-focus-ring: #143a66;
+
+	/* Beveled chrome (chunky 90s window edges). */
+	--bevel-light: #fff;
+	--bevel-dark: #6b6656;
+}

@@ -1,0 +1,15 @@
+node_modules
+.git
+.github
+.svelte-kit
+build
+# Raw scans / unprocessed source art must NEVER enter the image (brief §5 media pipeline).
+assets-src
+*.md
+!content/**/*.md
+.vscode
+.env*
+tests
+e2e
+playwright-report
+test-results
