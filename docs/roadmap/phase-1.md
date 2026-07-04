@@ -27,19 +27,20 @@ The 1962 calendar is now sourced from **introibo.org** CC0 data, replacing the P
 approximation. Design: [`../design/calendar-introibo.md`](../design/calendar-introibo.md). Shipped via
 #10.
 
-### E2 — Library engine + tier UI (#15)
+### ✅ E2 — Library engine + tier UI (#15, done)
 
-Make the Library skeleton a usable engine. (Archives-shelf rendering is deferred to 1b.)
+Made the Library skeleton a usable engine. (Archives-shelf rendering is deferred to 1b.) Shipped via
+#57.
 
-- #16 — per-article tier override via `#tier=`
-- #17 — cross-links & "See also" between articles
-- #18 — token-theme the Pagefind search UI
-- #19 — category landing pages
+- ✅ #16 — per-article tier override via `#tier=`
+- ✅ #17 — cross-links & "See also" between articles
+- ✅ #18 — token-theme the Pagefind search UI
+- ✅ #19 — category landing pages
 
 ### E3a — Six reviewed proof topics (#20)
 
 Prove the three-tier shape end to end on ~6 topics (creatures / faith / world) — not the industrial
-pipeline (that is 1b). **Article art is gated by Decision #4 (#36).**
+pipeline (that is 1b). **Article art: deferred per Decision #4 (#36) — decorative/typographic only in 1a.**
 
 - #21 — choose the six proof topics
 - #22 — author tier-1/2/3 for the six topics
@@ -49,7 +50,7 @@ pipeline (that is 1b). **Article art is gated by Decision #4 (#36).**
 ### E5a — Art Studio: coloring + print (#25)
 
 A coloring canvas kids can use offline and **print** — the physical "fridge" artifact. **Line-art
-templates are gated by Decision #4 (#36).**
+templates: deferred per Decision #4 (#36) — a blank canvas in 1a.**
 
 - #26 — canvas with brush + flood-fill
 - #27 — load a line-art template as a locked layer
@@ -67,12 +68,12 @@ templates are gated by Decision #4 (#36).**
 - #35 — author the parent trust page: named sources, review process, verbatim-doctrine promise,
   zero-data / no-accounts posture
 
-### ⛔ Decision #4 — illustration treatment (#36)
+### ✅ Decision #4 — illustration treatment (#36) — deferred
 
-The open decision that **gates the Phase-1a art**: the illustration treatment for article images
-(E3a) and coloring templates (E5a). Engine, text, and calendar do not need it, but a compelling
-kid-facing proof does — so this is the next decision to make. Options include commissioned art,
-AI-assisted (logged in `AI-ART.md`), curated CC0, or a defined house style.
+**Decided 2026-07-04: defer, placeholder-first.** Phase 1a ships decorative/typographic art only —
+no representational article images, a blank coloring canvas — and the illustration direction
+(commissioned, AI-assisted logged in `AI-ART.md`, curated CC0, or a defined house style) is revisited
+after the proof loop is validated. So E3a and E5a proceed now without art.
 
 ## Phase 1b — breadth · [v0.3.0](https://github.com/BoscoApp/bosco/milestone/3)
 
