@@ -8,3 +8,6 @@ src/lib/calendar/calendar.json
 
 # Design reference prototype — kept as-authored, not formatted.
 docs/design/desktop-mockup.html
+
+# Maintained by release-please in its own format — never reformat.
+CHANGELOG.md
