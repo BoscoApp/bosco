@@ -41,6 +41,31 @@ button {
 	font-family: inherit;
 }
 
+/* Skip link — off-screen until focused, then a visible button over the wallpaper. */
+.skip-link {
+	position: fixed;
+	left: 8px;
+	top: -60px;
+	z-index: 1000;
+	padding: 8px 14px;
+	font-family: var(--font-ui);
+	font-size: 13px;
+	color: var(--on-sel);
+	background: var(--sel);
+	border: 2px solid var(--focus-inverse);
+	border-radius: 7px;
+	text-decoration: none;
+	transition: top 0.15s ease;
+}
+.skip-link:focus {
+	top: 8px;
+}
+@media (prefers-reduced-motion: reduce) {
+	.skip-link {
+		transition: none;
+	}
+}
+
 /* Screen-reader-only, but focusable when it needs to be (skip link). */
 .visually-hidden {
 	position: absolute;
