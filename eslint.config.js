@@ -22,6 +22,15 @@ export default ts.config(
 		}
 	},
 	{
-		ignores: ['build/', '.svelte-kit/', 'dist/', 'node_modules/', 'static/calendar.json']
+		rules: {
+			// Allow intentionally-unused bindings when prefixed with `_` (e.g. destructure-and-drop).
+			'@typescript-eslint/no-unused-vars': [
+				'error',
+				{ argsIgnorePattern: '^_', varsIgnorePattern: '^_', caughtErrorsIgnorePattern: '^_' }
+			]
+		}
+	},
+	{
+		ignores: ['build/', '.svelte-kit/', 'dist/', 'node_modules/', 'src/lib/calendar/calendar.json']
 	}
 );
