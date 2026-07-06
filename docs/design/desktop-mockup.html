@@ -1,0 +1,1766 @@
+<title>bosco.kids — a little internet for God's children</title>
+<style>
+	:root {
+		--plat: #c9c9c1;
+		--plat-hi: #eeeee8;
+		--plat-mid: #ddddd6;
+		--paper: #f3f0e7;
+		--ink: #1d1d22;
+		--ink-soft: #4a4a52;
+		--line: #9a9a92;
+		--blue: #2e5aa8;
+		--green: #3f8f4a;
+		--violet: #7a5aa8;
+		--red: #d1483a;
+		--gold: #e0a531;
+		--teal: #2b8f8f;
+		--rose: #d98aa8;
+		--sel: #3355bb;
+		--sel-soft: #c7d2ef;
+		--lit: #3f8f4a;
+		--lit-dk: #2c6836;
+		--ui: "Verdana", "Geneva", "Segoe UI", system-ui, sans-serif;
+		--body: "Verdana", "Geneva", "Segoe UI", sans-serif;
+		--serif: "Palatino Linotype", Palatino, Georgia, "Times New Roman", serif;
+	}
+	* {
+		box-sizing: border-box;
+	}
+	body {
+		margin: 0;
+	}
+
+	.desktop {
+		position: relative;
+		min-height: 100vh;
+		font-family: var(--body);
+		color: var(--ink);
+		font-size: 14px;
+		line-height: 1.45;
+		background: radial-gradient(135% 115% at 50% -12%, color-mix(in srgb, var(--lit) 78%, #fff) 0%, var(--lit) 44%, var(--lit-dk) 100%);
+		overflow: hidden;
+	}
+	.desktop::before {
+		content: "";
+		position: absolute;
+		inset: 0;
+		pointer-events: none;
+		opacity: 0.14;
+		background-image: radial-gradient(#fff 0.5px, transparent 0.6px);
+		background-size: 4px 4px;
+	}
+	.desktop :focus-visible {
+		outline: 2px solid #fff;
+		outline-offset: 2px;
+	}
+
+	/* ============ MENU BAR ============ */
+	.menubar {
+		position: sticky;
+		top: 0;
+		z-index: 500;
+		display: flex;
+		align-items: stretch;
+		height: 26px;
+		padding: 0 6px;
+		font-family: var(--ui);
+		font-size: 13px;
+		color: var(--ink);
+		background: linear-gradient(#ffffff, #e7e7e1 70%, #d6d6cf);
+		border-bottom: 1px solid #74746d;
+		box-shadow: 0 1px 0 #fff inset;
+		overflow-x: auto;
+	}
+	.menubar::-webkit-scrollbar {
+		height: 0;
+	}
+	.mb-item {
+		display: inline-flex;
+		align-items: center;
+		gap: 6px;
+		border: 0;
+		background: transparent;
+		font: inherit;
+		font-family: var(--ui);
+		color: var(--ink);
+		padding: 0 11px;
+		cursor: pointer;
+		white-space: nowrap;
+	}
+	.mb-item.home b {
+		font-weight: bold;
+	}
+	.mb-item svg {
+		display: block;
+	}
+	.mb-item:hover,
+	.mb-item:focus-visible {
+		background: var(--sel);
+		color: #fff;
+		outline: none;
+	}
+	.mb-item:hover svg path,
+	.mb-item:focus-visible svg path {
+		fill: #fff;
+		stroke: #fff;
+	}
+	.mb-right {
+		margin-left: auto;
+		display: flex;
+		align-items: stretch;
+	}
+	.mb-profile {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		border: 0;
+		background: transparent;
+		font: inherit;
+		font-family: var(--ui);
+		font-size: 12px;
+		color: var(--ink);
+		padding: 0 11px;
+		cursor: pointer;
+		border-left: 1px solid #b6b6ae;
+		white-space: nowrap;
+	}
+	.mb-profile[hidden] {
+		display: none;
+	}
+	.mb-profile svg {
+		width: 19px;
+		height: 19px;
+		border-radius: 5px;
+		display: block;
+	}
+	.mb-profile:hover,
+	.mb-profile:focus-visible {
+		background: var(--sel);
+		color: #fff;
+		outline: none;
+	}
+	.clock {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		padding: 0 10px;
+		font-size: 12px;
+		border-left: 1px solid #b6b6ae;
+		white-space: nowrap;
+	}
+	.clock .dot {
+		width: 9px;
+		height: 9px;
+		border-radius: 50%;
+		background: var(--lit);
+		border: 1px solid rgba(0, 0, 0, 0.35);
+		box-shadow: 0 0 0 1px #fff;
+	}
+
+	/* ============ DESKTOP ICON DOCK ============ */
+	.dock {
+		position: absolute;
+		top: 16px;
+		right: 16px;
+		z-index: 10;
+		display: grid;
+		grid-template-columns: repeat(2, 92px);
+		gap: 10px 12px;
+	}
+	.d-ico {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 5px;
+		width: 92px;
+		padding: 6px 4px 5px;
+		border: 1px solid transparent;
+		border-radius: 8px;
+		background: transparent;
+		color: #fff;
+		cursor: pointer;
+		font: inherit;
+		text-align: center;
+	}
+	.d-ico .art {
+		width: 46px;
+		height: 46px;
+		filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.35));
+	}
+	.d-ico .lbl {
+		font-family: var(--ui);
+		font-size: 11.5px;
+		line-height: 1.15;
+		padding: 1px 6px;
+		border-radius: 7px;
+		background: rgba(20, 22, 28, 0.42);
+		color: #fff;
+		box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.12) inset;
+	}
+	.d-ico:hover .lbl,
+	.d-ico:focus-visible .lbl {
+		background: var(--sel);
+	}
+	.d-ico:focus-visible {
+		outline: 2px solid #fff;
+		outline-offset: 1px;
+	}
+	.d-ico:active .art {
+		transform: translateY(1px);
+	}
+	.desk-hint {
+		position: absolute;
+		left: 18px;
+		bottom: 52px;
+		z-index: 10;
+		max-width: 280px;
+		font-family: var(--ui);
+		font-size: 11.5px;
+		color: #fff;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45);
+	}
+
+	/* ============ TASKBAR / DOCK ============ */
+	.taskbar {
+		position: fixed;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 450;
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		height: 40px;
+		padding: 5px 8px;
+		background: linear-gradient(#e9e9e2, #d3d3ca);
+		border-top: 1px solid #74746d;
+		box-shadow: 0 -1px 0 #fff inset;
+		overflow-x: auto;
+	}
+	.taskbar::-webkit-scrollbar {
+		height: 0;
+	}
+	.taskbar[hidden] {
+		display: none;
+	}
+	.taskbar .tb-lead {
+		flex: 0 0 auto;
+		font-family: var(--ui);
+		font-size: 11px;
+		color: var(--ink-soft);
+		padding: 0 8px 0 4px;
+		border-right: 1px solid #b6b6ae;
+		align-self: stretch;
+		display: flex;
+		align-items: center;
+	}
+	.task {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		height: 30px;
+		padding: 0 12px 0 8px;
+		border: 1px solid #8f8f88;
+		border-radius: 6px;
+		background: linear-gradient(#fbfbf6, #e0e0d8);
+		box-shadow: 0 1px 0 #fff inset;
+		font-family: var(--ui);
+		font-size: 12px;
+		color: var(--ink);
+		cursor: pointer;
+		white-space: nowrap;
+		max-width: 170px;
+	}
+	.task .tico {
+		width: 18px;
+		height: 18px;
+		flex: 0 0 auto;
+	}
+	.task span {
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.task.active {
+		background: linear-gradient(#fff, #eef2fb);
+		border-color: var(--sel);
+		box-shadow: 0 0 0 1px var(--sel-soft) inset;
+		font-weight: bold;
+	}
+	.task.mini {
+		opacity: 0.62;
+		font-style: italic;
+	}
+	.task:hover,
+	.task:focus-visible {
+		border-color: var(--sel);
+		outline: none;
+	}
+
+	/* ============ WINDOWS ============ */
+	.window {
+		position: fixed;
+		z-index: 100;
+		top: 60px;
+		left: 56px;
+		width: min(900px, calc(100vw - 28px));
+		max-height: calc(100vh - 120px);
+		display: flex;
+		flex-direction: column;
+		background: var(--plat);
+		border: 1px solid #55554f;
+		border-radius: 7px 7px 4px 4px;
+		box-shadow: 0 2px 0 #55554f, 0 16px 40px rgba(15, 25, 20, 0.5);
+	}
+	.window.small {
+		width: min(560px, calc(100vw - 28px));
+	}
+	.window[hidden] {
+		display: none;
+	}
+	.window.opening {
+		animation: winpop 0.13s ease-out;
+	}
+	@keyframes winpop {
+		from {
+			transform: scale(0.97);
+			opacity: 0.4;
+		}
+	}
+	.window.maxed {
+		top: 32px !important;
+		left: 8px !important;
+		right: 8px !important;
+		bottom: 46px !important;
+		width: auto !important;
+		max-height: none !important;
+	}
+	.titlebar {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		height: 24px;
+		padding: 0 6px 0 10px;
+		border-radius: 6px 6px 0 0;
+		border-bottom: 1px solid #6f6f68;
+		background: linear-gradient(#f6f6f2, #dcdcd4);
+		cursor: move;
+		touch-action: none;
+	}
+	.tb-title {
+		font-family: var(--ui);
+		font-size: 12px;
+		font-weight: bold;
+		white-space: nowrap;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+	.tb-fill {
+		flex: 1 1 auto;
+		height: 11px;
+		min-width: 12px;
+		margin: 0 2px;
+		opacity: 0.45;
+		background: repeating-linear-gradient(#a9b6cf 0 1px, transparent 1px 3px);
+	}
+	.win-controls {
+		flex: 0 0 auto;
+		display: flex;
+		gap: 5px;
+		align-items: center;
+		cursor: default;
+	}
+	.wc {
+		width: 18px;
+		height: 15px;
+		display: grid;
+		place-items: center;
+		font-family: var(--ui);
+		font-size: 12px;
+		font-weight: bold;
+		line-height: 1;
+		color: #3a3a40;
+		border: 1px solid #6f6f68;
+		border-radius: 3px;
+		background: linear-gradient(#fbfbf7, #d7d7cf);
+		box-shadow: 0 1px 0 #fff inset;
+		cursor: pointer;
+		padding: 0;
+	}
+	.wc:focus-visible {
+		outline: 2px solid var(--sel);
+		outline-offset: 1px;
+	}
+	.wc-min:hover,
+	.wc-max:hover {
+		background: linear-gradient(#fff, #cfd8ea);
+	}
+	.wc-close {
+		color: #7a1f16;
+	}
+	.wc-close:hover,
+	.wc-close:focus-visible {
+		background: linear-gradient(#ffd7d0, #e79a8e);
+		color: #3a0d08;
+	}
+	.win-body {
+		flex: 1 1 auto;
+		overflow: auto;
+		background: var(--paper);
+		border: 1px solid #7c7c74;
+		border-top: none;
+		margin: 3px;
+		border-radius: 2px 2px 3px 3px;
+	}
+
+	.masthead {
+		display: flex;
+		gap: 16px;
+		align-items: center;
+		padding: 18px 20px;
+		background:
+			linear-gradient(180deg, rgba(255, 255, 255, 0.55), rgba(255, 255, 255, 0) 60%),
+			linear-gradient(115deg, #eef4ea 0%, #f3f0e7 40%, #f6efe0 100%);
+		border-bottom: 1px solid var(--line);
+	}
+	.crest {
+		flex: 0 0 auto;
+		width: 70px;
+		height: 70px;
+		display: grid;
+		place-items: center;
+		border: 1px solid #6f6f68;
+		border-radius: 14px;
+		background: linear-gradient(#fffef8, #efe8d6);
+		box-shadow: 0 2px 0 #cfc7b2, 0 3px 8px rgba(90, 70, 30, 0.18);
+	}
+	.mast-txt {
+		min-width: 0;
+	}
+	.mast-txt h1 {
+		font-family: var(--ui);
+		margin: 0;
+		font-size: 31px;
+		line-height: 1;
+		letter-spacing: 0.5px;
+		text-shadow: 1px 1px 0 #fff;
+	}
+	.mast-url {
+		font-family: var(--ui);
+		font-size: 13px;
+		color: var(--blue);
+		margin: 3px 0 6px;
+	}
+	.tagline {
+		margin: 0;
+		max-width: 50ch;
+		color: var(--ink-soft);
+		font-size: 13px;
+	}
+	.colour-pill {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		margin-top: 9px;
+		padding: 3px 11px 3px 5px;
+		border-radius: 12px;
+		background: #eaf3ea;
+		border: 1px solid #6fae74;
+		font-family: var(--ui);
+		font-size: 12px;
+		color: #245a2b;
+	}
+	.colour-pill .sw {
+		width: 15px;
+		height: 15px;
+		border-radius: 50%;
+		background: radial-gradient(circle at 32% 30%, color-mix(in srgb, var(--lit) 55%, #fff), var(--lit));
+		border: 1px solid rgba(0, 0, 0, 0.35);
+		box-shadow: 0 0 0 1px #fff inset;
+	}
+	.balloon {
+		position: relative;
+		align-self: flex-start;
+		margin-left: auto;
+		max-width: 200px;
+		flex: 0 0 auto;
+		font-family: var(--ui);
+		font-size: 12px;
+		line-height: 1.35;
+		background: #fffbe6;
+		color: #4a3f14;
+		border: 1px solid #c9a94a;
+		border-radius: 12px;
+		padding: 9px 12px;
+		box-shadow: 2px 3px 0 rgba(120, 90, 20, 0.2);
+	}
+	.balloon b {
+		color: #8a6a12;
+	}
+	.balloon::after {
+		content: "";
+		position: absolute;
+		left: -9px;
+		top: 18px;
+		width: 14px;
+		height: 14px;
+		background: #fffbe6;
+		border-left: 1px solid #c9a94a;
+		border-bottom: 1px solid #c9a94a;
+		transform: rotate(45deg);
+	}
+	.bulletin {
+		display: flex;
+		align-items: stretch;
+		border-bottom: 1px solid var(--line);
+		background: linear-gradient(#fbf7ea, #f1ecdd);
+	}
+	.bulletin .tag {
+		flex: 0 0 auto;
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		padding: 0 12px;
+		font-family: var(--ui);
+		font-size: 12px;
+		font-weight: bold;
+		color: #7a5a10;
+		background: #f4e6bd;
+		border-right: 1px solid #cbb271;
+	}
+	.marquee {
+		overflow: hidden;
+		flex: 1 1 auto;
+		white-space: nowrap;
+		padding: 6px 0;
+	}
+	.marquee ul {
+		display: inline-flex;
+		gap: 44px;
+		margin: 0;
+		padding: 0 44px;
+		list-style: none;
+		animation: scroll 34s linear infinite;
+	}
+	.marquee li {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		color: var(--ink-soft);
+		font-size: 13px;
+	}
+	.marquee .star {
+		color: var(--gold);
+	}
+	@keyframes scroll {
+		from {
+			transform: translateX(0);
+		}
+		to {
+			transform: translateX(-50%);
+		}
+	}
+	.grid-wrap {
+		padding: 18px 20px 8px;
+	}
+	.grid-head {
+		display: flex;
+		align-items: baseline;
+		gap: 10px;
+		margin: 0 0 12px;
+	}
+	.grid-head h2 {
+		font-family: var(--ui);
+		font-size: 15px;
+		margin: 0;
+	}
+	.grid-head span {
+		font-size: 12px;
+		color: var(--ink-soft);
+	}
+	.grid {
+		display: grid;
+		gap: 12px;
+		grid-template-columns: repeat(3, 1fr);
+	}
+	.tile {
+		display: flex;
+		gap: 12px;
+		align-items: flex-start;
+		text-align: left;
+		font: inherit;
+		color: inherit;
+		text-decoration: none;
+		cursor: pointer;
+		padding: 11px;
+		border-radius: 9px;
+		border: 1px solid transparent;
+		background: transparent;
+	}
+	.tile:hover,
+	.tile:focus-visible {
+		background: #fff;
+		border-color: #c9c3b2;
+		box-shadow: 0 1px 0 #fff inset, 0 2px 7px rgba(90, 70, 30, 0.12);
+		outline: none;
+	}
+	.tile:focus-visible {
+		outline: 2px solid var(--sel);
+		outline-offset: 1px;
+	}
+	.tile .art {
+		flex: 0 0 auto;
+		width: 50px;
+		height: 50px;
+		filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.16));
+	}
+	.tile-txt {
+		min-width: 0;
+	}
+	.kicker {
+		font-family: var(--ui);
+		font-size: 10px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: #fff;
+		padding: 1px 6px;
+		border-radius: 8px;
+		display: inline-block;
+		margin-bottom: 3px;
+	}
+	.tile h3 {
+		font-family: var(--ui);
+		font-size: 15px;
+		margin: 1px 0 3px;
+	}
+	.tile p {
+		margin: 0;
+		font-size: 12.5px;
+		color: var(--ink-soft);
+		line-height: 1.35;
+	}
+	.k-blue {
+		background: var(--blue);
+	}
+	.k-green {
+		background: var(--green);
+	}
+	.k-violet {
+		background: var(--violet);
+	}
+	.k-red {
+		background: var(--red);
+	}
+	.k-gold {
+		background: #b9841c;
+	}
+	.k-teal {
+		background: var(--teal);
+	}
+	.dayband {
+		padding: 16px 20px;
+		border-top: 1px solid var(--line);
+		background: linear-gradient(160deg, #eaf2e7, #f3f0e7 55%, #f7f0df);
+	}
+	.db-head {
+		font-family: var(--ui);
+		font-size: 12px;
+		letter-spacing: 1px;
+		text-transform: uppercase;
+		color: #6a5a2a;
+		margin: 0 0 10px;
+	}
+	.db-head .season {
+		font-family: var(--body);
+		letter-spacing: 0;
+		text-transform: none;
+		font-size: 12px;
+		color: var(--ink-soft);
+	}
+	.db-grid {
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		gap: 12px;
+		align-items: start;
+	}
+	.saint {
+		display: flex;
+		gap: 12px;
+		align-items: center;
+		padding: 11px;
+		border-radius: 9px;
+		background: #fff;
+		border: 1px solid #d8d0ba;
+		box-shadow: 0 1px 0 #fff inset;
+	}
+	.saint .halo {
+		flex: 0 0 auto;
+		width: 46px;
+		height: 46px;
+	}
+	.saint b {
+		font-family: var(--ui);
+		font-size: 13px;
+		display: block;
+	}
+	.saint small {
+		font-size: 11.5px;
+		color: var(--ink-soft);
+	}
+	.saint .feast {
+		display: inline-block;
+		margin-top: 3px;
+		font-size: 10px;
+		font-family: var(--ui);
+		padding: 1px 6px;
+		border-radius: 7px;
+		background: #f4efe0;
+		border: 1px solid #d6cba0;
+		color: #6a5a2a;
+	}
+	.verse {
+		padding: 11px;
+		border-radius: 9px;
+		text-align: center;
+		background: linear-gradient(#f0ecdd, #e8e2cf);
+		border: 1px solid #cfc4a4;
+	}
+	.verse .lat {
+		font-family: var(--serif);
+		font-size: 15px;
+		font-style: italic;
+		color: #3a3320;
+		margin: 0;
+	}
+	.verse .en {
+		font-family: var(--serif);
+		font-size: 12.5px;
+		color: var(--ink-soft);
+		margin: 4px 0 0;
+	}
+	.verse .ref {
+		display: block;
+		margin-top: 5px;
+		font-family: var(--ui);
+		font-size: 10px;
+		letter-spacing: 0.5px;
+		color: #7a6a3a;
+	}
+	.foot {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		justify-content: space-between;
+		gap: 10px 14px;
+		padding: 13px 20px;
+		border-top: 1px solid var(--line);
+		background: linear-gradient(#ece7d8, #e3ddcc);
+	}
+	.construction {
+		display: flex;
+		align-items: center;
+		gap: 9px;
+		font-family: var(--ui);
+		font-size: 12px;
+		color: #7a5a10;
+		padding: 5px 11px;
+		border-radius: 6px;
+		background: repeating-linear-gradient(45deg, #f2d64e 0 9px, #2a2a2e 9px 18px);
+		border: 1px solid #7a6a20;
+	}
+	.construction span {
+		background: #fdf6dd;
+		padding: 3px 8px;
+		border-radius: 4px;
+		border: 1px solid #cbb271;
+	}
+	.foot-counter {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--ui);
+		font-size: 11px;
+		color: var(--ink-soft);
+	}
+	.odo {
+		display: inline-flex;
+		gap: 2px;
+		padding: 4px;
+		border: 1px solid #55554f;
+		border-radius: 5px;
+		background: linear-gradient(#3a3a40, #1f1f24);
+	}
+	.odo span {
+		font-family: "Courier New", monospace;
+		font-variant-numeric: tabular-nums;
+		font-size: 14px;
+		font-weight: bold;
+		color: #8ff0a0;
+		width: 13px;
+		text-align: center;
+		padding: 1px 0;
+		border-radius: 2px;
+		background: linear-gradient(#14261a, #0c1a12);
+	}
+	.foot-links {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--ui);
+		font-size: 12px;
+	}
+	.foot-links a,
+	.foot-links button {
+		text-decoration: none;
+		color: var(--ink);
+		font: inherit;
+		font-family: var(--ui);
+		padding: 5px 11px;
+		border: 1px solid #6f6f68;
+		border-radius: 6px;
+		background: linear-gradient(#fbfbf6, #dedad0);
+		box-shadow: 0 1px 0 #fff inset;
+		cursor: pointer;
+	}
+	.foot-links a:hover,
+	.foot-links a:focus-visible,
+	.foot-links button:hover,
+	.foot-links button:focus-visible {
+		background: linear-gradient(var(--sel), #2b47a0);
+		color: #fff;
+		outline: none;
+	}
+
+	/* Room / Settings / Help / About / Who bodies */
+	.room-hero {
+		display: flex;
+		gap: 14px;
+		align-items: center;
+		padding: 16px 18px;
+		border-bottom: 1px solid var(--line);
+		background: linear-gradient(115deg, #eef4ea, #f6efe0);
+	}
+	.room-hero .art {
+		width: 54px;
+		height: 54px;
+		flex: 0 0 auto;
+		filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.18));
+	}
+	.room-hero h2 {
+		font-family: var(--ui);
+		font-size: 20px;
+		margin: 0 0 2px;
+	}
+	.room-hero p {
+		margin: 0;
+		font-size: 12.5px;
+		color: var(--ink-soft);
+	}
+	.room-body {
+		padding: 16px 18px;
+	}
+	.room-body > p {
+		margin: 0 0 12px;
+		font-size: 13.5px;
+	}
+	.room-list {
+		margin: 0 0 14px;
+		padding: 0;
+		list-style: none;
+		display: grid;
+		gap: 8px;
+	}
+	.room-list li {
+		display: flex;
+		gap: 9px;
+		align-items: flex-start;
+		padding: 9px 11px;
+		background: #fff;
+		border: 1px solid #ddd6c4;
+		border-radius: 8px;
+		font-size: 12.5px;
+	}
+	.room-list b {
+		font-family: var(--ui);
+	}
+	.room-list .bud {
+		flex: 0 0 auto;
+		width: 9px;
+		height: 9px;
+		margin-top: 4px;
+		border-radius: 2px;
+		background: var(--sel);
+	}
+	.soon {
+		display: inline-flex;
+		align-items: center;
+		gap: 8px;
+		font-family: var(--ui);
+		font-size: 12px;
+		color: #6a5a2a;
+		padding: 7px 12px;
+		border-radius: 7px;
+		background: #fbf6e7;
+		border: 1px dashed #cbb271;
+	}
+	.settings-body {
+		padding: 6px 18px 16px;
+	}
+	.set-row {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 8px 16px;
+		align-items: center;
+		justify-content: space-between;
+		padding: 14px 0;
+		border-bottom: 1px solid #e4ddcb;
+	}
+	.set-row:last-child {
+		border-bottom: none;
+	}
+	.set-label {
+		font-family: var(--ui);
+		font-size: 14px;
+	}
+	.set-label small {
+		display: block;
+		font-family: var(--body);
+		font-size: 11.5px;
+		color: var(--ink-soft);
+		margin-top: 2px;
+		max-width: 34ch;
+	}
+	.seg {
+		display: inline-flex;
+		border: 1px solid #6f6f68;
+		border-radius: 7px;
+		overflow: hidden;
+		background: var(--plat-mid);
+		box-shadow: 0 1px 0 #fff inset;
+	}
+	.seg button {
+		font-family: var(--ui);
+		font-size: 12px;
+		border: none;
+		background: transparent;
+		padding: 7px 12px;
+		cursor: pointer;
+		color: var(--ink);
+		border-right: 1px solid #9a9a92;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 1px;
+		line-height: 1;
+	}
+	.seg button:last-child {
+		border-right: none;
+	}
+	.seg button small {
+		font-size: 10px;
+		color: var(--ink-soft);
+	}
+	.seg button[aria-pressed="true"] {
+		background: linear-gradient(var(--sel), #2b47a0);
+		color: #fff;
+		box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3) inset;
+	}
+	.seg button[aria-pressed="true"] small {
+		color: #dbe3ff;
+	}
+	.seg button:focus-visible {
+		outline: 2px solid var(--gold);
+		outline-offset: -2px;
+	}
+	.seg button[disabled] {
+		opacity: 0.5;
+		cursor: not-allowed;
+	}
+	.legend-wrap {
+		max-width: 330px;
+	}
+	.legend {
+		display: flex;
+		flex-wrap: wrap;
+		gap: 6px;
+		margin: 0;
+		padding: 0;
+		list-style: none;
+		justify-content: flex-end;
+	}
+	.legend button {
+		display: flex;
+		align-items: center;
+		gap: 6px;
+		font: inherit;
+		font-size: 12px;
+		color: var(--ink-soft);
+		background: #fff;
+		border: 1px solid #cfc8b6;
+		border-radius: 7px;
+		padding: 3px 8px 3px 6px;
+		cursor: pointer;
+	}
+	.legend button:hover,
+	.legend button:focus-visible {
+		border-color: var(--sel);
+		outline: none;
+	}
+	.legend .chip {
+		width: 14px;
+		height: 14px;
+		border-radius: 4px;
+		border: 1px solid #7a7a72;
+		box-shadow: 0 0 0 1px #fff inset;
+	}
+	.legend button[aria-pressed="true"] {
+		font-weight: bold;
+		color: var(--ink);
+		border-color: var(--ink-soft);
+		box-shadow: 0 0 0 2px var(--sel-soft);
+	}
+	.legend button[data-today]::after {
+		content: "• today";
+		font-size: 9px;
+		color: var(--green);
+		font-weight: bold;
+	}
+	.lit-note {
+		margin: 8px 0 0;
+		font-size: 11.5px;
+		color: var(--ink-soft);
+		text-align: right;
+	}
+	.c-white {
+		background: #fbfbf6;
+	}
+	.c-red {
+		background: var(--red);
+	}
+	.c-green {
+		background: var(--green);
+	}
+	.c-violet {
+		background: var(--violet);
+	}
+	.c-black {
+		background: #2a2a2e;
+	}
+	.c-rose {
+		background: var(--rose);
+	}
+	.help-body,
+	.about-body {
+		padding: 16px 18px;
+	}
+	.help-body h3,
+	.about-body h3 {
+		font-family: var(--ui);
+		font-size: 14px;
+		margin: 14px 0 5px;
+	}
+	.help-body h3:first-child,
+	.about-body h3:first-child {
+		margin-top: 0;
+	}
+	.help-body p,
+	.about-body p {
+		margin: 0 0 9px;
+		font-size: 13px;
+	}
+	.keycap {
+		font-family: var(--ui);
+		font-size: 11px;
+		background: #fff;
+		border: 1px solid #b9b1a0;
+		border-bottom-width: 2px;
+		border-radius: 4px;
+		padding: 1px 6px;
+	}
+	.about-foot {
+		margin-top: 12px;
+		padding-top: 10px;
+		border-top: 1px solid #e4ddcb;
+		font-size: 11.5px;
+		color: var(--ink-soft);
+	}
+
+	/* Who's this / avatar */
+	.who-body {
+		padding: 16px 18px;
+	}
+	.who-body .lead {
+		font-size: 13.5px;
+		margin: 0 0 14px;
+	}
+	.who-sub {
+		font-family: var(--ui);
+		font-size: 11px;
+		letter-spacing: 0.5px;
+		text-transform: uppercase;
+		color: #6a5a2a;
+		margin: 0 0 8px;
+	}
+	.who-presets {
+		display: flex;
+		gap: 10px;
+		flex-wrap: wrap;
+		margin-bottom: 16px;
+	}
+	.who-card {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 6px;
+		width: 84px;
+		padding: 10px 6px;
+		border: 1px solid #ddd6c4;
+		border-radius: 10px;
+		background: #fff;
+		cursor: pointer;
+		font: inherit;
+	}
+	.who-card svg {
+		width: 44px;
+		height: 44px;
+	}
+	.who-card .nm {
+		font-family: var(--ui);
+		font-size: 12px;
+	}
+	.who-card:hover,
+	.who-card:focus-visible {
+		border-color: var(--sel);
+		outline: none;
+		box-shadow: 0 2px 7px rgba(90, 70, 30, 0.12);
+	}
+	.who-new {
+		border-top: 1px solid #e4ddcb;
+		padding-top: 14px;
+		display: flex;
+		gap: 16px;
+		align-items: center;
+		flex-wrap: wrap;
+	}
+	.avatar-make {
+		display: flex;
+		align-items: center;
+		gap: 12px;
+	}
+	#avatarPreview {
+		width: 58px;
+		height: 58px;
+		border-radius: 14px;
+		box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+	}
+	.who-fields {
+		display: flex;
+		flex-direction: column;
+		gap: 8px;
+		flex: 1 1 170px;
+		min-width: 150px;
+	}
+	.who-fields label {
+		font-family: var(--ui);
+		font-size: 12px;
+	}
+	.who-fields input {
+		font: inherit;
+		font-size: 14px;
+		padding: 7px 9px;
+		border: 1px solid #9a9a92;
+		border-radius: 6px;
+		background: #fff;
+	}
+	.who-fields input:focus-visible {
+		outline: 2px solid var(--sel);
+	}
+	.btn {
+		font-family: var(--ui);
+		font-size: 13px;
+		padding: 8px 14px;
+		border: 1px solid #6f6f68;
+		border-radius: 7px;
+		background: linear-gradient(#fbfbf6, #dedad0);
+		box-shadow: 0 1px 0 #fff inset;
+		cursor: pointer;
+		color: var(--ink);
+	}
+	.btn:hover,
+	.btn:focus-visible {
+		background: linear-gradient(var(--sel), #2b47a0);
+		color: #fff;
+		outline: none;
+	}
+	.btn-primary {
+		background: linear-gradient(#4a78d8, #2b47a0);
+		color: #fff;
+		border-color: #24408f;
+	}
+	.who-actions {
+		display: flex;
+		gap: 10px;
+		justify-content: flex-end;
+		margin-top: 16px;
+	}
+	.visually-hidden {
+		position: absolute;
+		width: 1px;
+		height: 1px;
+		margin: -1px;
+		clip-path: inset(50%);
+		overflow: hidden;
+	}
+
+	@media (max-width: 720px) {
+		.grid {
+			grid-template-columns: repeat(2, 1fr);
+		}
+		.db-grid {
+			grid-template-columns: 1fr;
+		}
+		.balloon {
+			display: none;
+		}
+		.dock {
+			position: static;
+			grid-template-columns: repeat(4, 1fr);
+			gap: 8px;
+			padding: 14px 12px 4px;
+		}
+		.dock .d-ico {
+			width: auto;
+		}
+		.desk-hint {
+			position: static;
+			margin: 6px 14px 60px;
+			max-width: none;
+		}
+	}
+	@media (max-width: 560px) {
+		.window {
+			top: 50px;
+			left: 8px;
+			right: 8px;
+			width: auto !important;
+			max-height: calc(100vh - 108px);
+		}
+		.window .titlebar {
+			cursor: default;
+		}
+		.masthead {
+			flex-direction: column;
+			text-align: center;
+			align-items: center;
+		}
+		.grid {
+			grid-template-columns: 1fr;
+		}
+		.dock {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+	@media (prefers-reduced-motion: reduce) {
+		.marquee {
+			overflow-x: auto;
+		}
+		.marquee ul {
+			animation: none;
+		}
+		.window.opening {
+			animation: none;
+		}
+	}
+</style>
+
+<svg width="0" height="0" style="position: absolute" aria-hidden="true" focusable="false">
+	<symbol id="ic-library" viewBox="0 0 52 52"><rect x="9" y="7" width="34" height="38" rx="3" fill="#2e5aa8" stroke="#1c3c78" stroke-width="1.4" /><rect x="13" y="11" width="26" height="30" rx="1" fill="#eaf0fb" /><path d="M17 16h18 M17 21h18 M17 26h14 M17 31h18 M17 36h11" stroke="#5a7ec0" stroke-width="1.4" stroke-linecap="round" /><path d="M35 6 L35 20 L31 16 L27 20 L27 6 Z" fill="#d1483a" stroke="#9a2f24" stroke-width="1" /></symbol>
+	<symbol id="ic-fieldguide" viewBox="0 0 52 52"><rect x="8" y="8" width="36" height="36" rx="4" fill="#3f8f4a" stroke="#2a6b34" stroke-width="1.4" /><rect x="12" y="12" width="28" height="20" rx="2" fill="#eaf6ea" /><circle cx="20" cy="21" r="5" fill="#e0a531" stroke="#b07d12" stroke-width="1" /><path d="M30 27 l5 -6 4 6 z" fill="#6fae74" /><path d="M13 38h26 M13 41h18" stroke="#eaf6ea" stroke-width="1.6" stroke-linecap="round" /><circle cx="31" cy="18" r="2" fill="#fff" /></symbol>
+	<symbol id="ic-chapel" viewBox="0 0 52 52"><rect x="12" y="20" width="28" height="24" fill="#efeafa" stroke="#5c4a86" stroke-width="1.4" /><path d="M26 6 L44 22 L8 22 Z" fill="#7a5aa8" stroke="#5c4a86" stroke-width="1.4" /><path d="M26 10 L26 16 M23 13 L29 13" stroke="#f4e6bd" stroke-width="2" stroke-linecap="round" /><path d="M26 30 a5 5 0 0 1 10 0 v14 h-10 Z" fill="#7a5aa8" /><rect x="17" y="30" width="6" height="10" rx="3" fill="#c9b8e6" /></symbol>
+	<symbol id="ic-art" viewBox="0 0 52 52"><path d="M26 8 C15 8,7 16,7 26 C7 33,13 34,17 33 C21 32,22 36,20 39 C18 42,22 45,27 44 C37 43,45 35,45 25 C45 15,37 8,26 8 Z" fill="#d1483a" stroke="#9a2f24" stroke-width="1.4" /><circle cx="17" cy="20" r="2.6" fill="#2e5aa8" /><circle cx="26" cy="15" r="2.6" fill="#e0a531" /><circle cx="35" cy="20" r="2.6" fill="#3f8f4a" /><circle cx="37" cy="30" r="2.6" fill="#7a5aa8" /><circle cx="28" cy="35" r="4" fill="#f7f0df" stroke="#cbb271" /></symbol>
+	<symbol id="ic-arcade" viewBox="0 0 52 52"><rect x="9" y="14" width="34" height="24" rx="7" fill="#e0a531" stroke="#a9760f" stroke-width="1.4" /><rect x="9" y="14" width="34" height="11" rx="6" fill="#f0c760" /><path d="M17 26 v8 M13 30 h8" stroke="#5a3d08" stroke-width="2.4" stroke-linecap="round" /><circle cx="34" cy="27" r="2.6" fill="#d1483a" /><circle cx="39" cy="32" r="2.6" fill="#2e5aa8" /></symbol>
+	<symbol id="ic-typing" viewBox="0 0 52 52"><rect x="7" y="18" width="38" height="22" rx="4" fill="#2b8f8f" stroke="#1c6a6a" stroke-width="1.4" /><rect x="11" y="22" width="6" height="5" rx="1" fill="#d7f0f0" /><rect x="19" y="22" width="6" height="5" rx="1" fill="#d7f0f0" /><rect x="27" y="22" width="6" height="5" rx="1" fill="#d7f0f0" /><rect x="35" y="22" width="6" height="5" rx="1" fill="#e0a531" /><rect x="11" y="30" width="14" height="5" rx="1" fill="#d7f0f0" /><rect x="27" y="30" width="14" height="5" rx="1" fill="#d7f0f0" /></symbol>
+	<symbol id="ic-settings" viewBox="0 0 52 52"><circle cx="26" cy="26" r="8" fill="#eef1f6" stroke="#4a4a52" stroke-width="1.6" /><circle cx="26" cy="26" r="3" fill="#3355bb" /><g fill="#8f9099" stroke="#4a4a52" stroke-width="1"><rect x="23.5" y="6" width="5" height="7" rx="1" /><rect x="23.5" y="39" width="5" height="7" rx="1" /><rect x="6" y="23.5" width="7" height="5" rx="1" /><rect x="39" y="23.5" width="7" height="5" rx="1" /></g></symbol>
+	<symbol id="ic-help" viewBox="0 0 52 52"><circle cx="26" cy="26" r="19" fill="#f0c760" stroke="#a9760f" stroke-width="1.6" /><path d="M20 21 a6 6 0 1 1 9 5 c-2 1.5-3 2.5-3 5" fill="none" stroke="#5a3d08" stroke-width="3.2" stroke-linecap="round" /><circle cx="26" cy="37" r="2.4" fill="#5a3d08" /></symbol>
+	<symbol id="ic-home" viewBox="0 0 52 52"><path d="M26 8 L45 25 H40 V44 H31 V31 H21 V44 H12 V25 H7 Z" fill="#cfe0d4" stroke="#3f8f4a" stroke-width="1.6" stroke-linejoin="round" /><rect x="24" y="34" width="4" height="10" fill="#3f8f4a" /></symbol>
+	<symbol id="ic-about" viewBox="0 0 52 52"><circle cx="26" cy="26" r="18" fill="#cfe0f2" stroke="#2e5aa8" stroke-width="1.6" /><circle cx="26" cy="17" r="2.6" fill="#2e5aa8" /><rect x="23.5" y="22" width="5" height="16" rx="2" fill="#2e5aa8" /></symbol>
+	<symbol id="ic-who" viewBox="0 0 52 52"><circle cx="26" cy="19" r="8" fill="#f3e0b0" stroke="#4a4a52" stroke-width="1.4" /><path d="M11 45 a15 12 0 0 1 30 0 Z" fill="#7a5aa8" stroke="#4a4a52" stroke-width="1.4" /></symbol>
+</svg>
+
+<div class="desktop" id="desktop" data-tier="2">
+	<div class="menubar">
+		<button type="button" class="mb-item home" id="homeBtn" data-open="win-home" aria-label="Home — open the welcome window"><svg width="16" height="15" viewBox="0 0 16 15" aria-hidden="true"><path d="M8 1.5 L15 7.5 H13 V13.5 H9.5 V9.5 H6.5 V13.5 H3 V7.5 H1 Z" fill="#42484f" stroke="#42484f" stroke-width="0.6" stroke-linejoin="round" /></svg><b>Home</b></button>
+		<button type="button" class="mb-item" data-open="win-chapel">Chapel</button>
+		<button type="button" class="mb-item" data-open="win-library">Library</button>
+		<button type="button" class="mb-item" data-open="win-settings">Settings</button>
+		<button type="button" class="mb-item" data-open="win-help">Help</button>
+		<div class="mb-right">
+			<button type="button" class="mb-profile" id="profileChip" data-open="win-who" hidden aria-label="Switch explorer"><svg viewBox="0 0 44 44" aria-hidden="true"></svg><span class="chip-name"></span></button>
+			<div class="clock" aria-label="Today's liturgical season"><span class="dot" aria-hidden="true"></span><span id="clockText">Time after Pentecost</span></div>
+		</div>
+	</div>
+
+	<div class="dock" role="group" aria-label="Bosco — the six places">
+		<button type="button" class="d-ico" data-open="win-library"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-library" /></svg><span class="lbl">The Library</span></button>
+		<button type="button" class="d-ico" data-open="win-fieldguide"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-fieldguide" /></svg><span class="lbl">Field Guide</span></button>
+		<button type="button" class="d-ico" data-open="win-chapel"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-chapel" /></svg><span class="lbl">The Chapel</span></button>
+		<button type="button" class="d-ico" data-open="win-art"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-art" /></svg><span class="lbl">Art Studio</span></button>
+		<button type="button" class="d-ico" data-open="win-arcade"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-arcade" /></svg><span class="lbl">The Arcade</span></button>
+		<button type="button" class="d-ico" data-open="win-typing"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-typing" /></svg><span class="lbl">Typing</span></button>
+	</div>
+
+	<p class="desk-hint">This is your Bosco desktop. Click a picture to open it; open windows collect in the bar at the bottom. Windows have <b>&minus; &#9633; &times;</b> top-right — shrink, grow, close.</p>
+
+	<!-- HOME -->
+	<section class="window" id="win-home" role="dialog" aria-labelledby="t-home" hidden>
+		<div class="titlebar"><span class="tb-title" id="t-home">bosco.kids</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body">
+			<header class="masthead">
+				<div class="crest" aria-hidden="true"><svg width="48" height="48" viewBox="0 0 52 52" role="img" aria-label="Open book with a cross"><path d="M26 13 C20 9,10 9,6 11 L6 41 C10 39,20 39,26 43 C32 39,42 39,46 41 L46 11 C42 9,32 9,26 13 Z" fill="#fffdf5" stroke="#8a6a30" stroke-width="1.4" /><path d="M26 13 L26 43" stroke="#8a6a30" stroke-width="1.4" /><path d="M10 18 C15 16.5,21 16.5,24 18 M28 18 C31 16.5,37 16.5,42 18" fill="none" stroke="#b9a878" stroke-width="1" /><path d="M26 20 L26 33 M21 25 L31 25" stroke="#c0392b" stroke-width="2.4" stroke-linecap="round" /></svg></div>
+				<div class="mast-txt"><h1>Bosco</h1><div class="mast-url">bosco.kids</div><p class="tagline">A little internet for God&rsquo;s children &mdash; six doors into wonder, all quiet, all yours to explore.</p><span class="colour-pill"><span class="sw" aria-hidden="true"></span>Today&rsquo;s colour: <b id="pillColour">Green</b></span></div>
+				<aside class="balloon" role="note"><b>Welcome!</b> Point at any door to peek inside. Everything here is quiet, safe, and yours to explore. &#9786;</aside>
+			</header>
+			<div class="bulletin">
+				<div class="tag"><span aria-hidden="true">📣</span> Bulletin</div>
+				<div class="marquee" aria-label="Today's bulletin"><ul>
+					<li><span class="star" aria-hidden="true">✦</span> Welcome to bosco.kids &mdash; make yourself at home.</li>
+					<li><span class="star" aria-hidden="true">✦</span> The Church keeps her seasons &mdash; today&rsquo;s colour glows on your desktop.</li>
+					<li><span class="star" aria-hidden="true">✦</span> Three new creatures added to the Field Guide this week.</li>
+					<li><span class="star" aria-hidden="true">✦</span> &ldquo;It is enough that you are young for me to love you.&rdquo; &mdash; Don Bosco</li>
+					<li aria-hidden="true"><span class="star">✦</span> Welcome to bosco.kids &mdash; make yourself at home.</li>
+					<li aria-hidden="true"><span class="star">✦</span> The Church keeps her seasons &mdash; today&rsquo;s colour glows on your desktop.</li>
+					<li aria-hidden="true"><span class="star">✦</span> Three new creatures added to the Field Guide this week.</li>
+					<li aria-hidden="true"><span class="star">✦</span> &ldquo;It is enough that you are young for me to love you.&rdquo; &mdash; Don Bosco</li>
+				</ul></div>
+			</div>
+			<div class="grid-wrap">
+				<div class="grid-head"><h2>Six doors</h2><span>&mdash; click any one to go in</span></div>
+				<div class="grid">
+					<a href="#" class="tile" data-open="win-library"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-library" /></svg><div class="tile-txt"><span class="kicker k-blue">Encyclopedia</span><h3>The Library</h3><p>Look up anything &mdash; saints, seas, stars, and how the world is made.</p></div></a>
+					<a href="#" class="tile" data-open="win-fieldguide"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-fieldguide" /></svg><div class="tile-txt"><span class="kicker k-green">Card Album</span><h3>The Field Guide</h3><p>Collect God&rsquo;s creatures &mdash; a growing album of cards to keep.</p></div></a>
+					<a href="#" class="tile" data-open="win-chapel"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-chapel" /></svg><div class="tile-txt"><span class="kicker k-violet">Kalendar &middot; Prayers</span><h3>The Chapel</h3><p>Today&rsquo;s feast, the day&rsquo;s colour, and prayers to say aloud or quietly.</p></div></a>
+					<a href="#" class="tile" data-open="win-art"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-art" /></svg><div class="tile-txt"><span class="kicker k-red">Draw &middot; Print</span><h3>The Art Studio</h3><p>Paint, colour saints and seasons, then print your work to hang up.</p></div></a>
+					<a href="#" class="tile" data-open="win-arcade"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-arcade" /></svg><div class="tile-txt"><span class="kicker k-gold">Little Games</span><h3>The Arcade</h3><p>Gentle puzzles and quick games &mdash; kind fun, and never any rush.</p></div></a>
+					<a href="#" class="tile" data-open="win-typing"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-typing" /></svg><div class="tile-txt"><span class="kicker k-teal">Prayers &amp; Verses</span><h3>The Typing Trainer</h3><p>Learn the keys by typing prayers and Scripture &mdash; a little each day.</p></div></a>
+				</div>
+			</div>
+			<section class="dayband" aria-label="Day of the Day">
+				<p class="db-head">Day of the Day <span class="season">&mdash; <span id="dayColour">Green</span> &middot; <span id="daySeason">Time after Pentecost</span></span></p>
+				<div class="db-grid">
+					<div class="saint"><svg class="halo" viewBox="0 0 46 46" role="img" aria-label="Saint John Bosco"><circle cx="23" cy="23" r="22" fill="#f7efd8" /><circle cx="23" cy="20" r="7" fill="#f3e0b0" stroke="#c9a94a" stroke-width="1" /><path d="M12 40 a11 9 0 0 1 22 0 Z" fill="#3a3a44" /><rect x="20" y="24" width="6" height="10" fill="#2a2a30" /><circle cx="20" cy="20" r="1" fill="#5a4a2a" /><circle cx="26" cy="20" r="1" fill="#5a4a2a" /><path d="M20 23 q3 2 6 0" fill="none" stroke="#8a6a30" stroke-width="1" stroke-linecap="round" /></svg><div><b>St John Bosco</b><small>Patron of children and young people.</small><span class="feast">Feast &middot; Jan 31 &middot; White</span></div></div>
+					<div class="verse"><p class="lat">Sinite parvulos venire ad me</p><p class="en">Suffer the little children to come unto me</p><span class="ref">Mark 10:14</span></div>
+				</div>
+			</section>
+			<footer class="foot">
+				<div class="construction"><span>🚧 Under construction &mdash; more doors coming soon</span></div>
+				<div class="foot-counter"><span class="odo" role="img" aria-label="Visitor counter: 0 0 1 4 7 2 6"><span>0</span><span>0</span><span>1</span><span>4</span><span>7</span><span>2</span><span>6</span></span> visitors</div>
+				<div class="foot-links"><button type="button" data-open="win-about">About Bosco</button><a href="#" rel="prev">&larr; Prev</a><a href="#" rel="next">Next &rarr;</a></div>
+			</footer>
+		</div>
+	</section>
+
+	<!-- SETTINGS -->
+	<section class="window small" id="win-settings" role="dialog" aria-labelledby="t-settings" hidden>
+		<div class="titlebar"><span class="tb-title" id="t-settings">Settings</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body">
+			<div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-settings" /></svg><div><h2>Settings</h2><p>Make Bosco yours &mdash; it all stays on this computer.</p></div></div>
+			<div class="settings-body">
+				<div class="set-row">
+					<div class="set-label">Reading level<small>How grown-up the words are, everywhere on the site.</small></div>
+					<div class="seg" role="group" aria-label="Reading level"><button type="button" data-tier="1" aria-pressed="false">Seedling<small>4&ndash;6</small></button><button type="button" data-tier="2" aria-pressed="true">Explorer<small>7&ndash;9</small></button><button type="button" data-tier="3" aria-pressed="false">Scholar<small>10&ndash;13</small></button></div>
+				</div>
+				<div class="set-row">
+					<div class="set-label">Church colours<small>The desktop follows the Kalendar. Tap a colour to preview another.</small></div>
+					<div class="legend-wrap"><ul class="legend" id="legend"><li><button type="button" data-lit="white" aria-pressed="false"><span class="chip c-white" aria-hidden="true"></span>White</button></li><li><button type="button" data-lit="red" aria-pressed="false"><span class="chip c-red" aria-hidden="true"></span>Red</button></li><li><button type="button" data-lit="green" aria-pressed="true"><span class="chip c-green" aria-hidden="true"></span>Green</button></li><li><button type="button" data-lit="violet" aria-pressed="false"><span class="chip c-violet" aria-hidden="true"></span>Violet</button></li><li><button type="button" data-lit="black" aria-pressed="false"><span class="chip c-black" aria-hidden="true"></span>Black</button></li><li><button type="button" data-lit="rose" aria-pressed="false"><span class="chip c-rose" aria-hidden="true"></span>Rose</button></li></ul><p class="lit-note" id="litNote">Today is Time after Pentecost.</p></div>
+				</div>
+				<div class="set-row">
+					<div class="set-label">Sounds<small>Gentle clicks and chimes as you explore.</small></div>
+					<div class="seg" role="group" aria-label="Sounds"><button type="button" data-sound="on" aria-pressed="true">On</button><button type="button" data-sound="off" aria-pressed="false">Off</button></div>
+				</div>
+				<div class="set-row">
+					<div class="set-label">Look<small>The soft &ldquo;Meadow&rdquo; theme arrives later.</small></div>
+					<div class="seg" role="group" aria-label="Theme"><button type="button" aria-pressed="true">Clubhouse</button><button type="button" aria-pressed="false" disabled>Meadow (soon)</button></div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- WHO'S THIS -->
+	<section class="window small" id="win-who" role="dialog" aria-labelledby="t-who" hidden>
+		<div class="titlebar"><span class="tb-title" id="t-who">Who&rsquo;s exploring?</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body">
+			<div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-who" /></svg><div><h2>Who&rsquo;s exploring today?</h2><p>Pick yourself, or make a new explorer. It all stays on this computer.</p></div></div>
+			<div class="who-body">
+				<p class="who-sub">Explorers on this computer</p>
+				<div class="who-presets">
+					<button type="button" class="who-card" data-profile="Rose|3|0"><svg viewBox="0 0 44 44" aria-hidden="true"></svg><span class="nm">Rose</span></button>
+					<button type="button" class="who-card" data-profile="Gus|1|2"><svg viewBox="0 0 44 44" aria-hidden="true"></svg><span class="nm">Gus</span></button>
+				</div>
+				<div class="who-new">
+					<p class="who-sub" style="flex: 1 1 100%; margin: 0">Make a new explorer</p>
+					<div class="avatar-make"><svg id="avatarPreview" viewBox="0 0 44 44" aria-label="Your avatar picture"></svg><button type="button" class="btn" data-avatar-action="shuffle">🎲 Shuffle</button></div>
+					<div class="who-fields"><label for="whoName">Your name</label><input id="whoName" type="text" maxlength="16" placeholder="Type your name" autocomplete="off" /></div>
+				</div>
+				<div class="who-actions"><button type="button" class="btn btn-primary" data-avatar-action="start">Start exploring &rarr;</button></div>
+			</div>
+		</div>
+	</section>
+
+	<!-- ABOUT -->
+	<section class="window small" id="win-about" role="dialog" aria-labelledby="t-about" hidden>
+		<div class="titlebar"><span class="tb-title" id="t-about">About Bosco</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body">
+			<div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-about" /></svg><div><h2>About Bosco</h2><p>A quiet little internet, made with love for God&rsquo;s children.</p></div></div>
+			<div class="about-body">
+				<h3>What it is</h3>
+				<p>Bosco is a small, offline world for traditional Catholic children &mdash; a library, a field guide, a chapel, an art studio, an arcade, and a typing trainer &mdash; built to invite wonder, not to grab attention.</p>
+				<h3>Where the words come from</h3>
+				<p>Facts are drawn from trustworthy, public-domain sources and rewritten for three reading levels. Prayers, catechism, and Scripture are quoted <b>exactly</b>, never paraphrased. Every faith topic is read and approved by hand before it appears.</p>
+				<h3>Your child&rsquo;s privacy</h3>
+				<p>No account. No ads. No tracking. Everything &mdash; profiles, art, progress &mdash; stays on <b>this</b> device, and the whole thing works with the internet switched off. If you ever want it across devices, that&rsquo;s a parent-only choice you turn on yourself.</p>
+				<div class="about-foot">Made with love for God&rsquo;s children &middot; bosco.kids &middot; &copy; A.D. MMXXVI</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- HELP -->
+	<section class="window small" id="win-help" role="dialog" aria-labelledby="t-help" hidden>
+		<div class="titlebar"><span class="tb-title" id="t-help">Help</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body">
+			<div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-help" /></svg><div><h2>How Bosco works</h2><p>A quick tour of your desktop.</p></div></div>
+			<div class="help-body">
+				<h3>Open a place</h3><p>Click any picture on your desktop, or a door in the <b>Home</b> window. Each opens in its own window, and shows up in the bar along the bottom.</p>
+				<h3>Your windows</h3><p><span class="keycap">&minus;</span> tucks a window into the bottom bar, <span class="keycap">&#9633;</span> makes it fill the screen, and <span class="keycap">&times;</span> closes it. Drag a window by its title bar to move it; press <span class="keycap">Esc</span> to close the one you&rsquo;re in.</p>
+				<h3>The menu at the top</h3><p><b>Home</b> brings back the welcome window; <b>Settings</b> is where you set your reading level; <b>Chapel</b> and <b>Library</b> jump you straight in.</p>
+				<p style="margin-top: 14px"><button type="button" class="btn" data-open="win-about">About Bosco &rarr;</button></p>
+			</div>
+		</div>
+	</section>
+
+	<!-- ROOMS -->
+	<section class="window small" id="win-library" role="dialog" aria-labelledby="tt-library" hidden>
+		<div class="titlebar"><span class="tb-title" id="tt-library">The Library</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body"><div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-library" /></svg><div><h2>The Library</h2><p>A kid&rsquo;s encyclopedia &mdash; every topic at three reading levels.</p></div></div><div class="room-body"><p>Look up anything under the sun (and above it). Each article can be read as a <b>Seedling</b>, an <b>Explorer</b>, or a <b>Scholar</b> &mdash; set that in Settings.</p><ul class="room-list"><li><span class="bud" aria-hidden="true"></span><span><b>Creatures</b> &mdash; the red fox, the honeybee, the whale.</span></li><li><span class="bud" aria-hidden="true"></span><span><b>Faith</b> &mdash; saints, sacraments, and the Mass.</span></li><li><span class="bud" aria-hidden="true"></span><span><b>The World</b> &mdash; the printing press, the planets, the sea.</span></li></ul><span class="soon">🔨 The shelves are still being stocked &mdash; opening in a later version.</span></div></div>
+	</section>
+	<section class="window small" id="win-fieldguide" role="dialog" aria-labelledby="tt-fg" hidden>
+		<div class="titlebar"><span class="tb-title" id="tt-fg">The Field Guide</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body"><div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-fieldguide" /></svg><div><h2>The Field Guide</h2><p>Meet God&rsquo;s creatures &mdash; and earn a card each time you read.</p></div></div><div class="room-body"><p>Every creature you read about in the Library adds a <b>collector&rsquo;s card</b> to your album. No streaks, no nagging &mdash; it simply remembers what you&rsquo;ve met.</p><ul class="room-list"><li><span class="bud" aria-hidden="true"></span><span>Browse by <b>habitat</b> or by <b>kind</b>.</span></li><li><span class="bud" aria-hidden="true"></span><span>Tap a creature to see it up close.</span></li><li><span class="bud" aria-hidden="true"></span><span>Your album lives on <b>this</b> computer &mdash; yours to keep.</span></li></ul><span class="soon">🔨 The album is being bound &mdash; opening in a later version.</span></div></div>
+	</section>
+	<section class="window small" id="win-chapel" role="dialog" aria-labelledby="tt-chapel" hidden>
+		<div class="titlebar"><span class="tb-title" id="tt-chapel">The Chapel</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body"><div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-chapel" /></svg><div><h2>The Chapel</h2><p>The Church&rsquo;s calendar, her prayers, and her catechism.</p></div></div><div class="room-body"><p>Today the Church wears <b id="chapelColour">green</b>, in the season of <b id="chapelSeason">Time after Pentecost</b>. Here you keep the day with her.</p><ul class="room-list"><li><span class="bud" aria-hidden="true"></span><span>The <b>1962 Kalendar</b> &mdash; today&rsquo;s feast, its rank and colour.</span></li><li><span class="bud" aria-hidden="true"></span><span>A <b>prayer book</b> &mdash; Latin and English, side by side.</span></li><li><span class="bud" aria-hidden="true"></span><span>The <b>Baltimore Catechism</b> &mdash; graded to your reading level.</span></li></ul><div class="verse" style="max-width: 340px"><p class="lat">Sinite parvulos venire ad me</p><p class="en">Suffer the little children to come unto me</p><span class="ref">Mark 10:14</span></div></div></div>
+	</section>
+	<section class="window small" id="win-art" role="dialog" aria-labelledby="tt-art" hidden>
+		<div class="titlebar"><span class="tb-title" id="tt-art">The Art Studio</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body"><div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-art" /></svg><div><h2>The Art Studio</h2><p>Draw, colour, and print your own pictures.</p></div></div><div class="room-body"><p>A friendly canvas with brushes, a fill bucket, stamps, and an undo you can trust. When you&rsquo;re done &mdash; <b>print it</b> and hang it on the fridge.</p><ul class="room-list"><li><span class="bud" aria-hidden="true"></span><span>Free draw, or colour a saint or a season.</span></li><li><span class="bud" aria-hidden="true"></span><span>Save your work to <b>My Room</b>.</span></li><li><span class="bud" aria-hidden="true"></span><span>Print button front and centre &mdash; paper is the point.</span></li></ul><span class="soon">🔨 Mind the wet paint &mdash; opening in a later version.</span></div></div>
+	</section>
+	<section class="window small" id="win-arcade" role="dialog" aria-labelledby="tt-arcade" hidden>
+		<div class="titlebar"><span class="tb-title" id="tt-arcade">The Arcade</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body"><div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-arcade" /></svg><div><h2>The Arcade</h2><p>A couple of little games &mdash; kind fun, never any rush.</p></div></div><div class="room-body"><p>Two finished games to start, both quiet and gentle. Nothing here hurries you or asks you to come back.</p><ul class="room-list"><li><span class="bud" aria-hidden="true"></span><span><b>Typing Defense</b> &mdash; spell the falling words.</span></li><li><span class="bud" aria-hidden="true"></span><span><b>Saint &amp; Symbol Match</b> &mdash; read the stained glass.</span></li><li><span class="bud" aria-hidden="true"></span><span>High scores kept right here, just for you.</span></li></ul><span class="soon">🔨 Inserting coin &mdash; opening in a later version.</span></div></div>
+	</section>
+	<section class="window small" id="win-typing" role="dialog" aria-labelledby="tt-typing" hidden>
+		<div class="titlebar"><span class="tb-title" id="tt-typing">The Typing Trainer</span><span class="tb-fill" aria-hidden="true"></span><span class="win-controls"><button type="button" class="wc wc-min" data-min aria-label="Shrink window">&minus;</button><button type="button" class="wc wc-max" data-max aria-label="Grow window">&#9633;</button><button type="button" class="wc wc-close" data-close aria-label="Close window">&times;</button></span></div>
+		<div class="win-body"><div class="room-hero"><svg class="art" viewBox="0 0 52 52" aria-hidden="true"><use href="#ic-typing" /></svg><div><h2>The Typing Trainer</h2><p>Learn the keys by typing prayers and Scripture.</p></div></div><div class="room-body"><p>Start on the home row and grow into whole passages &mdash; every lesson drawn from the prayers, verses, and creature-facts on this very site.</p><ul class="room-list"><li><span class="bud" aria-hidden="true"></span><span>Gentle words-per-minute and accuracy &mdash; no timer breathing down your neck.</span></li><li><span class="bud" aria-hidden="true"></span><span>Type the <b>Pater</b>, the <b>Ave</b>, a psalm.</span></li><li><span class="bud" aria-hidden="true"></span><span>Your progress stays on this computer.</span></li></ul><span class="soon">🔨 Warming up the keys &mdash; opening in a later version.</span></div></div>
+	</section>
+
+	<div class="taskbar" id="taskbar" role="group" aria-label="Open windows" hidden><span class="tb-lead">Open:</span></div>
+</div>
+
+<script>
+	(function () {
+		'use strict';
+		var $ = function (id) { return document.getElementById(id); };
+		var rs = document.documentElement.style;
+		var desktop = $('desktop');
+		var taskbar = $('taskbar');
+		var z = 100, cascade = 0, MENUBAR = 28;
+		var activeWin = null;
+		var isMobile = function () { return window.matchMedia('(max-width: 560px)').matches; };
+
+		var ICONS = {
+			'win-home': '#ic-home', 'win-settings': '#ic-settings', 'win-help': '#ic-help',
+			'win-about': '#ic-about', 'win-who': '#ic-who', 'win-library': '#ic-library',
+			'win-fieldguide': '#ic-fieldguide', 'win-chapel': '#ic-chapel', 'win-art': '#ic-art',
+			'win-arcade': '#ic-arcade', 'win-typing': '#ic-typing'
+		};
+
+		/* ---------- gentle sounds (Web Audio, self-contained) ---------- */
+		var audio = { ctx: null, on: true };
+		function ctx() {
+			if (!audio.ctx) { try { audio.ctx = new (window.AudioContext || window.webkitAudioContext)(); } catch (e) { return null; } }
+			if (audio.ctx && audio.ctx.state === 'suspended') audio.ctx.resume();
+			return audio.ctx;
+		}
+		function tone(freqs, dur, vol) {
+			if (!audio.on) return;
+			var c = ctx(); if (!c) return;
+			var t0 = c.currentTime;
+			freqs.forEach(function (f, i) {
+				var o = c.createOscillator(), g = c.createGain();
+				o.type = 'sine'; o.frequency.value = f;
+				var s = t0 + i * 0.05;
+				g.gain.setValueAtTime(0.0001, s);
+				g.gain.exponentialRampToValueAtTime(vol, s + 0.012);
+				g.gain.exponentialRampToValueAtTime(0.0001, s + dur);
+				o.connect(g); g.connect(c.destination);
+				o.start(s); o.stop(s + dur + 0.02);
+			});
+		}
+		var sounds = {
+			open: function () { tone([523.25, 783.99], 0.16, 0.05); },
+			close: function () { tone([392.0, 261.63], 0.14, 0.045); },
+			tick: function () { tone([660], 0.05, 0.03); }
+		};
+
+		/* ---------- taskbar ---------- */
+		function tabFor(id) { return taskbar.querySelector('[data-tab="' + id + '"]'); }
+		function ensureTab(win) {
+			var t = tabFor(win.id);
+			if (!t) {
+				t = document.createElement('button');
+				t.type = 'button'; t.className = 'task'; t.setAttribute('data-tab', win.id);
+				var title = win.querySelector('.tb-title').textContent;
+				t.innerHTML = '<svg class="tico" viewBox="0 0 52 52" aria-hidden="true"><use href="' + (ICONS[win.id] || '#ic-home') + '"></use></svg><span>' + title + '</span>';
+				t.addEventListener('click', function () { onTab(win); });
+				taskbar.appendChild(t);
+			}
+			return t;
+		}
+		function removeTab(id) { var t = tabFor(id); if (t) t.remove(); }
+		function renderTabs() {
+			var tabs = taskbar.querySelectorAll('.task');
+			Array.prototype.forEach.call(tabs, function (t) {
+				var w = $(t.getAttribute('data-tab'));
+				t.classList.toggle('active', !!w && !w.hidden && w === activeWin);
+				t.classList.toggle('mini', !!w && w.hidden);
+			});
+			taskbar.hidden = tabs.length === 0;
+		}
+		function onTab(win) {
+			if (win.hidden) { openWin(win.id); }
+			else if (win === activeWin) { minimize(win); }
+			else { front(win); }
+		}
+
+		/* ---------- window manager ---------- */
+		function place(win) {
+			if (win.dataset.placed) return;
+			if (!isMobile()) {
+				var n = cascade % 6;
+				win.style.left = (48 + n * 30) + 'px';
+				win.style.top = (60 + n * 26) + 'px';
+				cascade++;
+			}
+			win.dataset.placed = '1';
+		}
+		function front(win) { win.style.zIndex = ++z; activeWin = win; renderTabs(); }
+		function openWin(id, opener) {
+			var w = $(id); if (!w) return;
+			place(w);
+			if (opener) w._opener = opener;
+			var wasHidden = w.hidden;
+			w.hidden = false;
+			ensureTab(w);
+			front(w);
+			w.classList.remove('opening'); void w.offsetWidth; w.classList.add('opening');
+			var f = w.querySelector('.wc-close'); if (f) f.focus();
+			if (wasHidden) sounds.open();
+		}
+		function minimize(win) {
+			win.hidden = true;
+			if (activeWin === win) activeWin = null;
+			sounds.close();
+			renderTabs();
+			var back = win._opener && document.body.contains(win._opener) ? win._opener : $('homeBtn');
+			if (back && back.focus) back.focus();
+		}
+		function closeWin(win) {
+			if (!win) return;
+			win.hidden = true;
+			win.classList.remove('maxed');
+			removeTab(win.id);
+			if (activeWin === win) activeWin = null;
+			sounds.close();
+			renderTabs();
+			var back = win._opener && document.body.contains(win._opener) ? win._opener : $('homeBtn');
+			if (back && back.focus) back.focus();
+		}
+
+		document.addEventListener('click', function (e) {
+			if (e.target.closest('a[href="#"]')) e.preventDefault();
+			var o = e.target.closest('[data-open]');
+			if (o) { openWin(o.getAttribute('data-open'), o); return; }
+			var c = e.target.closest('[data-close]');
+			if (c) { closeWin(c.closest('.window')); return; }
+			var mn = e.target.closest('[data-min]');
+			if (mn) { minimize(mn.closest('.window')); return; }
+			var mx = e.target.closest('[data-max]');
+			if (mx) { mx.closest('.window').classList.toggle('maxed'); sounds.tick(); return; }
+			var seg = e.target.closest('.seg button');
+			if (seg && !seg.disabled) {
+				Array.prototype.forEach.call(seg.parentNode.querySelectorAll('button'), function (b) {
+					b.setAttribute('aria-pressed', b === seg ? 'true' : 'false');
+				});
+				if (seg.dataset.tier) desktop.setAttribute('data-tier', seg.dataset.tier);
+				if (seg.dataset.sound) audio.on = seg.dataset.sound === 'on';
+				sounds.tick();
+				return;
+			}
+			var lit = e.target.closest('[data-lit]');
+			if (lit) { applyLit(lit.getAttribute('data-lit')); sounds.tick(); return; }
+			var av = e.target.closest('[data-avatar-action]');
+			if (av) { avatarAction(av.getAttribute('data-avatar-action')); return; }
+			var pr = e.target.closest('[data-profile]');
+			if (pr) { pickProfile(pr.getAttribute('data-profile')); return; }
+		});
+
+		Array.prototype.forEach.call(document.querySelectorAll('.window'), function (w) {
+			w.addEventListener('mousedown', function () { front(w); });
+			w.addEventListener('keydown', function (e) { if (e.key === 'Escape') { e.stopPropagation(); closeWin(w); } });
+			var tb = w.querySelector('.titlebar');
+			if (tb) tb.addEventListener('pointerdown', function (e) { startDrag(w, tb, e); });
+		});
+		function startDrag(w, tb, e) {
+			if (isMobile() || w.classList.contains('maxed')) return;
+			if (e.target.closest('.win-controls')) return;
+			front(w); place(w);
+			var r = w.getBoundingClientRect(), offX = e.clientX - r.left, offY = e.clientY - r.top;
+			function mv(ev) {
+				var x = Math.min(Math.max(0, ev.clientX - offX), window.innerWidth - 48);
+				var y = Math.min(Math.max(MENUBAR, ev.clientY - offY), window.innerHeight - 60);
+				w.style.left = x + 'px'; w.style.top = y + 'px'; w.style.right = 'auto';
+			}
+			function up() { document.removeEventListener('pointermove', mv); document.removeEventListener('pointerup', up); }
+			document.addEventListener('pointermove', mv);
+			document.addEventListener('pointerup', up);
+			try { tb.setPointerCapture(e.pointerId); } catch (_) {}
+			e.preventDefault();
+		}
+
+		/* ---------- liturgical colour (wallpaper follows the calendar) ---------- */
+		var LIT = {
+			white: ['#f1efe6', '#d7d4c6', 'White'],
+			red: ['#c0392b', '#8f261d', 'Red'],
+			green: ['#3f8f4a', '#2c6836', 'Green'],
+			violet: ['#6a4f93', '#48356a', 'Violet'],
+			black: ['#33343a', '#1b1c21', 'Black'],
+			rose: ['#d98aa8', '#b5657f', 'Rose']
+		};
+		function applyLit(key) {
+			var c = LIT[key]; if (!c) return;
+			rs.setProperty('--lit', c[0]); rs.setProperty('--lit-dk', c[1]);
+			var p = $('pillColour'); if (p) p.textContent = c[2];
+			var lg = $('legend');
+			if (lg) Array.prototype.forEach.call(lg.querySelectorAll('[data-lit]'), function (b) {
+				b.setAttribute('aria-pressed', b.getAttribute('data-lit') === key ? 'true' : 'false');
+			});
+		}
+		function easter(y) {
+			var a = y % 19, b = Math.floor(y / 100), c = y % 100, d = Math.floor(b / 4), e = b % 4,
+				f = Math.floor((b + 8) / 25), g = Math.floor((b - f + 1) / 3),
+				h = (19 * a + b - d - g + 15) % 30, i = Math.floor(c / 4), k = c % 4,
+				l = (32 + 2 * e + 2 * i - h - k) % 7, m = Math.floor((a + 11 * h + 22 * l) / 451),
+				mo = Math.floor((h + l - 7 * m + 114) / 31), da = ((h + l - 7 * m + 114) % 31) + 1;
+			return new Date(y, mo - 1, da);
+		}
+		function litToday(now) {
+			var y = now.getFullYear();
+			var today = new Date(y, now.getMonth(), now.getDate());
+			var DAY = 86400000;
+			var E = easter(y);
+			var diff = Math.round((today - E) / DAY);
+			var FEASTS = {
+				'1-1': ['white', 'the Octave of the Nativity'], '1-6': ['white', 'the Epiphany'],
+				'3-19': ['white', 'St Joseph'], '3-25': ['white', 'the Annunciation'],
+				'6-24': ['white', 'St John the Baptist'], '6-29': ['red', 'Ss. Peter & Paul'],
+				'8-15': ['white', 'the Assumption'], '11-1': ['white', 'All Saints'],
+				'11-2': ['black', "All Souls' Day"], '12-8': ['white', 'the Immaculate Conception'],
+				'12-25': ['white', 'Christmastide']
+			};
+			var fk = (now.getMonth() + 1) + '-' + now.getDate();
+			if (FEASTS[fk]) return { key: FEASTS[fk][0], season: FEASTS[fk][1] };
+			var w = new Date(y, 11, 25).getDay();
+			var advent4 = new Date(y, 11, 25 - (w === 0 ? 7 : w));
+			var advent1 = new Date(advent4); advent1.setDate(advent4.getDate() - 21);
+			if (today >= advent1 && today <= new Date(y, 11, 24)) return { key: 'violet', season: 'Advent' };
+			if (today >= new Date(y, 11, 25)) return { key: 'white', season: 'Christmastide' };
+			if (today <= new Date(y, 0, 13)) return { key: 'white', season: 'Christmastide' };
+			if (diff <= -64) return { key: 'green', season: 'Time after Epiphany' };
+			if (diff >= -63 && diff <= -47) return { key: 'violet', season: 'Septuagesima' };
+			if (diff === -2) return { key: 'black', season: 'Good Friday' };
+			if (diff >= -46 && diff <= -1) return { key: 'violet', season: diff >= -13 ? 'Passiontide' : 'Lent' };
+			if (diff >= 0 && diff <= 48) return { key: 'white', season: 'Eastertide' };
+			if (diff >= 49 && diff <= 55) return { key: 'red', season: 'Pentecost' };
+			if (diff === 56) return { key: 'white', season: 'Trinity Sunday' };
+			return { key: 'green', season: 'Time after Pentecost' };
+		}
+		function applyToday() {
+			var t = litToday(new Date());
+			applyLit(t.key);
+			var name = LIT[t.key][2];
+			var set = function (id, txt) { var el = $(id); if (el) el.textContent = txt; };
+			set('clockText', t.season);
+			set('dayColour', name);
+			set('daySeason', t.season);
+			set('chapelColour', name.toLowerCase());
+			set('chapelSeason', t.season);
+			set('litNote', 'Today is ' + t.season + ' — the Church wears ' + name.toLowerCase() + '.');
+			var lg = $('legend');
+			if (lg) {
+				var btn = lg.querySelector('[data-lit="' + t.key + '"]');
+				if (btn) btn.setAttribute('data-today', '');
+			}
+		}
+
+		/* ---------- profiles + avatar generator ---------- */
+		var AV_COLORS = ['#3f8f4a', '#2e5aa8', '#d1483a', '#7a5aa8', '#e0a531', '#2b8f8f', '#8a1c7b'];
+		var AV_EMBLEMS = [
+			'<path d="M22 10 l3.3 6.8 7.5 1.1 -5.4 5.3 1.3 7.4 -6.7 -3.5 -6.7 3.5 1.3 -7.4 -5.4 -5.3 7.5 -1.1z" fill="#fff"/>',
+			'<path d="M11 22 q11 -9 21 0 q-11 9 -21 0z" fill="none" stroke="#fff" stroke-width="2.6"/><path d="M30 22 l6 -4 v8z" fill="#fff"/>',
+			'<path d="M13 25 q3 -10 14 -9 q-3 3 -2 6 q5 -1 8 2 q-7 5 -13 3 q-5 -1 -7 -2z" fill="#fff"/>',
+			'<circle cx="22" cy="22" r="7" fill="#fff"/><g stroke="#fff" stroke-width="2.2" stroke-linecap="round"><path d="M22 6v4M22 34v4M6 22h4M34 22h4M11 11l3 3M30 30l3 3M33 11l-3 3M14 30l-3 3"/></g>',
+			'<circle cx="22" cy="25" r="9" fill="#fff"/><circle cx="22" cy="18" r="5.4" fill="#fff"/><circle cx="16" cy="16" r="2.6" fill="#fff"/><circle cx="28" cy="16" r="2.6" fill="#fff"/>',
+			'<path d="M22 33 C9 24 12 13 18 13 c3 0 4 2.4 4 3.6 c0 -1.2 1 -3.6 4 -3.6 c6 0 9 11 -4 20z" fill="#fff"/>'
+		];
+		var avState = { color: 0, emblem: 0 };
+		function avatarMarkup(c, em) { return '<rect width="44" height="44" rx="12" fill="' + AV_COLORS[c % AV_COLORS.length] + '"/>' + AV_EMBLEMS[em % AV_EMBLEMS.length]; }
+		function renderPreview() { var el = $('avatarPreview'); if (el) el.innerHTML = avatarMarkup(avState.color, avState.emblem); }
+		function setChip(name, c, em) {
+			var chip = $('profileChip'); if (!chip) return;
+			chip.hidden = false;
+			chip.querySelector('svg').innerHTML = avatarMarkup(c, em);
+			chip.querySelector('.chip-name').textContent = name;
+		}
+		function avatarAction(a) {
+			if (a === 'shuffle') {
+				avState.color = Math.floor(Math.random() * AV_COLORS.length);
+				avState.emblem = Math.floor(Math.random() * AV_EMBLEMS.length);
+				renderPreview(); sounds.tick();
+			} else if (a === 'start') {
+				var nm = ($('whoName').value || '').trim() || 'Explorer';
+				setChip(nm, avState.color, avState.emblem);
+				closeWin($('win-who'));
+				openWin('win-home', $('homeBtn'));
+			}
+		}
+		function pickProfile(spec) {
+			var p = spec.split('|');
+			setChip(p[0], parseInt(p[1], 10) || 0, parseInt(p[2], 10) || 0);
+			closeWin($('win-who'));
+			openWin('win-home', $('homeBtn'));
+		}
+		function initProfiles() {
+			renderPreview();
+			Array.prototype.forEach.call(document.querySelectorAll('.who-card'), function (card) {
+				var p = card.getAttribute('data-profile').split('|');
+				var svg = card.querySelector('svg');
+				if (svg) svg.innerHTML = avatarMarkup(parseInt(p[1], 10) || 0, parseInt(p[2], 10) || 0);
+			});
+		}
+
+		/* ---------- go ---------- */
+		applyToday();
+		initProfiles();
+		openWin('win-who', $('homeBtn'));
+	})();
+</script>
