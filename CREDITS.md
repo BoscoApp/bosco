@@ -5,9 +5,9 @@ and origin. **Unknown license ⇒ not committed.** This is a hard rule (see `REA
 
 ## Data
 
-| Asset                                  | Used for                                              | License                                                         | Source                |
-| -------------------------------------- | ----------------------------------------------------- | --------------------------------------------------------------- | --------------------- |
-| introibo Core — 1962 liturgical corpus | The vendored `calendar.json` (feasts, ranks, colours) | CC0 1.0 (corpus data only; engine is AGPL and **not** vendored) | introibo Core project |
+| Asset                                                                                                 | Used for                                                                             | License                                                             | Source                                                    |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------- | --------------------------------------------------------- |
+| introibo Core — 1962 liturgical corpus (corpus `1962-2026-07-02.1`, contract `1.0.0`, engine `0.4.0`) | The vendored `src/lib/calendar/calendar.json` (2026 feasts, ranks, colours, seasons) | CC0 1.0 (corpus data only; the engine is AGPL and **not** vendored) | introibo Core, via `contract()` — see `scripts/calendar/` |
 
 ## Fonts
 

@@ -1,0 +1,6453 @@
+{
+	"meta": {
+		"source": "introibo Core",
+		"rite": "roman",
+		"edition": "roman:rubricae-1960",
+		"contractVersion": "1.0.0",
+		"corpusVersion": "1962-2026-07-02.1",
+		"engineVersion": "0.4.0",
+		"range": {
+			"start": "2026-01-01",
+			"end": "2026-12-31"
+		},
+		"days": 365
+	},
+	"days": {
+		"2026-01-01": {
+			"date": "2026-01-01",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:octave-day",
+					"rank": "I",
+					"name": "In Circumcisione Domini",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-02": {
+			"date": "2026-01-02",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:post-octavam:feria-6",
+					"rank": "IV",
+					"name": "Feria VI post Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-03": {
+			"date": "2026-01-03",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:post-octavam:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato post Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-04": {
+			"date": "2026-01-04",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:holy-name",
+					"rank": "II",
+					"name": "In Festo Sanctissimi Nominis Iesu",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-05": {
+			"date": "2026-01-05",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:post-octavam:feria-2",
+					"rank": "IV",
+					"name": "Feria II post Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:telesphorus",
+					"name": "S. Telesphori Papae et Martyris"
+				}
+			]
+		},
+		"2026-01-06": {
+			"date": "2026-01-06",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:domini",
+					"rank": "I",
+					"name": "In Epiphania Domini",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-07": {
+			"date": "2026-01-07",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:post-epiphaniam:feria-4",
+					"rank": "IV",
+					"name": "Feria IV post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-08": {
+			"date": "2026-01-08",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:post-epiphaniam:feria-5",
+					"rank": "IV",
+					"name": "Feria V post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-09": {
+			"date": "2026-01-09",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:post-epiphaniam:feria-6",
+					"rank": "IV",
+					"name": "Feria VI post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-10": {
+			"date": "2026-01-10",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:post-epiphaniam:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-11": {
+			"date": "2026-01-11",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:holy-family",
+					"rank": "II",
+					"name": "In Festo Sanctae Familiae Iesu, Mariae, Ioseph",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:hyginus",
+					"name": "S. Hygini Papae et Martyris"
+				}
+			]
+		},
+		"2026-01-12": {
+			"date": "2026-01-12",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:week-1:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam I post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-13": {
+			"date": "2026-01-13",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:baptisma-domini",
+					"rank": "II",
+					"name": "Commemoratio Baptismatis Domini Nostri Iesu Christi",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-14": {
+			"date": "2026-01-14",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:hilarius",
+					"rank": "III",
+					"name": "S. Hilarii Episcopi, Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:felix-nolanus",
+					"name": "S. Felicis Presbyteri et Martyris"
+				}
+			]
+		},
+		"2026-01-15": {
+			"date": "2026-01-15",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:paulus-primus-eremita",
+					"rank": "III",
+					"name": "S. Pauli Primi Eremitae Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:maurus",
+					"name": "S. Mauri Abbatis"
+				}
+			]
+		},
+		"2026-01-16": {
+			"date": "2026-01-16",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:marcellus-i",
+					"rank": "III",
+					"name": "S. Marcelli Papae et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-17": {
+			"date": "2026-01-17",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:antonius-abbas",
+					"rank": "III",
+					"name": "S. Antonii Abbatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-18": {
+			"date": "2026-01-18",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:sunday-2",
+					"rank": "II",
+					"name": "Dominica II post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:prisca",
+					"name": "S. Priscae Virginis et Martyris"
+				}
+			]
+		},
+		"2026-01-19": {
+			"date": "2026-01-19",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:week-2:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam II post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:canutus",
+					"name": "S. Canuti Regis et Martyris"
+				},
+				{
+					"id": "roman:sanctorale:marius-et-socii",
+					"name": "Ss. Marii, Marthae, Audifacis et Abachum Martyrum"
+				}
+			]
+		},
+		"2026-01-20": {
+			"date": "2026-01-20",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:fabianus-et-sebastianus",
+					"rank": "III",
+					"name": "Ss. Fabiani Papae et Sebastiani Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-21": {
+			"date": "2026-01-21",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:agnes",
+					"rank": "III",
+					"name": "S. Agnetis Virginis et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-22": {
+			"date": "2026-01-22",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:vincentius-et-anastasius",
+					"rank": "III",
+					"name": "Ss. Vincentii et Anastasii Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-23": {
+			"date": "2026-01-23",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:raymundus-de-penafort",
+					"rank": "III",
+					"name": "S. Raymundi de Penafort Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:emerentiana",
+					"name": "S. Emerentianae Virginis et Martyris"
+				}
+			]
+		},
+		"2026-01-24": {
+			"date": "2026-01-24",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:timotheus",
+					"rank": "III",
+					"name": "S. Timothei Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-25": {
+			"date": "2026-01-25",
+			"season": "epiphany",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:epiphany:sunday-3",
+					"rank": "II",
+					"name": "Dominica III post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:conversio-pauli",
+					"name": "In Conversione S. Pauli Apostoli"
+				}
+			]
+		},
+		"2026-01-26": {
+			"date": "2026-01-26",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:polycarpus",
+					"rank": "III",
+					"name": "S. Polycarpi Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-27": {
+			"date": "2026-01-27",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-chrysostomus",
+					"rank": "III",
+					"name": "S. Ioannis Chrysostomi Episcopi, Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-28": {
+			"date": "2026-01-28",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-nolascus",
+					"rank": "III",
+					"name": "S. Petri Nolasci Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-29": {
+			"date": "2026-01-29",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:franciscus-salesius",
+					"rank": "III",
+					"name": "S. Francisci Salesii Episcopi, Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-30": {
+			"date": "2026-01-30",
+			"season": "epiphany",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:martina",
+					"rank": "III",
+					"name": "S. Martinae Virginis et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-01-31": {
+			"date": "2026-01-31",
+			"season": "epiphany",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-bosco",
+					"rank": "III",
+					"name": "S. Ioannis Bosco Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-01": {
+			"date": "2026-02-01",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:septuagesima",
+					"rank": "II",
+					"name": "Dominica in Septuagesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ignatius-antiochenus",
+					"name": "S. Ignatii Episcopi et Martyris"
+				}
+			]
+		},
+		"2026-02-02": {
+			"date": "2026-02-02",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:purificatio",
+					"rank": "II",
+					"name": "In Purificatione B. Mariae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-03": {
+			"date": "2026-02-03",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:septuagesima:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam Septuagesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:blasius",
+					"name": "S. Blasii Episcopi et Martyris"
+				}
+			]
+		},
+		"2026-02-04": {
+			"date": "2026-02-04",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:andreas-corsini",
+					"rank": "III",
+					"name": "S. Andreae Corsini Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-05": {
+			"date": "2026-02-05",
+			"season": "septuagesima",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:agatha",
+					"rank": "III",
+					"name": "S. Agathae Virginis et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-06": {
+			"date": "2026-02-06",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:titus",
+					"rank": "III",
+					"name": "S. Titi Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-07": {
+			"date": "2026-02-07",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:romualdus",
+					"rank": "III",
+					"name": "S. Romualdi Abbatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-08": {
+			"date": "2026-02-08",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:sexagesima",
+					"rank": "II",
+					"name": "Dominica in Sexagesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ioannes-de-matha",
+					"name": "S. Ioannis de Matha Confessoris"
+				}
+			]
+		},
+		"2026-02-09": {
+			"date": "2026-02-09",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:cyrillus-alexandrinus",
+					"rank": "III",
+					"name": "S. Cyrilli Alexandrini Episcopi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-10": {
+			"date": "2026-02-10",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:scholastica",
+					"rank": "III",
+					"name": "S. Scholasticae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-11": {
+			"date": "2026-02-11",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:apparitio-immaculatae",
+					"rank": "III",
+					"name": "In Apparitione B. Mariae Virginis Immaculatae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-12": {
+			"date": "2026-02-12",
+			"season": "septuagesima",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:septem-fundatores",
+					"rank": "III",
+					"name": "Ss. Septem Fundatorum Ordinis Servorum B. Mariae Virginis Confessorum",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-13": {
+			"date": "2026-02-13",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:sexagesima:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam Sexagesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-14": {
+			"date": "2026-02-14",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:sexagesima:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam Sexagesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:valentinus",
+					"name": "S. Valentini Presbyteri et Martyris"
+				}
+			]
+		},
+		"2026-02-15": {
+			"date": "2026-02-15",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:quinquagesima",
+					"rank": "II",
+					"name": "Dominica in Quinquagesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:faustinus-et-iovita",
+					"name": "Ss. Faustini et Iovitae Martyrum"
+				}
+			]
+		},
+		"2026-02-16": {
+			"date": "2026-02-16",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:quinquagesima:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam Quinquagesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-17": {
+			"date": "2026-02-17",
+			"season": "septuagesima",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:quinquagesima:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam Quinquagesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-18": {
+			"date": "2026-02-18",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:ash-wednesday",
+					"rank": "I",
+					"name": "Feria IV Cinerum",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-19": {
+			"date": "2026-02-19",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:post-cineres:feria-5",
+					"rank": "III",
+					"name": "Feria V post Cineres",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-20": {
+			"date": "2026-02-20",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:post-cineres:feria-6",
+					"rank": "III",
+					"name": "Feria VI post Cineres",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-21": {
+			"date": "2026-02-21",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:post-cineres:sabbatum",
+					"rank": "III",
+					"name": "Sabbato post Cineres",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-22": {
+			"date": "2026-02-22",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-1",
+					"rank": "I",
+					"name": "Dominica I in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-23": {
+			"date": "2026-02-23",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-1:feria-2",
+					"rank": "III",
+					"name": "Feria II infra Hebdomadam I in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:petrus-damiani",
+					"name": "S. Petri Damiani Episcopi Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-02-24": {
+			"date": "2026-02-24",
+			"season": "lent",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:matthias",
+					"rank": "II",
+					"name": "S. Matthiae Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-1:feria-3",
+					"name": "Feria III infra Hebdomadam I in Quadragesima"
+				}
+			]
+		},
+		"2026-02-25": {
+			"date": "2026-02-25",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:quattuor-temporum-quadragesimae:feria-4",
+					"rank": "II",
+					"name": "Feria IV Quatuor Temporum Quadragesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-26": {
+			"date": "2026-02-26",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-1:feria-5",
+					"rank": "III",
+					"name": "Feria V infra Hebdomadam I in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-02-27": {
+			"date": "2026-02-27",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:quattuor-temporum-quadragesimae:feria-6",
+					"rank": "II",
+					"name": "Feria VI Quatuor Temporum Quadragesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:gabriel-a-virgine-perdolente",
+					"name": "S. Gabrielis a Virgine Perdolente Confessoris"
+				}
+			]
+		},
+		"2026-02-28": {
+			"date": "2026-02-28",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:quattuor-temporum-quadragesimae:sabbatum",
+					"rank": "II",
+					"name": "Sabbato Quatuor Temporum Quadragesimae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-01": {
+			"date": "2026-03-01",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-2",
+					"rank": "I",
+					"name": "Dominica II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-02": {
+			"date": "2026-03-02",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-2:feria-2",
+					"rank": "III",
+					"name": "Feria II infra Hebdomadam II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-03": {
+			"date": "2026-03-03",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-2:feria-3",
+					"rank": "III",
+					"name": "Feria III infra Hebdomadam II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-04": {
+			"date": "2026-03-04",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-2:feria-4",
+					"rank": "III",
+					"name": "Feria IV infra Hebdomadam II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:casimirus",
+					"name": "S. Casimiri Confessoris"
+				},
+				{
+					"id": "roman:sanctorale:lucius-i",
+					"name": "S. Lucii I Papae et Martyris"
+				}
+			]
+		},
+		"2026-03-05": {
+			"date": "2026-03-05",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-2:feria-5",
+					"rank": "III",
+					"name": "Feria V infra Hebdomadam II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-06": {
+			"date": "2026-03-06",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-2:feria-6",
+					"rank": "III",
+					"name": "Feria VI infra Hebdomadam II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:perpetua-felicitas",
+					"name": "Ss. Perpetuae et Felicitatis Martyrum"
+				}
+			]
+		},
+		"2026-03-07": {
+			"date": "2026-03-07",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-2:sabbatum",
+					"rank": "III",
+					"name": "Sabbato infra Hebdomadam II in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:thomas-aquinas",
+					"name": "S. Thomae de Aquino Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-03-08": {
+			"date": "2026-03-08",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-3",
+					"rank": "I",
+					"name": "Dominica III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-09": {
+			"date": "2026-03-09",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-3:feria-2",
+					"rank": "III",
+					"name": "Feria II infra Hebdomadam III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:francisca-romana",
+					"name": "S. Franciscae Romanae Viduae"
+				}
+			]
+		},
+		"2026-03-10": {
+			"date": "2026-03-10",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-3:feria-3",
+					"rank": "III",
+					"name": "Feria III infra Hebdomadam III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:quadraginta-martyres",
+					"name": "Ss. Quadraginta Martyrum"
+				}
+			]
+		},
+		"2026-03-11": {
+			"date": "2026-03-11",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-3:feria-4",
+					"rank": "III",
+					"name": "Feria IV infra Hebdomadam III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-12": {
+			"date": "2026-03-12",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-3:feria-5",
+					"rank": "III",
+					"name": "Feria V infra Hebdomadam III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:gregorius-magnus",
+					"name": "S. Gregorii Magni Papae Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-03-13": {
+			"date": "2026-03-13",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-3:feria-6",
+					"rank": "III",
+					"name": "Feria VI infra Hebdomadam III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-14": {
+			"date": "2026-03-14",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-3:sabbatum",
+					"rank": "III",
+					"name": "Sabbato infra Hebdomadam III in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-15": {
+			"date": "2026-03-15",
+			"season": "lent",
+			"colour": "violet",
+			"rose": true,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-4",
+					"rank": "I",
+					"name": "Dominica IV in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": true
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-16": {
+			"date": "2026-03-16",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-4:feria-2",
+					"rank": "III",
+					"name": "Feria II infra Hebdomadam IV in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-17": {
+			"date": "2026-03-17",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-4:feria-3",
+					"rank": "III",
+					"name": "Feria III infra Hebdomadam IV in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:patricius",
+					"name": "S. Patricii Episcopi Confessoris"
+				}
+			]
+		},
+		"2026-03-18": {
+			"date": "2026-03-18",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-4:feria-4",
+					"rank": "III",
+					"name": "Feria IV infra Hebdomadam IV in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:cyrillus-hierosolymitanus",
+					"name": "S. Cyrilli Hierosolymitani Episcopi Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-03-19": {
+			"date": "2026-03-19",
+			"season": "lent",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioseph",
+					"rank": "I",
+					"name": "S. Ioseph Sponsi B.M.V. Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-4:feria-5",
+					"name": "Feria V infra Hebdomadam IV in Quadragesima"
+				}
+			]
+		},
+		"2026-03-20": {
+			"date": "2026-03-20",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-4:feria-6",
+					"rank": "III",
+					"name": "Feria VI infra Hebdomadam IV in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-21": {
+			"date": "2026-03-21",
+			"season": "lent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:lent-week-4:sabbatum",
+					"rank": "III",
+					"name": "Sabbato infra Hebdomadam IV in Quadragesima",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:benedictus",
+					"name": "S. Benedicti Abbatis"
+				}
+			]
+		},
+		"2026-03-22": {
+			"date": "2026-03-22",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:passion-sunday",
+					"rank": "I",
+					"name": "Dominica I Passionis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-23": {
+			"date": "2026-03-23",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:passion-week:feria-2",
+					"rank": "III",
+					"name": "Feria II infra Hebdomadam Passionis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-24": {
+			"date": "2026-03-24",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:passion-week:feria-3",
+					"rank": "III",
+					"name": "Feria III infra Hebdomadam Passionis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:gabriel-archangelus",
+					"name": "S. Gabrielis Archangeli"
+				}
+			]
+		},
+		"2026-03-25": {
+			"date": "2026-03-25",
+			"season": "passiontide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:annuntiatio",
+					"rank": "I",
+					"name": "In Annuntiatione B.M.V.",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:passion-week:feria-4",
+					"name": "Feria IV infra Hebdomadam Passionis"
+				}
+			]
+		},
+		"2026-03-26": {
+			"date": "2026-03-26",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:passion-week:feria-5",
+					"rank": "III",
+					"name": "Feria V infra Hebdomadam Passionis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-27": {
+			"date": "2026-03-27",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:passion-week:feria-6",
+					"rank": "III",
+					"name": "Feria VI infra Hebdomadam Passionis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ioannes-damascenus",
+					"name": "S. Ioannis Damasceni Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-03-28": {
+			"date": "2026-03-28",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:passion-week:sabbatum",
+					"rank": "III",
+					"name": "Sabbato infra Hebdomadam Passionis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ioannes-a-capistrano",
+					"name": "S. Ioannis a Capistrano Confessoris"
+				}
+			]
+		},
+		"2026-03-29": {
+			"date": "2026-03-29",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:palm-sunday",
+					"rank": "I",
+					"name": "Dominica II Passionis seu in Palmis",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-30": {
+			"date": "2026-03-30",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:holy-week:feria-2",
+					"rank": "I",
+					"name": "Feria II Majoris Hebdomadae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-03-31": {
+			"date": "2026-03-31",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:holy-week:feria-3",
+					"rank": "I",
+					"name": "Feria III Majoris Hebdomadae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-01": {
+			"date": "2026-04-01",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:holy-week:feria-4",
+					"rank": "I",
+					"name": "Feria IV Majoris Hebdomadae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-02": {
+			"date": "2026-04-02",
+			"season": "passiontide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:maundy-thursday",
+					"rank": "I",
+					"name": "Feria V in Cena Domini",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-03": {
+			"date": "2026-04-03",
+			"season": "passiontide",
+			"colour": "black",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:good-friday",
+					"rank": "I",
+					"name": "Feria VI in Passione et Morte Domini",
+					"colour": "black",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-04": {
+			"date": "2026-04-04",
+			"season": "passiontide",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:holy-saturday",
+					"rank": "I",
+					"name": "Sabbato Sancto",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-05": {
+			"date": "2026-04-05",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter",
+					"rank": "I",
+					"name": "Dominica Resurrectionis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-06": {
+			"date": "2026-04-06",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter-octave:feria-2",
+					"rank": "I",
+					"name": "Feria II infra Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-07": {
+			"date": "2026-04-07",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter-octave:feria-3",
+					"rank": "I",
+					"name": "Feria III infra Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-08": {
+			"date": "2026-04-08",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter-octave:feria-4",
+					"rank": "I",
+					"name": "Feria IV infra Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-09": {
+			"date": "2026-04-09",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter-octave:feria-5",
+					"rank": "I",
+					"name": "Feria V infra Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-10": {
+			"date": "2026-04-10",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter-octave:feria-6",
+					"rank": "I",
+					"name": "Feria VI infra Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-11": {
+			"date": "2026-04-11",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:easter-octave:sabbatum",
+					"rank": "I",
+					"name": "Sabbato in Albis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-12": {
+			"date": "2026-04-12",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:low-sunday",
+					"rank": "I",
+					"name": "Dominica in Albis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-13": {
+			"date": "2026-04-13",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:hermenegildus",
+					"rank": "III",
+					"name": "S. Hermenegildi Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-14": {
+			"date": "2026-04-14",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:iustinus",
+					"rank": "III",
+					"name": "S. Iustini Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:tiburtius-valerianus-maximus",
+					"name": "Ss. Tiburtii, Valeriani et Maximi Martyrum"
+				}
+			]
+		},
+		"2026-04-15": {
+			"date": "2026-04-15",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-1:feria-4",
+					"rank": "IV",
+					"name": "Feria IV infra Hebdomadam I post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-16": {
+			"date": "2026-04-16",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-1:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam I post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:benedictus-ioseph-labre",
+					"name": "S. Benedicti Ioseph Labre Confessoris"
+				}
+			]
+		},
+		"2026-04-17": {
+			"date": "2026-04-17",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-1:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam I post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:anicetus",
+					"name": "S. Aniceti Papae et Martyris"
+				}
+			]
+		},
+		"2026-04-18": {
+			"date": "2026-04-18",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-1:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam I post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-19": {
+			"date": "2026-04-19",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:sunday-2",
+					"rank": "II",
+					"name": "Dominica II post Pascha",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-20": {
+			"date": "2026-04-20",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-2:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam II post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-21": {
+			"date": "2026-04-21",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:anselmus",
+					"rank": "III",
+					"name": "S. Anselmi Episcopi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-22": {
+			"date": "2026-04-22",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:soter-caius",
+					"rank": "III",
+					"name": "Ss. Soteris et Caii Paparum et Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-23": {
+			"date": "2026-04-23",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-2:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam II post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:georgius",
+					"name": "S. Georgii Martyris"
+				}
+			]
+		},
+		"2026-04-24": {
+			"date": "2026-04-24",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:fidelis-a-sigmaringa",
+					"rank": "III",
+					"name": "S. Fidelis de Sigmaringa Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-25": {
+			"date": "2026-04-25",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:marcus",
+					"rank": "II",
+					"name": "S. Marci Evangelistae",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-26": {
+			"date": "2026-04-26",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:sunday-3",
+					"rank": "II",
+					"name": "Dominica III post Pascha",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:cletus-marcellinus",
+					"name": "Ss. Cleti et Marcellini Paparum et Martyrum"
+				}
+			]
+		},
+		"2026-04-27": {
+			"date": "2026-04-27",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-canisius",
+					"rank": "III",
+					"name": "S. Petri Canisii Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-28": {
+			"date": "2026-04-28",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:paulus-a-cruce",
+					"rank": "III",
+					"name": "S. Pauli a Cruce Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:vitalis",
+					"name": "S. Vitalis Martyris"
+				}
+			]
+		},
+		"2026-04-29": {
+			"date": "2026-04-29",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-de-verona",
+					"rank": "III",
+					"name": "S. Petri Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-04-30": {
+			"date": "2026-04-30",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:catharina-senensis",
+					"rank": "III",
+					"name": "S. Catharinae Senensis Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-01": {
+			"date": "2026-05-01",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioseph-opifex",
+					"rank": "I",
+					"name": "S. Ioseph Opificis, Sponsi B.M.V., Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-02": {
+			"date": "2026-05-02",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:athanasius",
+					"rank": "III",
+					"name": "S. Athanasii Episcopi, Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-03": {
+			"date": "2026-05-03",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:sunday-4",
+					"rank": "II",
+					"name": "Dominica IV post Pascha",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:alexander-eventius-theodulus-iuvenalis",
+					"name": "Ss. Alexandri, Eventii et Theoduli Martyrum, ac Iuvenalis Episcopi et Confessoris"
+				}
+			]
+		},
+		"2026-05-04": {
+			"date": "2026-05-04",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:monica",
+					"rank": "III",
+					"name": "S. Monicae Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-05": {
+			"date": "2026-05-05",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:pius-v",
+					"rank": "III",
+					"name": "S. Pii V Papae et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-06": {
+			"date": "2026-05-06",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-4:feria-4",
+					"rank": "IV",
+					"name": "Feria IV infra Hebdomadam IV post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-07": {
+			"date": "2026-05-07",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:stanislaus",
+					"rank": "III",
+					"name": "S. Stanislai Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-08": {
+			"date": "2026-05-08",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:week-4:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam IV post Octavam Paschae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-09": {
+			"date": "2026-05-09",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:gregorius-nazianzenus",
+					"rank": "III",
+					"name": "S. Gregorii Nazianzeni Episcopi, Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-10": {
+			"date": "2026-05-10",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:paschaltide:sunday-5",
+					"rank": "II",
+					"name": "Dominica V post Pascha",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:antoninus",
+					"name": "S. Antonini Episcopi et Confessoris"
+				}
+			]
+		},
+		"2026-05-11": {
+			"date": "2026-05-11",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:philippus-iacobus",
+					"rank": "II",
+					"name": "Ss. Philippi et Iacobi Apostolorum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:rogation:feria-2",
+					"name": "Feria II in Rogationibus"
+				}
+			]
+		},
+		"2026-05-12": {
+			"date": "2026-05-12",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:nereus-achilleus-domitilla-pancratius",
+					"rank": "III",
+					"name": "Ss. Nerei, Achillei et Domitillae Virginis atque Pancratii Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:rogation:feria-3",
+					"name": "Feria III in Rogationibus"
+				}
+			]
+		},
+		"2026-05-13": {
+			"date": "2026-05-13",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:robertus-bellarminus",
+					"rank": "III",
+					"name": "S. Roberti Bellarmini Episcopi, Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:rogation:feria-4",
+					"name": "Feria IV in Rogationibus"
+				}
+			]
+		},
+		"2026-05-14": {
+			"date": "2026-05-14",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:ascension",
+					"rank": "I",
+					"name": "In Ascensione Domini",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-15": {
+			"date": "2026-05-15",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-baptista-de-la-salle",
+					"rank": "III",
+					"name": "S. Ioannis Baptistae de la Salle Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-16": {
+			"date": "2026-05-16",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ubaldus",
+					"rank": "III",
+					"name": "S. Ubaldi Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-17": {
+			"date": "2026-05-17",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:sunday-after-ascension",
+					"rank": "II",
+					"name": "Dominica post Ascensionem",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:paschalis-baylon",
+					"name": "S. Paschalis Baylon Confessoris"
+				}
+			]
+		},
+		"2026-05-18": {
+			"date": "2026-05-18",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:venantius",
+					"rank": "III",
+					"name": "S. Venantii Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-19": {
+			"date": "2026-05-19",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-caelestinus",
+					"rank": "III",
+					"name": "S. Petri Caelestini Papae et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:pudentiana",
+					"name": "S. Pudentianae Virginis"
+				}
+			]
+		},
+		"2026-05-20": {
+			"date": "2026-05-20",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bernardinus-senensis",
+					"rank": "III",
+					"name": "S. Bernardini Senensis Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-21": {
+			"date": "2026-05-21",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:post-ascension:feria-5",
+					"rank": "IV",
+					"name": "Feria V post Ascensionem",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-22": {
+			"date": "2026-05-22",
+			"season": "eastertide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:post-ascension:feria-6",
+					"rank": "IV",
+					"name": "Feria VI post Ascensionem",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-23": {
+			"date": "2026-05-23",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-vigil",
+					"rank": "I",
+					"name": "Sabbato in Vigilia Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-24": {
+			"date": "2026-05-24",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost",
+					"rank": "I",
+					"name": "Dominica Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-25": {
+			"date": "2026-05-25",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-octave:feria-2",
+					"rank": "I",
+					"name": "Feria II infra Octavam Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-26": {
+			"date": "2026-05-26",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-octave:feria-3",
+					"rank": "I",
+					"name": "Feria III infra Octavam Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-27": {
+			"date": "2026-05-27",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-octave:quattuor-temporum:feria-4",
+					"rank": "I",
+					"name": "Feria IV Quatuor Temporum Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-28": {
+			"date": "2026-05-28",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-octave:feria-5",
+					"rank": "I",
+					"name": "Feria V infra Octavam Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-29": {
+			"date": "2026-05-29",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-octave:quattuor-temporum:feria-6",
+					"rank": "I",
+					"name": "Feria VI Quatuor Temporum Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-30": {
+			"date": "2026-05-30",
+			"season": "eastertide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-octave:quattuor-temporum:sabbatum",
+					"rank": "I",
+					"name": "Sabbato Quatuor Temporum Pentecostes",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-05-31": {
+			"date": "2026-05-31",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:trinity-sunday",
+					"rank": "I",
+					"name": "In Festo Sanctissimae Trinitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-01": {
+			"date": "2026-06-01",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:angela-mericia",
+					"rank": "III",
+					"name": "S. Angelae Mericiae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-02": {
+			"date": "2026-06-02",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-1:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam I post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:marcellinus-petrus-erasmus",
+					"name": "Ss. Marcellini, Petri et Erasmi Martyrum"
+				}
+			]
+		},
+		"2026-06-03": {
+			"date": "2026-06-03",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-1:feria-4",
+					"rank": "IV",
+					"name": "Feria IV infra Hebdomadam I post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-04": {
+			"date": "2026-06-04",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:corpus-christi",
+					"rank": "I",
+					"name": "In Festo Sanctissimi Corporis Christi",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-05": {
+			"date": "2026-06-05",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bonifatius",
+					"rank": "III",
+					"name": "S. Bonifatii Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-06": {
+			"date": "2026-06-06",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:norbertus",
+					"rank": "III",
+					"name": "S. Norberti Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-07": {
+			"date": "2026-06-07",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-2",
+					"rank": "II",
+					"name": "Dominica II post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-08": {
+			"date": "2026-06-08",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-2:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam II post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-09": {
+			"date": "2026-06-09",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-2:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam II post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:primus-felicianus",
+					"name": "Ss. Primi et Feliciani Martyrum"
+				}
+			]
+		},
+		"2026-06-10": {
+			"date": "2026-06-10",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:margarita-scotiae",
+					"rank": "III",
+					"name": "S. Margaritae Reginae Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-11": {
+			"date": "2026-06-11",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:barnabas",
+					"rank": "III",
+					"name": "S. Barnabae Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-12": {
+			"date": "2026-06-12",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:sacred-heart",
+					"rank": "I",
+					"name": "In Festo Sacratissimi Cordis Iesu",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-13": {
+			"date": "2026-06-13",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:antonius-patavinus",
+					"rank": "III",
+					"name": "S. Antonii de Padua Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-14": {
+			"date": "2026-06-14",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-3",
+					"rank": "II",
+					"name": "Dominica III post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:basilius-magnus",
+					"name": "S. Basilii Magni Episcopi Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-06-15": {
+			"date": "2026-06-15",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-3:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam III post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:viti-modesti-crescentiae",
+					"name": "Ss. Viti, Modesti et Crescentiae Martyrum"
+				}
+			]
+		},
+		"2026-06-16": {
+			"date": "2026-06-16",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-3:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam III post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-17": {
+			"date": "2026-06-17",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:gregorius-barbadicus",
+					"rank": "III",
+					"name": "S. Gregorii Barbadici Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-18": {
+			"date": "2026-06-18",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ephraem-syrus",
+					"rank": "III",
+					"name": "S. Ephraem Syri Diaconi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-19": {
+			"date": "2026-06-19",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:iuliana-de-falconeriis",
+					"rank": "III",
+					"name": "S. Iulianae de Falconeriis Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-20": {
+			"date": "2026-06-20",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-3:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam III post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:silverius",
+					"name": "S. Silverii Papae et Martyris"
+				}
+			]
+		},
+		"2026-06-21": {
+			"date": "2026-06-21",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-4",
+					"rank": "II",
+					"name": "Dominica IV post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:aloysius-gonzaga",
+					"name": "S. Aloisii Gonzagae Confessoris"
+				}
+			]
+		},
+		"2026-06-22": {
+			"date": "2026-06-22",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:paulinus-nolanus",
+					"rank": "III",
+					"name": "S. Paulini Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-23": {
+			"date": "2026-06-23",
+			"season": "pentecost",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-baptista:vigilia",
+					"rank": "II",
+					"name": "In Vigilia S. Ioannis Baptistae",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-24": {
+			"date": "2026-06-24",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:nativitas-ioannis-baptistae",
+					"rank": "I",
+					"name": "In Nativitate S. Ioannis Baptistae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-25": {
+			"date": "2026-06-25",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:guilielmus",
+					"rank": "III",
+					"name": "S. Guilielmi Abbatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-26": {
+			"date": "2026-06-26",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-paulus",
+					"rank": "III",
+					"name": "Ss. Ioannis et Pauli Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-27": {
+			"date": "2026-06-27",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-4:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam IV post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-28": {
+			"date": "2026-06-28",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-5",
+					"rank": "II",
+					"name": "Dominica V post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:petrus-paulus:vigilia",
+					"name": "In Vigilia Ss. Petri et Pauli Apostolorum"
+				}
+			]
+		},
+		"2026-06-29": {
+			"date": "2026-06-29",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-paulus",
+					"rank": "I",
+					"name": "Ss. Petri et Pauli Apostolorum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-06-30": {
+			"date": "2026-06-30",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:commemoratio-pauli",
+					"rank": "III",
+					"name": "In Commemoratione S. Pauli Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-01": {
+			"date": "2026-07-01",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:pretiosissimi-sanguinis",
+					"rank": "I",
+					"name": "Festum Pretiosissimi Sanguinis D.N. Iesu Christi",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-02": {
+			"date": "2026-07-02",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:visitatio",
+					"rank": "II",
+					"name": "In Visitatione B. Mariae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:processus-martinianus",
+					"name": "Ss. Processi et Martiniani Martyrum"
+				}
+			]
+		},
+		"2026-07-03": {
+			"date": "2026-07-03",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:irenaeus",
+					"rank": "III",
+					"name": "S. Irenaei Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-04": {
+			"date": "2026-07-04",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-5:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam V post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-05": {
+			"date": "2026-07-05",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-6",
+					"rank": "II",
+					"name": "Dominica VI post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:antonius-maria-zaccaria",
+					"name": "S. Antonii Mariae Zaccaria Confessoris"
+				}
+			]
+		},
+		"2026-07-06": {
+			"date": "2026-07-06",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-6:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam VI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-07": {
+			"date": "2026-07-07",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:cyrillus-methodius",
+					"rank": "III",
+					"name": "Ss. Cyrilli et Methodii Episcoporum et Confessorum",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-08": {
+			"date": "2026-07-08",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:elisabeth-reginae",
+					"rank": "III",
+					"name": "S. Elisabeth Reginae Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-09": {
+			"date": "2026-07-09",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-6:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam VI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-10": {
+			"date": "2026-07-10",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:septem-fratres",
+					"rank": "III",
+					"name": "Ss. Septem Fratrum Martyrum ac Rufinae et Secundae Virginum et Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-11": {
+			"date": "2026-07-11",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-6:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam VI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-12": {
+			"date": "2026-07-12",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-7",
+					"rank": "II",
+					"name": "Dominica VII post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ioannes-gualbertus",
+					"name": "S. Ioannis Gualberti Abbatis"
+				}
+			]
+		},
+		"2026-07-13": {
+			"date": "2026-07-13",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-7:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam VII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-14": {
+			"date": "2026-07-14",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bonaventura",
+					"rank": "III",
+					"name": "S. Bonaventurae Episcopi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-15": {
+			"date": "2026-07-15",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:henricus",
+					"rank": "III",
+					"name": "S. Henrici Imperatoris Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-16": {
+			"date": "2026-07-16",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-7:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam VII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:beatae-mariae-de-monte-carmelo",
+					"name": "Commemoratio B. Mariae Virginis de Monte Carmelo"
+				}
+			]
+		},
+		"2026-07-17": {
+			"date": "2026-07-17",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-7:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam VII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:alexius",
+					"name": "S. Alexii Confessoris"
+				}
+			]
+		},
+		"2026-07-18": {
+			"date": "2026-07-18",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:camillus-de-lellis",
+					"rank": "III",
+					"name": "S. Camilli de Lellis Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-19": {
+			"date": "2026-07-19",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-8",
+					"rank": "II",
+					"name": "Dominica VIII post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:vincentius-a-paulo",
+					"name": "S. Vincentii a Paulo Confessoris"
+				}
+			]
+		},
+		"2026-07-20": {
+			"date": "2026-07-20",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:hieronymus-aemilianus",
+					"rank": "III",
+					"name": "S. Hieronymi Aemiliani Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-21": {
+			"date": "2026-07-21",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:laurentius-a-brundusio",
+					"rank": "III",
+					"name": "S. Laurentii a Brundusio Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:praxedes",
+					"name": "S. Praxedis Virginis"
+				}
+			]
+		},
+		"2026-07-22": {
+			"date": "2026-07-22",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:maria-magdalena",
+					"rank": "III",
+					"name": "S. Mariae Magdalenae Poenitentis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-23": {
+			"date": "2026-07-23",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:apollinaris",
+					"rank": "III",
+					"name": "S. Apollinaris Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-24": {
+			"date": "2026-07-24",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-8:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam VIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:christina",
+					"name": "S. Christinae Virginis et Martyris"
+				}
+			]
+		},
+		"2026-07-25": {
+			"date": "2026-07-25",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:iacobus",
+					"rank": "II",
+					"name": "S. Iacobi Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:christophorus",
+					"name": "S. Christophori Martyris"
+				}
+			]
+		},
+		"2026-07-26": {
+			"date": "2026-07-26",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-9",
+					"rank": "II",
+					"name": "Dominica IX post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:anna",
+					"name": "S. Annae Matris B. Mariae Virginis"
+				}
+			]
+		},
+		"2026-07-27": {
+			"date": "2026-07-27",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-9:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam IX post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:pantaleon",
+					"name": "S. Pantaleonis Martyris"
+				}
+			]
+		},
+		"2026-07-28": {
+			"date": "2026-07-28",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:nazarius-celsus-victor-innocentius",
+					"rank": "III",
+					"name": "Ss. Nazarii et Celsi Martyrum, Victoris I Papae et Martyris, ac Innocentii I Papae et Confessoris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-07-29": {
+			"date": "2026-07-29",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:martha",
+					"rank": "III",
+					"name": "S. Marthae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:felix-simplicius-faustinus-beatrix",
+					"name": "Ss. Felicis, Simplicii, Faustini et Beatricis Martyrum"
+				}
+			]
+		},
+		"2026-07-30": {
+			"date": "2026-07-30",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-9:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam IX post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:abdon-sennen",
+					"name": "Ss. Abdon et Sennen Martyrum"
+				}
+			]
+		},
+		"2026-07-31": {
+			"date": "2026-07-31",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ignatius-de-loyola",
+					"rank": "III",
+					"name": "S. Ignatii Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-01": {
+			"date": "2026-08-01",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-9:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam IX post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-02": {
+			"date": "2026-08-02",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-10",
+					"rank": "II",
+					"name": "Dominica X post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:alphonsus-maria-de-ligorio",
+					"name": "S. Alphonsi Mariae de Ligorio Episcopi Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-08-03": {
+			"date": "2026-08-03",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-10:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam X post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-04": {
+			"date": "2026-08-04",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:dominicus",
+					"rank": "III",
+					"name": "S. Dominici Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-05": {
+			"date": "2026-08-05",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:dedicatio-basilicae-sanctae-mariae",
+					"rank": "III",
+					"name": "In Dedicatione Basilicae S. Mariae ad Nives",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-06": {
+			"date": "2026-08-06",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:transfiguratio-domini",
+					"rank": "II",
+					"name": "In Transfiguratione Domini Nostri Iesu Christi",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:sixtus-ii",
+					"name": "Ss. Xysti II Papae, Felicissimi et Agapiti Martyrum"
+				}
+			]
+		},
+		"2026-08-07": {
+			"date": "2026-08-07",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:caietanus",
+					"rank": "III",
+					"name": "S. Caietani Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:donatus",
+					"name": "S. Donati Episcopi et Martyris"
+				}
+			]
+		},
+		"2026-08-08": {
+			"date": "2026-08-08",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-maria-vianney",
+					"rank": "III",
+					"name": "S. Ioannis Mariae Vianney Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:cyriacus",
+					"name": "Ss. Cyriaci, Largi et Smaragdi Martyrum"
+				}
+			]
+		},
+		"2026-08-09": {
+			"date": "2026-08-09",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-11",
+					"rank": "II",
+					"name": "Dominica XI post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:laurentius:vigilia",
+					"name": "In Vigilia S. Laurentii Martyris"
+				}
+			]
+		},
+		"2026-08-10": {
+			"date": "2026-08-10",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:laurentius",
+					"rank": "II",
+					"name": "S. Laurentii Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-11": {
+			"date": "2026-08-11",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-11:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam XI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:tiburtius-et-susanna",
+					"name": "Ss. Tiburtii et Susannae Martyrum"
+				}
+			]
+		},
+		"2026-08-12": {
+			"date": "2026-08-12",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:clara",
+					"rank": "III",
+					"name": "S. Clarae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-13": {
+			"date": "2026-08-13",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-11:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:hippolytus-et-cassianus",
+					"name": "Ss. Hippolyti et Cassiani Martyrum"
+				}
+			]
+		},
+		"2026-08-14": {
+			"date": "2026-08-14",
+			"season": "pentecost",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:assumptio:vigilia",
+					"rank": "II",
+					"name": "In Vigilia Assumptionis B.M.V.",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:eusebius-confessor",
+					"name": "S. Eusebii Confessoris"
+				}
+			]
+		},
+		"2026-08-15": {
+			"date": "2026-08-15",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:assumptio",
+					"rank": "I",
+					"name": "In Assumptione B.M.V.",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-16": {
+			"date": "2026-08-16",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-12",
+					"rank": "II",
+					"name": "Dominica XII post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ioachim",
+					"name": "S. Ioachim Confessoris, Patris B.M.V."
+				}
+			]
+		},
+		"2026-08-17": {
+			"date": "2026-08-17",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:hyacinthus",
+					"rank": "III",
+					"name": "S. Hyacinthi Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-18": {
+			"date": "2026-08-18",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-12:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam XII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:agapitus",
+					"name": "S. Agapiti Martyris"
+				}
+			]
+		},
+		"2026-08-19": {
+			"date": "2026-08-19",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-eudes",
+					"rank": "III",
+					"name": "S. Ioannis Eudes Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-20": {
+			"date": "2026-08-20",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bernardus",
+					"rank": "III",
+					"name": "S. Bernardi Abbatis et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-21": {
+			"date": "2026-08-21",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioanna-francisca-fremiot-de-chantal",
+					"rank": "III",
+					"name": "S. Ioannae Franciscae Fremiot de Chantal Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-22": {
+			"date": "2026-08-22",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:immaculatum-cor-mariae",
+					"rank": "II",
+					"name": "Immaculati Cordis B.M.V.",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:timotheus-et-socii",
+					"name": "Ss. Timothei, Hippolyti et Symphoriani Martyrum"
+				}
+			]
+		},
+		"2026-08-23": {
+			"date": "2026-08-23",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-13",
+					"rank": "II",
+					"name": "Dominica XIII post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:philippus-benitius",
+					"name": "S. Philippi Benitii Confessoris"
+				}
+			]
+		},
+		"2026-08-24": {
+			"date": "2026-08-24",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bartholomaeus",
+					"rank": "II",
+					"name": "S. Bartholomaei Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-25": {
+			"date": "2026-08-25",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ludovicus",
+					"rank": "III",
+					"name": "S. Ludovici Regis et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-26": {
+			"date": "2026-08-26",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-13:feria-4",
+					"rank": "IV",
+					"name": "Feria IV infra Hebdomadam XIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:zephyrinus",
+					"name": "S. Zephyrini Papae et Martyris"
+				}
+			]
+		},
+		"2026-08-27": {
+			"date": "2026-08-27",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioseph-calasanctius",
+					"rank": "III",
+					"name": "S. Ioseph Calasanctii Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-08-28": {
+			"date": "2026-08-28",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:augustinus",
+					"rank": "III",
+					"name": "S. Augustini Episcopi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:hermes",
+					"name": "S. Hermetis Martyris"
+				}
+			]
+		},
+		"2026-08-29": {
+			"date": "2026-08-29",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:decollatio-ioannis-baptistae",
+					"rank": "III",
+					"name": "In Decollatione S. Ioannis Baptistae",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:sabina",
+					"name": "S. Sabinae Martyris"
+				}
+			]
+		},
+		"2026-08-30": {
+			"date": "2026-08-30",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-14",
+					"rank": "II",
+					"name": "Dominica XIV post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:rosa-limana",
+					"name": "S. Rosae Limanae Virginis"
+				}
+			]
+		},
+		"2026-08-31": {
+			"date": "2026-08-31",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:raymundus-nonnatus",
+					"rank": "III",
+					"name": "S. Raymundi Nonnati Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-01": {
+			"date": "2026-09-01",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-14:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam XIV post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:aegidius",
+					"name": "S. Aegidii Abbatis"
+				}
+			]
+		},
+		"2026-09-02": {
+			"date": "2026-09-02",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:stephanus-hungariae",
+					"rank": "III",
+					"name": "S. Stephani Regis Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-03": {
+			"date": "2026-09-03",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:pius-x",
+					"rank": "III",
+					"name": "S. Pii X Papae Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-04": {
+			"date": "2026-09-04",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-14:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam XIV post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-05": {
+			"date": "2026-09-05",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:laurentius-iustinianus",
+					"rank": "III",
+					"name": "S. Laurentii Iustiniani Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-06": {
+			"date": "2026-09-06",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-15",
+					"rank": "II",
+					"name": "Dominica XV post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-07": {
+			"date": "2026-09-07",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-15:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam XV post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-08": {
+			"date": "2026-09-08",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:nativitas-mariae",
+					"rank": "II",
+					"name": "In Nativitate B. Mariae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-09": {
+			"date": "2026-09-09",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-15:feria-4",
+					"rank": "IV",
+					"name": "Feria IV infra Hebdomadam XV post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:gorgonius",
+					"name": "S. Gorgonii Martyris"
+				}
+			]
+		},
+		"2026-09-10": {
+			"date": "2026-09-10",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:nicolaus-tolentinas",
+					"rank": "III",
+					"name": "S. Nicolai de Tolentino Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-11": {
+			"date": "2026-09-11",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-15:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam XV post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:protus-et-hyacinthus",
+					"name": "Ss. Proti et Hyacinthi Martyrum"
+				}
+			]
+		},
+		"2026-09-12": {
+			"date": "2026-09-12",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:nomen-mariae",
+					"rank": "III",
+					"name": "Ss. Nominis Mariae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-13": {
+			"date": "2026-09-13",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-16",
+					"rank": "II",
+					"name": "Dominica XVI post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-14": {
+			"date": "2026-09-14",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:exaltatio-crucis",
+					"rank": "II",
+					"name": "In Exaltatione Sanctae Crucis",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-15": {
+			"date": "2026-09-15",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:septem-dolorum-bmv",
+					"rank": "II",
+					"name": "Septem Dolorum B. Mariae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-16": {
+			"date": "2026-09-16",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:cornelius-et-cyprianus",
+					"rank": "III",
+					"name": "Ss. Cornelii Papae et Cypriani Episcopi Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:euphemia-lucia-geminianus",
+					"name": "Ss. Euphemiae Virginis et Martyris, ac Luciae et Geminiani Martyrum"
+				}
+			]
+		},
+		"2026-09-17": {
+			"date": "2026-09-17",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-16:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XVI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:stigmata-francisci",
+					"name": "Impressionis Ss. Stigmatum S. Francisci Confessoris"
+				}
+			]
+		},
+		"2026-09-18": {
+			"date": "2026-09-18",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioseph-a-cupertino",
+					"rank": "III",
+					"name": "S. Ioseph a Cupertino Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-19": {
+			"date": "2026-09-19",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ianuarius-et-socii",
+					"rank": "III",
+					"name": "S. Ianuarii Episcopi et Sociorum Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-20": {
+			"date": "2026-09-20",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-17",
+					"rank": "II",
+					"name": "Dominica XVII post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:eustachius-et-socii",
+					"name": "S. Eustachii et Sociorum Martyrum"
+				}
+			]
+		},
+		"2026-09-21": {
+			"date": "2026-09-21",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:matthaeus",
+					"rank": "II",
+					"name": "S. Matthaei Apostoli et Evangelistae",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-22": {
+			"date": "2026-09-22",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:thomas-a-villanova",
+					"rank": "III",
+					"name": "S. Thomae de Villanova Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:mauritius-et-socii",
+					"name": "Ss. Mauritii et Sociorum Martyrum"
+				}
+			]
+		},
+		"2026-09-23": {
+			"date": "2026-09-23",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:linus",
+					"rank": "III",
+					"name": "S. Lini Papae et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:thecla",
+					"name": "S. Theclae Virginis et Martyris"
+				}
+			]
+		},
+		"2026-09-24": {
+			"date": "2026-09-24",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-17:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XVII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-25": {
+			"date": "2026-09-25",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-17:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam XVII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-26": {
+			"date": "2026-09-26",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-17:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam XVII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-27": {
+			"date": "2026-09-27",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-18",
+					"rank": "II",
+					"name": "Dominica XVIII post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:cosmas-et-damianus",
+					"name": "Ss. Cosmae et Damiani Martyrum"
+				}
+			]
+		},
+		"2026-09-28": {
+			"date": "2026-09-28",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:wenceslaus",
+					"rank": "III",
+					"name": "S. Wenceslai Ducis et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-29": {
+			"date": "2026-09-29",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:michael-archangelus",
+					"rank": "I",
+					"name": "In Dedicatione S. Michaelis Archangeli",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-09-30": {
+			"date": "2026-09-30",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:hieronymus",
+					"rank": "III",
+					"name": "S. Hieronymi Presbyteri Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-01": {
+			"date": "2026-10-01",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-18:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XVIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:remigius",
+					"name": "S. Remigii Episcopi et Confessoris"
+				}
+			]
+		},
+		"2026-10-02": {
+			"date": "2026-10-02",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:angeli-custodes",
+					"rank": "III",
+					"name": "Ss. Angelorum Custodum",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-03": {
+			"date": "2026-10-03",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:teresia-a-iesu-infante",
+					"rank": "III",
+					"name": "S. Teresiae a Iesu Infante Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-04": {
+			"date": "2026-10-04",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-19",
+					"rank": "II",
+					"name": "Dominica XIX post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:franciscus-assisiensis",
+					"name": "S. Francisci Confessoris"
+				}
+			]
+		},
+		"2026-10-05": {
+			"date": "2026-10-05",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-19:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam XIX post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:placidus-et-socii",
+					"name": "Ss. Placidi et Sociorum Martyrum"
+				}
+			]
+		},
+		"2026-10-06": {
+			"date": "2026-10-06",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bruno",
+					"rank": "III",
+					"name": "S. Brunonis Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-07": {
+			"date": "2026-10-07",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:rosarium",
+					"rank": "II",
+					"name": "Sacratissimi Rosarii Beatae Mariae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-08": {
+			"date": "2026-10-08",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:birgitta",
+					"rank": "III",
+					"name": "S. Birgittae Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-09": {
+			"date": "2026-10-09",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-leonardi",
+					"rank": "III",
+					"name": "S. Ioannis Leonardi Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-10": {
+			"date": "2026-10-10",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:franciscus-borgia",
+					"rank": "III",
+					"name": "S. Francisci Borgiae Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-11": {
+			"date": "2026-10-11",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-20",
+					"rank": "II",
+					"name": "Dominica XX post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:maternitas-bmv",
+					"name": "Maternitatis Beatae Mariae Virginis"
+				}
+			]
+		},
+		"2026-10-12": {
+			"date": "2026-10-12",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-20:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam XX post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-13": {
+			"date": "2026-10-13",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:eduardus",
+					"rank": "III",
+					"name": "S. Eduardi Regis et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-14": {
+			"date": "2026-10-14",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:callistus",
+					"rank": "III",
+					"name": "S. Callisti Papae et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-15": {
+			"date": "2026-10-15",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:teresia-a-iesu",
+					"rank": "III",
+					"name": "S. Teresiae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-16": {
+			"date": "2026-10-16",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:hedwigis",
+					"rank": "III",
+					"name": "S. Hedwigis Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-17": {
+			"date": "2026-10-17",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:margarita-maria-alacoque",
+					"rank": "III",
+					"name": "S. Margaritae Mariae Alacoque Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-18": {
+			"date": "2026-10-18",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-21",
+					"rank": "II",
+					"name": "Dominica XXI post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:lucas",
+					"name": "S. Lucae Evangelistae"
+				}
+			]
+		},
+		"2026-10-19": {
+			"date": "2026-10-19",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-de-alcantara",
+					"rank": "III",
+					"name": "S. Petri de Alcantara Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-20": {
+			"date": "2026-10-20",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-cantius",
+					"rank": "III",
+					"name": "S. Ioannis Cantii Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-21": {
+			"date": "2026-10-21",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-21:feria-4",
+					"rank": "IV",
+					"name": "Feria IV infra Hebdomadam XXI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:hilarion",
+					"name": "S. Hilarionis Abbatis"
+				},
+				{
+					"id": "roman:sanctorale:ursula-et-socii",
+					"name": "Ss. Ursulae et Sociarum Virginum et Martyrum"
+				}
+			]
+		},
+		"2026-10-22": {
+			"date": "2026-10-22",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-21:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XXI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-23": {
+			"date": "2026-10-23",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:antonius-maria-claret",
+					"rank": "III",
+					"name": "S. Antonii Mariae Claret Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-24": {
+			"date": "2026-10-24",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:raphael-archangelus",
+					"rank": "III",
+					"name": "S. Raphaelis Archangeli",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-25": {
+			"date": "2026-10-25",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:month-computed:christ-the-king",
+					"rank": "I",
+					"name": "In Festo Domini Nostri Iesu Christi Regis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-26": {
+			"date": "2026-10-26",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-22:feria-2",
+					"rank": "IV",
+					"name": "Feria II infra Hebdomadam XXII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:evaristus",
+					"name": "S. Evaristi Papae et Martyris"
+				}
+			]
+		},
+		"2026-10-27": {
+			"date": "2026-10-27",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-22:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam XXII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-28": {
+			"date": "2026-10-28",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:simon-et-iudas",
+					"rank": "II",
+					"name": "Ss. Simonis et Iudae Apostolorum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-29": {
+			"date": "2026-10-29",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-22:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XXII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-30": {
+			"date": "2026-10-30",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-22:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam XXII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-10-31": {
+			"date": "2026-10-31",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-22:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam XXII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-01": {
+			"date": "2026-11-01",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:omnes-sancti",
+					"rank": "I",
+					"name": "Festum Omnium Sanctorum",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-23",
+					"name": "Dominica XXIII post Pentecosten"
+				}
+			]
+		},
+		"2026-11-02": {
+			"date": "2026-11-02",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:omnium-sanctorum",
+					"rank": "I",
+					"name": "In Festo Omnium Sanctorum",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-03": {
+			"date": "2026-11-03",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-23:feria-3",
+					"rank": "IV",
+					"name": "Feria III infra Hebdomadam XXIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-04": {
+			"date": "2026-11-04",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:carolus-borromeus",
+					"rank": "III",
+					"name": "S. Caroli Borromaei Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-05": {
+			"date": "2026-11-05",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-23:feria-5",
+					"rank": "IV",
+					"name": "Feria V infra Hebdomadam XXIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-06": {
+			"date": "2026-11-06",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-23:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam XXIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-07": {
+			"date": "2026-11-07",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-23:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam XXIII post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-08": {
+			"date": "2026-11-08",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:resumed-epiphany-5",
+					"rank": "II",
+					"name": "Dominica V quae superfuit post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:quatuor-coronati",
+					"name": "Ss. Quatuor Coronatorum Martyrum"
+				}
+			]
+		},
+		"2026-11-09": {
+			"date": "2026-11-09",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:dedicatio-basilicae-salvatoris",
+					"rank": "II",
+					"name": "In Dedicatione Basilicae Ss. Salvatoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-10": {
+			"date": "2026-11-10",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:andreas-avellinus",
+					"rank": "III",
+					"name": "S. Andreae Avellini Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-11": {
+			"date": "2026-11-11",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:martinus-turonensis",
+					"rank": "III",
+					"name": "S. Martini Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-12": {
+			"date": "2026-11-12",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:martinus-papa",
+					"rank": "III",
+					"name": "S. Martini I Papae et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-13": {
+			"date": "2026-11-13",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:didacus",
+					"rank": "III",
+					"name": "S. Didaci Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-14": {
+			"date": "2026-11-14",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:iosaphat",
+					"rank": "III",
+					"name": "S. Iosaphat Episcopi et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-15": {
+			"date": "2026-11-15",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:resumed-epiphany-6",
+					"rank": "II",
+					"name": "Dominica VI quae superfuit post Epiphaniam",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:albertus-magnus",
+					"name": "S. Alberti Magni Episcopi Confessoris et Ecclesiae Doctoris"
+				}
+			]
+		},
+		"2026-11-16": {
+			"date": "2026-11-16",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:gertrudis",
+					"rank": "III",
+					"name": "S. Gertrudis Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-17": {
+			"date": "2026-11-17",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:gregorius-thaumaturgus",
+					"rank": "III",
+					"name": "S. Gregorii Thaumaturgi Episcopi et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-18": {
+			"date": "2026-11-18",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:dedicatio-basilicarum-petri-et-pauli",
+					"rank": "III",
+					"name": "In Dedicatione Basilicarum Ss. Petri et Pauli Apostolorum",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-19": {
+			"date": "2026-11-19",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:elisabeth",
+					"rank": "III",
+					"name": "S. Elisabeth Viduae",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-20": {
+			"date": "2026-11-20",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:felix-valois",
+					"rank": "III",
+					"name": "S. Felicis de Valois Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-21": {
+			"date": "2026-11-21",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:praesentatio-bmv",
+					"rank": "III",
+					"name": "In Praesentatione B. Mariae Virginis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-22": {
+			"date": "2026-11-22",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:sunday-ultima",
+					"rank": "II",
+					"name": "Dominica ultima post Pentecosten",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:caecilia",
+					"name": "S. Caeciliae Virginis et Martyris"
+				}
+			]
+		},
+		"2026-11-23": {
+			"date": "2026-11-23",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:clemens",
+					"rank": "III",
+					"name": "S. Clementis I Papae et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-24": {
+			"date": "2026-11-24",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ioannes-a-cruce",
+					"rank": "III",
+					"name": "S. Ioannis a Cruce Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-25": {
+			"date": "2026-11-25",
+			"season": "pentecost",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:catharina",
+					"rank": "III",
+					"name": "S. Catharinae Virginis et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-26": {
+			"date": "2026-11-26",
+			"season": "pentecost",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:sylvester-abbas",
+					"rank": "III",
+					"name": "S. Silvestri Abbatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-27": {
+			"date": "2026-11-27",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-26:feria-6",
+					"rank": "IV",
+					"name": "Feria VI infra Hebdomadam XXVI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-28": {
+			"date": "2026-11-28",
+			"season": "pentecost",
+			"colour": "green",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:paschal:pentecost-time:week-26:sabbatum",
+					"rank": "IV",
+					"name": "Sabbato infra Hebdomadam XXVI post Octavam Pentecostes",
+					"colour": "green",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-29": {
+			"date": "2026-11-29",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:sunday-1",
+					"rank": "I",
+					"name": "Dominica I Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-11-30": {
+			"date": "2026-11-30",
+			"season": "advent",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:andreas",
+					"rank": "II",
+					"name": "S. Andreae Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-1:feria-2",
+					"name": "Feria II infra Hebdomadam I Adventus"
+				}
+			]
+		},
+		"2026-12-01": {
+			"date": "2026-12-01",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-1:feria-3",
+					"rank": "III",
+					"name": "Feria III infra Hebdomadam I Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:eligius",
+					"name": "S. Eligii Episcopi et Confessoris"
+				}
+			]
+		},
+		"2026-12-02": {
+			"date": "2026-12-02",
+			"season": "advent",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:bibiana",
+					"rank": "III",
+					"name": "S. Bibianae Virginis et Martyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-1:feria-4",
+					"name": "Feria IV infra Hebdomadam I Adventus"
+				}
+			]
+		},
+		"2026-12-03": {
+			"date": "2026-12-03",
+			"season": "advent",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:franciscus-xaverius",
+					"rank": "III",
+					"name": "S. Francisci Xaverii Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-1:feria-5",
+					"name": "Feria V infra Hebdomadam I Adventus"
+				}
+			]
+		},
+		"2026-12-04": {
+			"date": "2026-12-04",
+			"season": "advent",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:petrus-chrysologus",
+					"rank": "III",
+					"name": "S. Petri Chrysologi Episcopi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-1:feria-6",
+					"name": "Feria VI infra Hebdomadam I Adventus"
+				},
+				{
+					"id": "roman:sanctorale:barbara",
+					"name": "S. Barbarae Virginis et Martyris"
+				}
+			]
+		},
+		"2026-12-05": {
+			"date": "2026-12-05",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-1:sabbatum",
+					"rank": "III",
+					"name": "Sabbato infra Hebdomadam I Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:sabbas",
+					"name": "S. Sabbae Abbatis"
+				}
+			]
+		},
+		"2026-12-06": {
+			"date": "2026-12-06",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:sunday-2",
+					"rank": "I",
+					"name": "Dominica II Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-07": {
+			"date": "2026-12-07",
+			"season": "advent",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:ambrosius",
+					"rank": "III",
+					"name": "S. Ambrosii Episcopi Confessoris et Ecclesiae Doctoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-2:feria-2",
+					"name": "Feria II infra Hebdomadam II Adventus"
+				}
+			]
+		},
+		"2026-12-08": {
+			"date": "2026-12-08",
+			"season": "advent",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:immaculata-conceptio",
+					"rank": "I",
+					"name": "In Conceptione Immaculata B.M.V.",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-2:feria-3",
+					"name": "Feria III infra Hebdomadam II Adventus"
+				}
+			]
+		},
+		"2026-12-09": {
+			"date": "2026-12-09",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-2:feria-4",
+					"rank": "III",
+					"name": "Feria IV infra Hebdomadam II Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-10": {
+			"date": "2026-12-10",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-2:feria-5",
+					"rank": "III",
+					"name": "Feria V infra Hebdomadam II Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:melchiades",
+					"name": "S. Melchiadis Papae et Martyris"
+				}
+			]
+		},
+		"2026-12-11": {
+			"date": "2026-12-11",
+			"season": "advent",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:damasus",
+					"rank": "III",
+					"name": "S. Damasi Papae et Confessoris",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-2:feria-6",
+					"name": "Feria VI infra Hebdomadam II Adventus"
+				}
+			]
+		},
+		"2026-12-12": {
+			"date": "2026-12-12",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-2:sabbatum",
+					"rank": "III",
+					"name": "Sabbato infra Hebdomadam II Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-13": {
+			"date": "2026-12-13",
+			"season": "advent",
+			"colour": "violet",
+			"rose": true,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:sunday-3",
+					"rank": "I",
+					"name": "Dominica III Adventus",
+					"colour": "violet",
+					"roseAllowed": true
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-14": {
+			"date": "2026-12-14",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-3:feria-2",
+					"rank": "III",
+					"name": "Feria II infra Hebdomadam III Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-15": {
+			"date": "2026-12-15",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-3:feria-3",
+					"rank": "III",
+					"name": "Feria III infra Hebdomadam III Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-16": {
+			"date": "2026-12-16",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:quattuor-temporum:feria-4",
+					"rank": "II",
+					"name": "Feria IV Quatuor Temporum Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:eusebius",
+					"name": "S. Eusebii Episcopi et Martyris"
+				}
+			]
+		},
+		"2026-12-17": {
+			"date": "2026-12-17",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-3:feria-5",
+					"rank": "II",
+					"name": "Feria V infra Hebdomadam III Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-18": {
+			"date": "2026-12-18",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:quattuor-temporum:feria-6",
+					"rank": "II",
+					"name": "Feria VI Quatuor Temporum Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-19": {
+			"date": "2026-12-19",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:quattuor-temporum:sabbatum",
+					"rank": "II",
+					"name": "Sabbato Quatuor Temporum Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-20": {
+			"date": "2026-12-20",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:sunday-4",
+					"rank": "I",
+					"name": "Dominica IV Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-21": {
+			"date": "2026-12-21",
+			"season": "advent",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:thomas-apostolus",
+					"rank": "II",
+					"name": "S. Thomae Apostoli",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:advent:week-4:feria-2",
+					"name": "Feria II infra Hebdomadam IV Adventus"
+				}
+			]
+		},
+		"2026-12-22": {
+			"date": "2026-12-22",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-4:feria-3",
+					"rank": "II",
+					"name": "Feria III infra Hebdomadam IV Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-23": {
+			"date": "2026-12-23",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:advent:week-4:feria-4",
+					"rank": "II",
+					"name": "Feria IV infra Hebdomadam IV Adventus",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-24": {
+			"date": "2026-12-24",
+			"season": "advent",
+			"colour": "violet",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:vigil",
+					"rank": "I",
+					"name": "In Vigilia Nativitatis Domini",
+					"colour": "violet",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-25": {
+			"date": "2026-12-25",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:nativity",
+					"rank": "I",
+					"name": "In Nativitate Domini",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-26": {
+			"date": "2026-12-26",
+			"season": "christmastide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:stephanus",
+					"rank": "II",
+					"name": "S. Stephani Protomartyris",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:christmas:within-octave:day-2",
+					"name": "De II die infra Octavam Nativitatis"
+				}
+			]
+		},
+		"2026-12-27": {
+			"date": "2026-12-27",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:sunday-within-octave",
+					"rank": "II",
+					"name": "Dominica infra Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:ioannes-evangelista",
+					"name": "S. Ioannis Apostoli et Evangelistae"
+				}
+			]
+		},
+		"2026-12-28": {
+			"date": "2026-12-28",
+			"season": "christmastide",
+			"colour": "red",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:sanctorale:innocentes",
+					"rank": "II",
+					"name": "Ss. Innocentium Martyrum",
+					"colour": "red",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:temporale:christmas:within-octave:day-4",
+					"name": "De IV die infra Octavam Nativitatis"
+				}
+			]
+		},
+		"2026-12-29": {
+			"date": "2026-12-29",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:within-octave:day-5",
+					"rank": "II",
+					"name": "De V die infra Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:thomas-becket",
+					"name": "S. Thomae Episcopi et Martyris"
+				}
+			]
+		},
+		"2026-12-30": {
+			"date": "2026-12-30",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:within-octave:day-6",
+					"rank": "II",
+					"name": "De VI die infra Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": []
+		},
+		"2026-12-31": {
+			"date": "2026-12-31",
+			"season": "christmastide",
+			"colour": "white",
+			"rose": false,
+			"celebration": [
+				{
+					"id": "roman:temporale:christmas:within-octave:day-7",
+					"rank": "II",
+					"name": "De VII die infra Octavam Nativitatis",
+					"colour": "white",
+					"roseAllowed": false
+				}
+			],
+			"commemoration": [
+				{
+					"id": "roman:sanctorale:silvester",
+					"name": "S. Silvestri I Papae et Confessoris"
+				}
+			]
+		}
+	}
+}

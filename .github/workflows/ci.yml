@@ -49,5 +49,11 @@ jobs:
       - name: Offline guard (no external URLs)
         run: pnpm guard:external
 
+      - name: Content gate (no unreviewed content in production)
+        run: pnpm guard:content
+
+      - name: Offline smoke (static output serves with no backend)
+        run: pnpm guard:offline
+
       - name: Unit tests
         run: pnpm test:unit
