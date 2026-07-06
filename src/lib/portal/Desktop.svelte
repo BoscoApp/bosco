@@ -51,7 +51,7 @@
 
 <IconSprite />
 
-<div class="desktop">
+<main class="desktop">
 	<div class="menubar">
 		<button
 			type="button"
@@ -91,7 +91,13 @@
 		</div>
 	</div>
 
-	<div class="dock" role="group" aria-label="Bosco — the six places">
+	<div
+		class="dock"
+		id="desktop-apps"
+		tabindex="-1"
+		role="group"
+		aria-label="Bosco — the six places"
+	>
 		{#each DOCK as app (app.id)}
 			<button type="button" class="d-ico" onclick={(e) => open(app.id, e)}>
 				<Icon id={app.icon} />
@@ -135,4 +141,4 @@
 			{/each}
 		</div>
 	{/if}
-</div>
+</main>

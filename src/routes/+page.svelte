@@ -11,4 +11,6 @@
 	/>
 </svelte:head>
 
+<a class="skip-link" href="#desktop-apps">Skip to the apps</a>
+
 <Desktop />

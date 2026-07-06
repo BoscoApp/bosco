@@ -19,7 +19,9 @@ const config = {
 		adapter: adapter({
 			pages: 'build',
 			assets: 'build',
-			fallback: undefined,
+			// A client-rendered fallback so static hosts serve a styled, in-world 404
+			// (src/routes/+error.svelte) for any unknown path. All real routes still prerender.
+			fallback: '404.html',
 			precompress: false,
 			strict: true
 		}),
