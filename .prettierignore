@@ -5,3 +5,6 @@ dist/
 node_modules/
 pnpm-lock.yaml
 src/lib/calendar/calendar.json
+
+# Design reference prototype — kept as-authored, not formatted.
+docs/design/desktop-mockup.html
