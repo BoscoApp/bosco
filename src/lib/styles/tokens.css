@@ -127,11 +127,45 @@
 	--surface-masthead: linear-gradient(115deg, #eef4ea 0%, var(--paper) 40%, var(--paper-warm) 100%);
 	--surface-bulletin: linear-gradient(#fbf7ea, #f1ecdd);
 	--surface-card: var(--c-white);
+
+	/* Platinum aliases (retro chrome) */
+	--plat: var(--c-plat);
+	--plat-hi: var(--c-plat-hi);
+	--plat-mid: var(--c-plat-mid);
+
+	/* Content tints + inks, derived from the brand hues so they travel with the theme */
+	--card: var(--c-white);
+	--tint-green: color-mix(in srgb, var(--green) 12%, var(--c-white));
+	--tint-gold: color-mix(in srgb, var(--gold) 16%, var(--c-white));
+	--ink-gold: color-mix(in srgb, var(--gold-deep) 74%, #000000);
+	--ink-green: color-mix(in srgb, var(--green) 66%, #000000);
+	--line-gold: color-mix(in srgb, var(--gold) 42%, var(--paper));
+	--line-card: color-mix(in srgb, var(--gold) 16%, var(--c-plat));
+	--tb-stripe: color-mix(in srgb, var(--sel) 42%, #ffffff);
+	--surface-dayband: linear-gradient(
+		160deg,
+		var(--tint-green),
+		var(--paper) 55%,
+		var(--paper-warm)
+	);
+	--surface-verse: linear-gradient(
+		color-mix(in srgb, var(--gold) 9%, var(--paper)),
+		color-mix(in srgb, var(--gold) 18%, var(--paper))
+	);
+	--surface-construction: repeating-linear-gradient(45deg, var(--gold) 0 9px, var(--ink) 9px 18px);
+
+	/* Translucent near-black for desktop icon-label pills (legible over any wallpaper) */
+	--pill-ink: color-mix(in srgb, var(--ink) 82%, transparent);
+	--counter-bg: linear-gradient(#3a3a40, #1f1f24);
+	--counter-cell: linear-gradient(#14261a, #0c1a12);
+	--counter-ink: #8ff0a0;
 }
 
 /* ============ LITURGICAL AXIS: the day's colour (wallpaper) =============== */
-/* --lit / --lit-dk drive the desktop wallpaper gradient; --on-lit is the AA-safe text colour
- * for anything sitting directly on it; --lit-name is the human label. */
+/* --lit / --lit-dk drive the desktop wallpaper gradient. --on-lit is the higher-contrast text
+ * colour for content placed on the wallpaper; since the wallpaper sweeps light→dark, on-wallpaper
+ * text must also carry a text-shadow (see .desk-hint) to stay legible across the whole gradient.
+ * --lit-name is the human label. */
 [data-lit='white'] {
 	--lit: #e9e6da;
 	--lit-dk: #cfccbd;

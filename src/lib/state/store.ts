@@ -14,6 +14,7 @@ import {
 	type PersistedState,
 	type Prefs,
 	type Profile,
+	type ProfileAvatar,
 	type SyncAdapter,
 	type SyncRecord
 } from './types';
@@ -85,8 +86,8 @@ export class BoscoStore {
 	get activeProfile(): Profile | null {
 		return this.state.profiles.find((p) => p.id === this.state.prefs.activeProfileId) ?? null;
 	}
-	createProfile(name: string): Profile {
-		const profile: Profile = { id: this.newId(), name, createdAt: this.now() };
+	createProfile(name: string, avatar?: ProfileAvatar): Profile {
+		const profile: Profile = { id: this.newId(), name, createdAt: this.now(), avatar };
 		this.state.profiles.push(profile);
 		if (!this.state.prefs.activeProfileId) this.state.prefs.activeProfileId = profile.id;
 		this.save();
@@ -96,6 +97,13 @@ export class BoscoStore {
 		const p = this.state.profiles.find((x) => x.id === id);
 		if (p) {
 			p.name = name;
+			this.save();
+		}
+	}
+	setProfileAvatar(id: string, avatar: ProfileAvatar): void {
+		const p = this.state.profiles.find((x) => x.id === id);
+		if (p) {
+			p.avatar = avatar;
 			this.save();
 		}
 	}

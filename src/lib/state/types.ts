@@ -28,11 +28,19 @@ export const DEFAULT_PREFS: Prefs = {
 	muted: false
 };
 
+/** A generated avatar — a colour swatch + a Christian emblem, both indices into the picker sets. */
+export interface ProfileAvatar {
+	color: number;
+	emblem: number;
+}
+
 /** A named per-device profile — one per sibling. No account, no PII beyond a chosen name. */
 export interface Profile {
 	id: string;
 	name: string;
 	createdAt: number;
+	/** Optional generated avatar (added in v0.2.0). Absent on older profiles — derive a default. */
+	avatar?: ProfileAvatar;
 }
 
 /**
