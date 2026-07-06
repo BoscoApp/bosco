@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Roadmap
+    url: https://github.com/BoscoApp/bosco/blob/develop/ROADMAP.md
+    about: What each version delivers and how work is tracked.
