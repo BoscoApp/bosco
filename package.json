@@ -18,6 +18,7 @@
 		"test:e2e": "playwright test",
 		"guard:external": "node scripts/check-external-urls.mjs",
 		"guard:content": "node scripts/check-content-gate.mjs",
+		"guard:colour": "node scripts/check-hardcoded-colour.mjs",
 		"guard:offline": "node scripts/check-offline.mjs",
 		"serve:static": "node scripts/serve-static.mjs"
 	},

@@ -1,0 +1,184 @@
+/*
+ * Bosco design tokens — the single source of truth for colour and type.
+ *
+ * This is the ONLY file allowed to hold raw colour literals; every component references the
+ * semantic tokens below via var(). `scripts/check-hardcoded-colour.mjs` enforces that (it skips
+ * this file and fonts.css). Three orthogonal axes live on <html>, exactly as the architecture
+ * spine specifies:
+ *   data-theme  clubhouse (Meadow reserved for v1.0.0)
+ *   data-lit    white | red | green | violet | black | rose   (the day's liturgical colour)
+ *   data-tier   seedling | explorer | scholar                 (reading level → type scale)
+ *
+ * Layer 1 = primitives (--c-*, raw palette). Layer 2 = semantic roles (what components use).
+ */
+
+:root {
+	/* ---- Layer 1: primitive palette ---------------------------------------- */
+	/* Platinum / paper neutral ramp (retro chrome) */
+	--c-white: #ffffff;
+	--c-paper: #f3f0e7;
+	--c-paper-warm: #f7f0df;
+	--c-plat-hi: #eeeee8;
+	--c-plat: #c9c9c1;
+	--c-plat-mid: #ddddd6;
+	--c-line: #9a9a92;
+	--c-line-soft: #b6b6ae;
+	--c-edge: #6f6f68;
+	--c-edge-strong: #55554f;
+	--c-ink: #1d1d22;
+	--c-ink-soft: #4a4a52;
+
+	/* Brand hues (the app-icon set + accents) */
+	--c-blue: #2e5aa8;
+	--c-green: #3f8f4a;
+	--c-violet: #7a5aa8;
+	--c-red: #d1483a;
+	--c-gold: #e0a531;
+	--c-gold-deep: #b9841c;
+	--c-teal: #2b8f8f;
+	--c-rose: #d98aa8;
+	--c-parchment: #fffbe6;
+	--c-parchment-ink: #4a3f14;
+	--c-parchment-line: #c9a94a;
+
+	/* Interaction */
+	--c-sel: #3355bb;
+	--c-sel-deep: #2b47a0;
+	--c-sel-soft: #c7d2ef;
+
+	/* ---- Layer 2: semantic roles (referenced by components) ---------------- */
+	--paper: var(--c-paper);
+	--paper-warm: var(--c-paper-warm);
+	--ink: var(--c-ink);
+	--ink-soft: var(--c-ink-soft);
+	--line: var(--c-line);
+	--line-soft: var(--c-line-soft);
+	--edge: var(--c-edge);
+	--edge-strong: var(--c-edge-strong);
+
+	--blue: var(--c-blue);
+	--green: var(--c-green);
+	--violet: var(--c-violet);
+	--red: var(--c-red);
+	--gold: var(--c-gold);
+	--gold-deep: var(--c-gold-deep);
+	--teal: var(--c-teal);
+	--rose: var(--c-rose);
+
+	--sel: var(--c-sel);
+	--sel-deep: var(--c-sel-deep);
+	--sel-soft: var(--c-sel-soft);
+	--on-sel: var(--c-white);
+
+	--focus: var(--c-sel);
+	--focus-inverse: var(--c-white);
+
+	/* Notes / bulletin parchment */
+	--parchment: var(--c-parchment);
+	--parchment-ink: var(--c-parchment-ink);
+	--parchment-line: var(--c-parchment-line);
+
+	/* ---- Type ------------------------------------------------------------- */
+	--font-body: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+	--font-ui: 'Atkinson Hyperlegible', 'Segoe UI', system-ui, sans-serif;
+	--font-display: 'Press Start 2P', 'Verdana', 'Geneva', system-ui, sans-serif;
+	--font-serif: 'Palatino Linotype', Palatino, Georgia, 'Times New Roman', serif;
+	--font-mono: 'Courier New', ui-monospace, monospace;
+
+	--fs-2xs: 10px;
+	--fs-xs: 11.5px;
+	--fs-sm: 12.5px;
+	--fs-base: 14px;
+	--fs-md: 15px;
+	--fs-lg: 20px;
+	--fs-xl: 31px;
+	--lh-body: 1.45;
+	--lh-tight: 1.15;
+
+	/* Reading surfaces scale with the tier axis (chrome stays fixed) */
+	--type-scale: 1;
+	--fs-read: calc(var(--fs-sm) * var(--type-scale));
+	--measure-read: 46ch;
+
+	/* ---- Shape & motion --------------------------------------------------- */
+	--radius-win: 7px;
+	--radius: 7px;
+	--radius-sm: 4px;
+	--radius-pill: 12px;
+	--shadow-win: 0 2px 0 var(--edge-strong), 0 16px 40px rgba(15, 25, 20, 0.5);
+	--shadow-raised: 0 1px 0 var(--c-white) inset;
+	--motion-fast: 0.13s;
+}
+
+/* ============ THEME AXIS: Clubhouse (default) ============================== */
+/* Retro platinum surfaces. Meadow overrides land at v1.0.0 under [data-theme='meadow']. */
+:root,
+[data-theme='clubhouse'] {
+	--window-bg: var(--c-plat);
+	--body-bg: var(--paper);
+
+	--surface-menubar: linear-gradient(var(--c-white), var(--c-plat-hi) 70%, var(--c-plat-mid));
+	--surface-titlebar: linear-gradient(#f6f6f2, #dcdcd4);
+	--surface-taskbar: linear-gradient(#e9e9e2, #d3d3ca);
+	--surface-raised: linear-gradient(#fbfbf6, #dedad0);
+	--surface-raised-hi: linear-gradient(#fbfbf7, #d7d7cf);
+	--surface-active: linear-gradient(var(--c-white), #eef2fb);
+	--surface-sel: linear-gradient(var(--sel), var(--sel-deep));
+	--surface-masthead: linear-gradient(115deg, #eef4ea 0%, var(--paper) 40%, var(--paper-warm) 100%);
+	--surface-bulletin: linear-gradient(#fbf7ea, #f1ecdd);
+	--surface-card: var(--c-white);
+}
+
+/* ============ LITURGICAL AXIS: the day's colour (wallpaper) =============== */
+/* --lit / --lit-dk drive the desktop wallpaper gradient; --on-lit is the AA-safe text colour
+ * for anything sitting directly on it; --lit-name is the human label. */
+[data-lit='white'] {
+	--lit: #e9e6da;
+	--lit-dk: #cfccbd;
+	--on-lit: #26262c;
+	--lit-name: 'White';
+}
+[data-lit='red'] {
+	--lit: #c0392b;
+	--lit-dk: #8f261d;
+	--on-lit: #ffffff;
+	--lit-name: 'Red';
+}
+[data-lit='green'] {
+	--lit: #3f8f4a;
+	--lit-dk: #2c6836;
+	--on-lit: #ffffff;
+	--lit-name: 'Green';
+}
+[data-lit='violet'] {
+	--lit: #6a4f93;
+	--lit-dk: #48356a;
+	--on-lit: #ffffff;
+	--lit-name: 'Violet';
+}
+[data-lit='black'] {
+	--lit: #33343a;
+	--lit-dk: #1b1c21;
+	--on-lit: #ffffff;
+	--lit-name: 'Black';
+}
+[data-lit='rose'] {
+	--lit: #d98aa8;
+	--lit-dk: #b5657f;
+	--on-lit: #3a2333;
+	--lit-name: 'Rose';
+}
+
+/* ============ TIER AXIS: reading level → type scale ====================== */
+[data-tier='seedling'] {
+	--type-scale: 1.16;
+	--measure-read: 34ch;
+}
+[data-tier='explorer'] {
+	--type-scale: 1;
+	--measure-read: 46ch;
+}
+[data-tier='scholar'] {
+	--type-scale: 0.94;
+	--measure-read: 62ch;
+}
