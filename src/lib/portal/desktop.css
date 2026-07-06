@@ -31,9 +31,12 @@
 	background-image: radial-gradient(#ffffff 0.5px, transparent 0.6px);
 	background-size: 4px 4px;
 }
+/* On the coloured wallpaper the focus ring is two-tone — a dark outline plus a white halo — so
+   one of the two always clears 3:1 whatever the day's liturgical colour (light or dark). */
 .desktop :focus-visible {
-	outline: 2px solid var(--focus-inverse);
+	outline: 2px solid var(--ink);
 	outline-offset: 2px;
+	box-shadow: 0 0 0 4px var(--focus-inverse);
 }
 
 /* ============ MENU BAR ============ */
@@ -181,8 +184,9 @@
 	background: var(--sel);
 }
 .d-ico:focus-visible {
-	outline: 2px solid var(--focus-inverse);
+	outline: 2px solid var(--ink);
 	outline-offset: 1px;
+	box-shadow: 0 0 0 3px var(--focus-inverse);
 }
 .d-ico:active .art {
 	transform: translateY(1px);
@@ -963,8 +967,11 @@
 	color: color-mix(in srgb, var(--sel-soft) 80%, #ffffff);
 }
 .seg button:focus-visible {
-	outline: 2px solid var(--gold);
+	/* Inset two-tone (the .seg clips outer rings): blue reads on the pale unselected fill,
+	   white reads on the blue selected fill. */
+	outline: 2px solid var(--focus-inverse);
 	outline-offset: -2px;
+	box-shadow: inset 0 0 0 2px var(--sel);
 }
 .seg button[disabled] {
 	opacity: 0.5;

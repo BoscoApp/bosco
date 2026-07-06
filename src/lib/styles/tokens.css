@@ -162,8 +162,10 @@
 }
 
 /* ============ LITURGICAL AXIS: the day's colour (wallpaper) =============== */
-/* --lit / --lit-dk drive the desktop wallpaper gradient; --on-lit is the AA-safe text colour
- * for anything sitting directly on it; --lit-name is the human label. */
+/* --lit / --lit-dk drive the desktop wallpaper gradient. --on-lit is the higher-contrast text
+ * colour for content placed on the wallpaper; since the wallpaper sweeps light→dark, on-wallpaper
+ * text must also carry a text-shadow (see .desk-hint) to stay legible across the whole gradient.
+ * --lit-name is the human label. */
 [data-lit='white'] {
 	--lit: #e9e6da;
 	--lit-dk: #cfccbd;

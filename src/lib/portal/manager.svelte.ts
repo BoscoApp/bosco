@@ -73,7 +73,7 @@ export class Windows {
 		const w = this.state(id);
 		w.open = false;
 		w.min = true;
-		if (this.activeId === id) this.activeId = null;
+		this.#promoteActive(id);
 		sounds.close();
 		this.#focusOpener(id);
 	}
@@ -84,9 +84,24 @@ export class Windows {
 		w.min = false;
 		w.maxed = false;
 		this.tabs = this.tabs.filter((t) => t !== id);
-		if (this.activeId === id) this.activeId = null;
+		this.#promoteActive(id);
 		sounds.close();
 		this.#focusOpener(id);
+	}
+
+	/** When the active window goes away, hand active to the topmost window still visible. */
+	#promoteActive(leavingId: string): void {
+		if (this.activeId !== leavingId) return;
+		let top: string | null = null;
+		let topZ = -Infinity;
+		for (const wid of this.tabs) {
+			const w = this.states[wid];
+			if (w?.open && w.z > topZ) {
+				topZ = w.z;
+				top = wid;
+			}
+		}
+		this.activeId = top;
 	}
 
 	toggleMax(id: string): void {
@@ -103,14 +118,25 @@ export class Windows {
 		else this.front(id);
 	}
 
-	setPos(id: string, clientX: number, clientY: number): void {
+	/**
+	 * Clamp a window's top-left so a usable strip of the title bar — including the top-right
+	 * − □ × controls — always stays on screen. The window may hang off the left, but never off
+	 * the right (which would hide the controls) or above the menu bar.
+	 */
+	setPos(id: string, x: number, y: number, width: number): void {
 		const w = this.state(id);
-		w.x = Math.min(Math.max(0, clientX), window.innerWidth - 48);
-		w.y = Math.min(Math.max(MENUBAR, clientY), window.innerHeight - 60);
+		const KEEP = 96;
+		w.x = Math.min(Math.max(KEEP - width, x), Math.max(0, window.innerWidth - width));
+		w.y = Math.min(Math.max(MENUBAR, y), Math.max(MENUBAR, window.innerHeight - 44));
 	}
 
+	/** Return focus to the control that opened the window — but only if it is genuinely visible;
+	 *  otherwise fall back to the always-present Home button so focus is never dropped to <body>. */
 	#focusOpener(id: string): void {
 		const el = this.#openers.get(id);
-		if (el && document.body.contains(el)) el.focus();
+		const visible =
+			!!el && el.isConnected && !el.closest('[hidden]') && el.getClientRects().length > 0;
+		if (visible) el!.focus();
+		else document.querySelector<HTMLElement>('.menubar .home')?.focus();
 	}
 }
