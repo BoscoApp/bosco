@@ -1,0 +1,11 @@
+# Bosco code owners.
+# The maintainer owns everything; doctrine paths are listed explicitly so that any change to
+# them always requests review — the doctrinal-review gate at the VCS layer.
+
+*                             @manlycucumber
+
+# Doctrine — reviewed by the owner, verbatim rules apply (see CONTRIBUTING.md).
+/src/content/faith/**         @manlycucumber
+/src/content/chapel/**        @manlycucumber
+/src/content/prayers/**       @manlycucumber
+/src/content/catechism/**     @manlycucumber
