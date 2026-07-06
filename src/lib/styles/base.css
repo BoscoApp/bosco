@@ -1,0 +1,55 @@
+/*
+ * Base layer — a minimal reset and the element defaults that sit under every route.
+ * Colour and type come entirely from tokens.css; no literals here (the colour guard checks).
+ */
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: var(--font-body);
+	color: var(--ink);
+	background: var(--body-bg);
+	-webkit-text-size-adjust: 100%;
+}
+
+body {
+	margin: 0;
+	font-size: var(--fs-base);
+	line-height: var(--lh-body);
+}
+
+/* A single, visible focus system across the app. Components on the coloured wallpaper opt into
+ * the inverse ring with `--focus: var(--focus-inverse)`. */
+:focus-visible {
+	outline: 2px solid var(--focus);
+	outline-offset: 2px;
+}
+:focus:not(:focus-visible) {
+	outline: none;
+}
+
+img,
+svg {
+	max-width: 100%;
+}
+
+button {
+	font-family: inherit;
+}
+
+/* Screen-reader-only, but focusable when it needs to be (skip link). */
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	margin: -1px;
+	padding: 0;
+	border: 0;
+	clip-path: inset(50%);
+	overflow: hidden;
+	white-space: nowrap;
+}

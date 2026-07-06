@@ -43,6 +43,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Colour guard (component colours come from tokens)
+        run: pnpm guard:colour
+
       - name: Build (all routes prerender)
         run: pnpm build
 

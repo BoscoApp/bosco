@@ -11,8 +11,13 @@ and origin. **Unknown license ⇒ not committed.** This is a hard rule (see `REA
 
 ## Fonts
 
-_None bundled yet. Atkinson Hyperlegible (body) and Press Start 2P (retro display) land in v0.2.0 and
-will be recorded here with their licenses._
+Self-hosted, subset to woff2, and served same-origin from `/fonts/` (never a CDN — see
+`guard:external`). Declared in `src/lib/styles/fonts.css`.
+
+| Asset                                                                    | Used for                                          | License                   | Source                                                                                             |
+| ------------------------------------------------------------------------ | ------------------------------------------------- | ------------------------- | -------------------------------------------------------------------------------------------------- |
+| Atkinson Hyperlegible (regular, bold, italic; latin + latin-ext subsets) | Body & UI text — drawn for high legibility        | SIL Open Font License 1.1 | Braille Institute of America, via Google Fonts (`fonts.google.com/specimen/Atkinson+Hyperlegible`) |
+| Press Start 2P (regular; latin subset)                                   | Retro display accent (wordmark, kickers, counter) | SIL Open Font License 1.1 | CodeMan38, via Google Fonts (`fonts.google.com/specimen/Press+Start+2P`)                           |
 
 ## Images & audio
 
