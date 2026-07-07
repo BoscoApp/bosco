@@ -57,6 +57,12 @@ export const topicFrontmatterSchema = z.object({
 	category: z.enum(CATEGORIES),
 	summary: z.string().min(1),
 	tiers: z.array(tierLiteral).min(1),
+	/**
+	 * Which tier a reader lands on before any choice — the ONE tier baked into the prerendered
+	 * page (so it has real prose offline and yields exactly one search record). Clamped to the
+	 * nearest declared tier; defaults to Explorer (2), matching the app-wide default in app.html.
+	 */
+	default_tier: tierLiteral.optional(),
 	review_status: z.enum(REVIEW_STATUSES),
 	sources: z.array(sourceSchema).default([]),
 	media: z.array(mediaSchema).default([]),
@@ -67,11 +73,25 @@ export const topicFrontmatterSchema = z.object({
 
 export type TopicFrontmatter = z.infer<typeof topicFrontmatterSchema>;
 
-/** Frontmatter plus derived location. */
+/** Frontmatter plus derived location and the resolved default tier. */
 export interface TopicMeta extends TopicFrontmatter {
 	slug: string;
 	/** `${category}/${slug}` */
 	path: string;
+	/** The tier a reader opens at (see {@link pickDefaultTier}); prerendered into the static page. */
+	defaultTier: Tier;
+}
+
+/**
+ * The tier a topic opens at: its declared `default_tier` if that tier exists, otherwise the
+ * declared tier nearest to Explorer (2) — ties break toward the lower (gentler) tier. This is the
+ * single tier that gets prerendered into the topic's static page.
+ */
+export function pickDefaultTier(tiers: readonly number[], preferred?: number): Tier {
+	const want = preferred ?? 2;
+	if (tiers.includes(want)) return want as Tier;
+	const nearest = [...tiers].sort((a, b) => Math.abs(a - want) - Math.abs(b - want) || a - b)[0];
+	return nearest as Tier;
 }
 
 export interface GateOptions {

@@ -18,6 +18,7 @@
 	import AboutBody from './windows/AboutBody.svelte';
 	import WhoBody from './windows/WhoBody.svelte';
 	import RoomBody from './windows/RoomBody.svelte';
+	import LibraryBody from './windows/LibraryBody.svelte';
 
 	const portal = new Portal();
 	setPortal(portal);
@@ -113,7 +114,9 @@
 
 	{#each WINDOWS as def (def.id)}
 		<Window {def} wm={portal.wm}>
-			{#if ROOMS[def.id]}
+			{#if def.id === 'win-library'}
+				<LibraryBody />
+			{:else if ROOMS[def.id]}
 				<RoomBody room={ROOMS[def.id]} />
 			{:else}
 				{@const Body = BODY[def.id]}

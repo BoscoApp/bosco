@@ -45,4 +45,30 @@ test.describe('accessibility floor', () => {
 		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
 		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
 	});
+
+	test('the Library window with a topic open has no serious/critical violations', async ({
+		page
+	}) => {
+		await page.goto('/');
+		await page.waitForSelector('#win-who:not([hidden])');
+		await page.fill('#whoName', 'Rose');
+		await page.click('#win-who .btn-primary');
+		await page.waitForSelector('#win-home:not([hidden])');
+		await page.getByRole('button', { name: 'Library', exact: true }).click();
+		const library = page.locator('#win-library');
+		await library
+			.getByRole('link', { name: /The Red Fox/ })
+			.first()
+			.click();
+		await library.getByRole('heading', { name: 'The Red Fox' }).waitFor();
+		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
+		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
+	});
+
+	test('a standalone topic page has no serious/critical violations', async ({ page }) => {
+		await page.goto('/library/creatures/red-fox/');
+		await page.waitForSelector('.article');
+		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
+		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
+	});
 });

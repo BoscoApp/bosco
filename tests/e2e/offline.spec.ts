@@ -17,7 +17,9 @@ test('portal and library load with zero external requests', async ({ page }) => 
 	});
 
 	await page.goto('/');
-	await expect(page.getByRole('heading', { name: 'Bosco' })).toBeVisible();
+	// First run shows the desktop with the "Who's exploring?" window open; the Bosco heading lives
+	// in the Home window, which isn't open yet. Assert the always-present desktop landmark instead.
+	await expect(page.locator('main.desktop')).toBeVisible();
 
 	await page.goto('/library/');
 	await expect(page.getByRole('heading', { name: 'The Library' })).toBeVisible();
