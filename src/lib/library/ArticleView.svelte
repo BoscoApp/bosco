@@ -10,13 +10,14 @@
 	import type { Component } from 'svelte';
 	import type { Tier, Topic, EagerBody } from '$lib/content';
 	import { CATEGORY_LABEL } from './categories';
-	import { TIER_WORD } from './tiers';
+	import { TIER_WORD, clampToOffered } from './tiers';
 	import TierSwitch from './TierSwitch.svelte';
 
 	let {
 		topic,
 		tier,
-		eager = null
+		eager = null,
+		level = 1
 	}: {
 		topic: Topic;
 		/** The reader's baseline level; the shown tier unless they override it here. */
@@ -27,11 +28,17 @@
 		 * and in-window to open without a load flash. The other tiers arrive lazily via the loaders.
 		 */
 		eager?: EagerBody | null;
+		/** Heading level for the title: 1 on a standalone page, 2 inside a desktop window. */
+		level?: 1 | 2;
 	} = $props();
 
+	// The reader's level, but never one this topic doesn't offer (the global Settings tier is free to
+	// be any of 1/2/3; a partial-tier topic would otherwise have no body to show). Falls back to the
+	// topic's default, which always has an eager body.
+	const baseline = $derived<Tier>(clampToOffered(topic.tiers, tier, topic.defaultTier));
 	// Per-article override (null = follow the baseline). Choosing the baseline clears it.
 	let override = $state<Tier | null>(null);
-	const activeTier = $derived<Tier>(override ?? tier);
+	const activeTier = $derived<Tier>(override ?? baseline);
 
 	// Tiers pulled in lazily on the client. The default tier never needs loading — it arrives
 	// pre-resolved via `eager`, so the FIRST render (SSR/prerender included) already has prose.
@@ -54,14 +61,16 @@
 	});
 
 	function choose(t: Tier) {
-		override = t === tier ? null : t;
+		override = t === baseline ? null : t;
 	}
 </script>
 
 <article class="article" data-tier={TIER_WORD[activeTier]}>
 	<header class="art-head">
 		<p class="art-kicker">{CATEGORY_LABEL[topic.category]}</p>
-		<h1 class="art-title" tabindex="-1">{topic.title}</h1>
+		<svelte:element this={`h${level}`} class="art-title" data-view-heading tabindex="-1">
+			{topic.title}
+		</svelte:element>
 		<p class="art-summary">{topic.summary}</p>
 		<TierSwitch
 			available={topic.tiers}
@@ -75,9 +84,11 @@
 		{#if Body}
 			<Body />
 		{:else}
-			<p class="art-loading" aria-live="polite">Turning the page…</p>
+			<p class="art-loading" aria-hidden="true">Turning the page…</p>
 		{/if}
 	</div>
+	<!-- Persistent live region (always in the DOM) so a tier switch's brief load is announced. -->
+	<p class="visually-hidden" role="status">{Body ? '' : 'Loading this reading level…'}</p>
 
 	{#if topic.sources.length}
 		<footer class="art-sources">

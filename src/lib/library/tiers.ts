@@ -16,6 +16,15 @@ export const TIER_HINT: Record<Tier, string> = {
 
 export const ALL_TIERS: Tier[] = [1, 2, 3];
 
+/**
+ * The tier an article actually opens at: the reader's requested level if the topic offers it,
+ * otherwise the topic's own default (which always has a body). Guards against a global reading
+ * level a partial-tier topic doesn't provide — without this the article body can never resolve.
+ */
+export function clampToOffered(offered: readonly Tier[], want: Tier, fallback: Tier): Tier {
+	return offered.includes(want) ? want : fallback;
+}
+
 /** The `data-tier` keyword for each tier — set locally on an article so its type scale follows the
  *  active (possibly overridden) tier, matching the axis app.html sets globally on <html>. */
 export const TIER_WORD: Record<Tier, 'seedling' | 'explorer' | 'scholar'> = {

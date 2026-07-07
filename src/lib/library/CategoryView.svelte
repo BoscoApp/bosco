@@ -7,14 +7,17 @@
 	import { CATEGORY_LABEL, CATEGORY_BLURB, CATEGORY_ACCENT } from './categories';
 	import TopicCard from './TopicCard.svelte';
 
-	let { category }: { category: Category } = $props();
+	/** Heading level: 1 on the standalone /library/[category] page, 2 inside a desktop window. */
+	let { category, level = 1 }: { category: Category; level?: 1 | 2 } = $props();
 	const topics = $derived(topicsByCategory(category));
 </script>
 
 <section class="category">
 	<header class="cat-head">
 		<p class="cat-kicker" style="color: {CATEGORY_ACCENT[category]}">Shelf</p>
-		<h1 class="cat-title" tabindex="-1">{CATEGORY_LABEL[category]}</h1>
+		<svelte:element this={`h${level}`} class="cat-title" data-view-heading tabindex="-1">
+			{CATEGORY_LABEL[category]}
+		</svelte:element>
 		<p class="cat-blurb">{CATEGORY_BLURB[category]}</p>
 	</header>
 

@@ -9,6 +9,9 @@
 	import { CATEGORY_ORDER, CATEGORY_LABEL, CATEGORY_BLURB, CATEGORY_ACCENT } from './categories';
 	import TopicCard from './TopicCard.svelte';
 
+	/** Heading level: 1 on the standalone /library page, 2 inside a desktop window. */
+	let { level = 1 }: { level?: 1 | 2 } = $props();
+
 	const shelves = CATEGORY_ORDER.map((category) => ({
 		category,
 		topics: topicsByCategory(category)
@@ -17,7 +20,9 @@
 
 <div class="lib-home">
 	<header class="lh-head">
-		<h1 class="lh-title" tabindex="-1">The Library</h1>
+		<svelte:element this={`h${level}`} class="lh-title" data-view-heading tabindex="-1">
+			The Library
+		</svelte:element>
 		<p class="lh-blurb">
 			Look up anything under the sun — and above it. Every article can be read three ways: as a
 			<b>Seedling</b>, an <b>Explorer</b>, or a <b>Scholar</b>.

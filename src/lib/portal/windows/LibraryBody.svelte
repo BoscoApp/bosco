@@ -50,7 +50,7 @@
 	// After a move, put focus on the new view's heading so keyboard/SR users land in the right place.
 	async function focusHeading() {
 		await tick();
-		root?.querySelector<HTMLElement>('h1')?.focus();
+		root?.querySelector<HTMLElement>('[data-view-heading]')?.focus();
 	}
 
 	function goBack() {
@@ -75,12 +75,17 @@
 
 	<div class="lib-view">
 		{#if loc.view === 'home'}
-			<LibraryHome />
+			<LibraryHome level={2} />
 		{:else if loc.view === 'category'}
-			<CategoryView category={loc.category} />
+			<CategoryView category={loc.category} level={2} />
 		{:else if topic}
 			{#key topic.path}
-				<ArticleView {topic} tier={portal.prefs.tier} eager={eagerBody(topic.path) ?? null} />
+				<ArticleView
+					{topic}
+					tier={portal.prefs.tier}
+					eager={eagerBody(topic.path) ?? null}
+					level={2}
+				/>
 			{/key}
 		{:else}
 			<p class="lib-missing">That article isn’t in the Library yet.</p>
