@@ -36,7 +36,7 @@ export const WINDOWS: WinDef[] = [
 	{ id: 'win-who', title: 'Who’s exploring?', icon: 'ic-who', small: true },
 	{ id: 'win-about', title: 'About Bosco', icon: 'ic-about', small: true },
 	{ id: 'win-help', title: 'Help', icon: 'ic-help', small: true },
-	{ id: 'win-library', title: 'The Library', icon: 'ic-library', small: true },
+	{ id: 'win-library', title: 'The Library', icon: 'ic-library', small: false },
 	{ id: 'win-fieldguide', title: 'The Field Guide', icon: 'ic-fieldguide', small: true },
 	{ id: 'win-chapel', title: 'The Chapel', icon: 'ic-chapel', small: true },
 	{ id: 'win-art', title: 'The Art Studio', icon: 'ic-art', small: true },
@@ -122,22 +122,9 @@ export interface Room {
 	soon?: string;
 }
 
+// The Library (win-library) is a real destination as of v0.3.0 — it renders <LibraryBody>, not a
+// placeholder room. The remaining five rooms stay placeholders until their own versions.
 export const ROOMS: Record<string, Room> = {
-	'win-library': {
-		id: 'win-library',
-		icon: 'ic-library',
-		title: 'The Library',
-		blurb: 'A kid’s encyclopedia — every topic at three reading levels.',
-		intro:
-			'Look up anything under the sun (and above it). Each article can be read as a Seedling, an Explorer, or a Scholar — set that in Settings.',
-		items: [
-			'**Creatures** — the red fox, the honeybee, the whale.',
-			'**Faith** — saints, sacraments, and the Mass.',
-			'**The World** — the printing press, the planets, the sea.'
-		],
-		kind: 'soon',
-		soon: 'The shelves are still being stocked — opening in a later version.'
-	},
 	'win-fieldguide': {
 		id: 'win-fieldguide',
 		icon: 'ic-fieldguide',

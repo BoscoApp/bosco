@@ -19,7 +19,14 @@ const base = `http://localhost:${port}`;
 
 const routes = [
 	{ path: '/', include: ['Bosco'] },
-	{ path: '/library/', include: ['The Library', 'The Red Fox', 'The Printing Press'] }
+	{ path: '/library/', include: ['The Library', 'The Red Fox', 'The Printing Press'] },
+	// The canonical topic page must ship its default-tier PROSE in the prerendered HTML — not an
+	// empty {#await} shell. This phrase lives only in the Red Fox's Explorer (tier-2) body, so its
+	// presence proves the eager default-tier render (and keeps offline/no-JS/search readable).
+	{
+		path: '/library/creatures/red-fox/',
+		include: ['The Red Fox', 'most widespread wild member of the dog family', 'data-pagefind-body']
+	}
 ];
 
 const failures = [];

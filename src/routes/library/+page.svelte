@@ -1,20 +1,14 @@
 <script lang="ts">
-	let { data } = $props();
+	import { APP_NAME } from '$lib/meta';
+	import LibraryHome from '$lib/library/LibraryHome.svelte';
+	import StandaloneChrome from '$lib/library/StandaloneChrome.svelte';
 </script>
 
 <svelte:head>
-	<title>The Library — Bosco</title>
+	<title>The Library — {APP_NAME}</title>
+	<meta name="description" content="A kid’s encyclopedia — every topic at three reading levels." />
 </svelte:head>
 
-<main>
-	<h1>The Library</h1>
-	<p>{data.topics.length} topics published.</p>
-	<ul>
-		{#each data.topics as topic (topic.path)}
-			<li>
-				<strong>{topic.title}</strong> — {topic.category} · tiers {topic.tiers.join(', ')}
-				<p>{topic.summary}</p>
-			</li>
-		{/each}
-	</ul>
-</main>
+<StandaloneChrome title="The Library">
+	<LibraryHome />
+</StandaloneChrome>
