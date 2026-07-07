@@ -34,7 +34,7 @@ through to the real URL. Because the desktop keeps every window mounted (`Window
 
 An `{#await loader()}` in a template renders its **pending** branch during SSR, so a topic page built
 that way would ship empty HTML — fatal for offline/no-JS/search. Instead the content plugin emits a
-second virtual module, **`virtual:bosco/content-eager`**, with a *static* `import` of each **published**
+second virtual module, **`virtual:bosco/content-eager`**, with a _static_ `import` of each **published**
 topic's **default tier** (its `default_tier` frontmatter, clamped to the nearest declared tier, else
 Explorer/2 to match `app.html`). `ArticleView` renders that pre-resolved component synchronously, so the
 prerendered HTML carries exactly one tier of real prose.
