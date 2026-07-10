@@ -12,6 +12,7 @@
 	import { CATEGORY_LABEL } from './categories';
 	import { TIER_WORD, clampToOffered } from './tiers';
 	import TierSwitch from './TierSwitch.svelte';
+	import SeeAlso from './SeeAlso.svelte';
 
 	let {
 		topic,
@@ -89,6 +90,9 @@
 	</div>
 	<!-- Persistent live region (always in the DOM) so a tier switch's brief load is announced. -->
 	<p class="visually-hidden" role="status">{Body ? '' : 'Loading this reading level…'}</p>
+
+	<!-- Connective tissue: curated cross-links. Subsection of the article, so one level down. -->
+	<SeeAlso {topic} headingLevel={level + 1} />
 
 	{#if topic.sources.length}
 		<footer class="art-sources">

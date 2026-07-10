@@ -53,9 +53,32 @@ Consequences that later PRs rely on:
   tiers load lazily on the client when the reader switches. In the window, `TierSwitch` sets a
   **per-article override**; the reader's global default lives in Settings (`data-tier` on `<html>`).
 
+## Connective tissue: curated "See also" + "Surprise me" (PR2)
+
+Two pieces of navigation, both built from the ordinary link machinery so they need no per-host branching:
+
+- **See also** — a topic's `index.md` may carry a `related: [category/slug]` list (additive, optional).
+  The content plugin validates it at build time (`validateCrossLinks`): every entry must resolve to a
+  topic that ships in the _same_ build. Because that set is already gated, in production this enforces
+  **approved → approved** — a "See also" link can never dangle or surface unreviewed content, and a
+  bad path fails the build. The shared `SeeAlso.svelte` renders the resolved topics as the same
+  `TopicCard` links used everywhere (so the in-window intercept and standalone routing both work) and
+  takes the article's heading level + 1, so it nests correctly under the title in both hosts.
+- **Surprise me** — a real `<a href>` to a random topic (`SurpriseButton.svelte`). The href is **seeded
+  deterministically** (the first topic) so prerender and hydration agree — no `Math.random()` at build —
+  then **re-rolled on the client** on `focus`/`pointerdown`, both of which fire _before_ the click's
+  navigation reads the href. So keyboard (focus → Enter) and mouse (pointerdown → click) each land on a
+  fresh pick with no hydration mismatch; a no-JS reader gets the seeded topic. It reuses the delegated
+  in-window intercept exactly like any other link. Renders nothing when the catalogue is empty.
+
+Deliberately **deferred to PR2b** (see below): inline prose cross-links and the glossary, which need a
+remark plugin that rewrites body text — a bigger risk surface (a gate-value the mdsvex preprocessor
+can't read, raw-HTML→Svelte brace-escaping, HMR cache invalidation, and a doctrine gate for glossary
+definitions of faith terms). That machinery gets its own focused review rather than riding along here.
+
 ## What's next in v0.3.0
 
-PR2 connective tissue (cross-links / See-also / Surprise-me / glossary, with a build-time dangling-link
-validator); PR3 Pagefind offline search (`data-pagefind-body` is already placed); PR4 category-landing
-and Archives-shelf visual design; PR5 the AI content-pipeline tooling. Content (the 3-topic proof and
-the 18-topic launch set) is authored and doctrine-reviewed separately, at the owner's pace.
+PR2b inline cross-links + glossary (remark plugin + its own doctrine/a11y/compile checklist); PR3
+Pagefind offline search (`data-pagefind-body` is already placed); PR4 category-landing and Archives-shelf
+visual design; PR5 the AI content-pipeline tooling. Content (the 3-topic proof and the 18-topic launch
+set) is authored and doctrine-reviewed separately, at the owner's pace.

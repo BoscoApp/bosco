@@ -22,6 +22,9 @@ export type Theme = (typeof THEMES)[number];
 
 const tierLiteral = z.union([z.literal(1), z.literal(2), z.literal(3)]);
 
+/** A topic path (`category/slug`) as used to reference another topic in `related`. */
+export const TOPIC_PATH_RE = /^[a-z0-9-]+\/[a-z0-9-]+$/;
+
 export const mediaVariantSchema = z.object({
 	theme: z.enum(THEMES),
 	src: z.string().min(1),
@@ -67,6 +70,13 @@ export const topicFrontmatterSchema = z.object({
 	sources: z.array(sourceSchema).default([]),
 	media: z.array(mediaSchema).default([]),
 	archives: z.array(archiveSchema).default([]),
+	/**
+	 * Curated "See also" cross-links: other topics' `category/slug` paths. Additive and optional.
+	 * Validated at build time by {@link validateCrossLinks} — every entry must resolve to another
+	 * topic that ships in the same build (so a production link can never dangle or point at
+	 * unreviewed content), with no self-reference and no duplicates.
+	 */
+	related: z.array(z.string().regex(TOPIC_PATH_RE, 'must look like "category/slug"')).default([]),
 	/** Optional liturgical-calendar join (observance id) for Faith topics. */
 	observance_id: z.string().optional()
 });
@@ -106,4 +116,35 @@ export interface GateOptions {
  */
 export function isPublished(status: ReviewStatus, { preview }: GateOptions): boolean {
 	return preview || status === 'approved';
+}
+
+/**
+ * Build-time integrity check for curated "See also" cross-links. The input is the set of topics that
+ * WILL ship in this build (already run through the gate), so validating each `related` entry against
+ * that set has an important consequence: in a production build (gated to `approved`), a link whose
+ * target was gated out simply isn't in the set — this enforces approved → approved, and a "See also"
+ * link can never dangle or surface unreviewed content in production. Throws on the first problem.
+ */
+export function validateCrossLinks(
+	topics: readonly { path: string; related: readonly string[] }[]
+): void {
+	const paths = new Set(topics.map((t) => t.path));
+	for (const t of topics) {
+		const seen = new Set<string>();
+		for (const rel of t.related) {
+			if (rel === t.path) {
+				throw new Error(`Topic "${t.path}" lists itself in "related".`);
+			}
+			if (seen.has(rel)) {
+				throw new Error(`Topic "${t.path}" lists "${rel}" twice in "related".`);
+			}
+			seen.add(rel);
+			if (!paths.has(rel)) {
+				throw new Error(
+					`Topic "${t.path}" links to "${rel}" in "related", but no such topic ships in this ` +
+						`build — a dangling or unreviewed cross-link. Fix the path or approve the target.`
+				);
+			}
+		}
+	}
 }

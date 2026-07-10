@@ -8,6 +8,7 @@
 	import { topicsByCategory } from '$lib/content';
 	import { CATEGORY_ORDER, CATEGORY_LABEL, CATEGORY_BLURB, CATEGORY_ACCENT } from './categories';
 	import TopicCard from './TopicCard.svelte';
+	import SurpriseButton from './SurpriseButton.svelte';
 
 	/** Heading level: 1 on the standalone /library page, 2 inside a desktop window. */
 	let { level = 1 }: { level?: 1 | 2 } = $props();
@@ -27,6 +28,9 @@
 			Look up anything under the sun — and above it. Every article can be read three ways: as a
 			<b>Seedling</b>, an <b>Explorer</b>, or a <b>Scholar</b>.
 		</p>
+		<div class="lh-actions">
+			<SurpriseButton />
+		</div>
 	</header>
 
 	{#each shelves as { category, topics } (category)}
@@ -73,6 +77,9 @@
 		font-size: 13.5px;
 		line-height: 1.5;
 		color: var(--ink-soft);
+	}
+	.lh-actions {
+		margin-top: 12px;
 	}
 	.shelf {
 		margin-top: 18px;

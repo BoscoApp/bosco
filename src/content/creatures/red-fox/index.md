@@ -4,6 +4,8 @@ category: creatures
 summary: A clever, adaptable little wild dog found across the whole northern world.
 tiers: [1, 2, 3]
 review_status: approved
+related:
+  - world/printing-press
 sources:
   - title: Public-domain natural-history notes
     license: Public domain

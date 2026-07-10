@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { topicFrontmatterSchema, isPublished, pickDefaultTier } from './schema';
+import { topicFrontmatterSchema, isPublished, pickDefaultTier, validateCrossLinks } from './schema';
 
 const valid = {
 	title: 'The Red Fox',
@@ -39,6 +39,51 @@ describe('topicFrontmatterSchema', () => {
 
 	it('rejects an invalid review_status', () => {
 		expect(() => topicFrontmatterSchema.parse({ ...valid, review_status: 'shipit' })).toThrow();
+	});
+
+	it('defaults related to [] and accepts valid category/slug paths', () => {
+		expect(topicFrontmatterSchema.parse(valid).related).toEqual([]);
+		expect(
+			topicFrontmatterSchema.parse({ ...valid, related: ['world/printing-press'] }).related
+		).toEqual(['world/printing-press']);
+	});
+
+	it('rejects a malformed related path', () => {
+		expect(() => topicFrontmatterSchema.parse({ ...valid, related: ['notapath'] })).toThrow();
+		expect(() => topicFrontmatterSchema.parse({ ...valid, related: ['a/b/c'] })).toThrow();
+	});
+});
+
+describe('validateCrossLinks (build-time See-also integrity)', () => {
+	const fox = { path: 'creatures/red-fox', related: ['world/printing-press'] };
+	const press = { path: 'world/printing-press', related: ['creatures/red-fox'] };
+
+	it('passes when every related path resolves in the build', () => {
+		expect(() => validateCrossLinks([fox, press])).not.toThrow();
+	});
+
+	it('passes for topics with no related links', () => {
+		expect(() => validateCrossLinks([{ path: 'creatures/red-fox', related: [] }])).not.toThrow();
+	});
+
+	it('throws on a dangling / gated-out target (the approved → approved guarantee)', () => {
+		// `press` is absent from the set, as it would be in a production build if it were unreviewed.
+		expect(() => validateCrossLinks([fox])).toThrow(/no such topic ships/);
+	});
+
+	it('throws on a self-reference', () => {
+		expect(() =>
+			validateCrossLinks([{ path: 'creatures/red-fox', related: ['creatures/red-fox'] }])
+		).toThrow(/itself/);
+	});
+
+	it('throws on a duplicate related entry', () => {
+		expect(() =>
+			validateCrossLinks([
+				{ path: 'creatures/red-fox', related: ['world/printing-press', 'world/printing-press'] },
+				press
+			])
+		).toThrow(/twice/);
 	});
 });
 
