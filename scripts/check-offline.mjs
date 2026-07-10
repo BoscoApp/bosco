@@ -19,13 +19,25 @@ const base = `http://localhost:${port}`;
 
 const routes = [
 	{ path: '/', include: ['Bosco'] },
-	{ path: '/library/', include: ['The Library', 'The Red Fox', 'The Printing Press'] },
+	// "Surprise me" is a real prerendered link (a random-topic <a>, seeded deterministically), so it
+	// must be present in the static HTML for a no-JS reader.
+	{
+		path: '/library/',
+		include: ['The Library', 'The Red Fox', 'The Printing Press', 'Surprise me']
+	},
 	// The canonical topic page must ship its default-tier PROSE in the prerendered HTML — not an
 	// empty {#await} shell. This phrase lives only in the Red Fox's Explorer (tier-2) body, so its
-	// presence proves the eager default-tier render (and keeps offline/no-JS/search readable).
+	// presence proves the eager default-tier render (and keeps offline/no-JS/search readable). The
+	// "See also" section + its resolved target prove curated cross-links prerender too.
 	{
 		path: '/library/creatures/red-fox/',
-		include: ['The Red Fox', 'most widespread wild member of the dog family', 'data-pagefind-body']
+		include: [
+			'The Red Fox',
+			'most widespread wild member of the dog family',
+			'data-pagefind-body',
+			'See also',
+			'The Printing Press'
+		]
 	}
 ];
 
@@ -45,6 +57,24 @@ for (const { path, include } of routes) {
 	} catch (err) {
 		failures.push(`${path} -> ${err.message}`);
 	}
+}
+
+// "Surprise me" must bake a DETERMINISTIC href into the prerendered HTML — the first topic by path
+// (creatures/red-fox), never a Math.random pick at build time (which would cause an SSR/hydration
+// mismatch and a random no-JS destination). The client re-rolls it after hydration; that behaviour is
+// pinned separately by the e2e. Target the .surprise anchor specifically so the Red Fox's own TopicCard
+// href on the same page can't satisfy this by accident.
+const libHomeUrl = `${base}/library/`;
+const libHome = await (await fetch(libHomeUrl)).text();
+const surpriseTag = libHome.match(/<a\b[^>]*\bclass="[^"]*\bsurprise\b[^"]*"[^>]*>/);
+const surpriseHref = surpriseTag?.[0].match(/\bhref="([^"]*)"/)?.[1];
+// adapter-static emits reload-safe RELATIVE hrefs (e.g. "../library/creatures/red-fox/"), so resolve
+// against the page URL before comparing the path.
+const surpriseResolved = surpriseHref && new URL(surpriseHref, libHomeUrl).pathname;
+if (surpriseResolved !== '/library/creatures/red-fox/') {
+	failures.push(
+		`Surprise-me seed href is "${surpriseHref}" (expected the deterministic first topic)`
+	);
 }
 
 // A missing page must 404 (no silent SPA fallback under adapter-static).

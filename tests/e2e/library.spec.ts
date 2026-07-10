@@ -50,3 +50,58 @@ test('a topic deep link renders standalone with real prose and a way back', asyn
 	await expect(page.getByText(/most widespread wild member of the dog family/)).toBeVisible();
 	await expect(page.getByRole('link', { name: /Open in Bosco/ })).toBeVisible();
 });
+
+test('a standalone topic page shows a "See also" section with its curated links', async ({
+	page
+}) => {
+	await page.goto('/library/creatures/red-fox/');
+	const seeAlso = page.locator('.see-also');
+	await expect(seeAlso.getByRole('heading', { name: 'See also' })).toBeVisible();
+	await expect(seeAlso.getByRole('link', { name: /The Printing Press/ })).toBeVisible();
+});
+
+test('a "See also" link browses to the related topic in-window without navigating', async ({
+	page
+}) => {
+	await enterAsExplorer(page);
+	// Open a second window (Help) first, to prove a See-also move preserves other open windows.
+	await page.getByRole('button', { name: 'Help', exact: true }).click();
+	await page.getByRole('button', { name: 'Library', exact: true }).click();
+	const library = page.locator('#win-library');
+	await expect(library).toBeVisible();
+
+	// Open the Red Fox, then follow its "See also" link to the Printing Press.
+	await library
+		.getByRole('link', { name: /The Red Fox/ })
+		.first()
+		.click();
+	await expect(library.getByRole('heading', { name: 'The Red Fox' })).toBeVisible();
+
+	const seeAlso = library.locator('.see-also');
+	await seeAlso.getByRole('link', { name: /The Printing Press/ }).click();
+
+	// It moved in-window: the target article shows, the URL never changed (no SvelteKit nav), and the
+	// Help window we opened earlier survived the store move.
+	await expect(library.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
+	await expect(page).toHaveURL('http://localhost:4173/');
+	await expect(page.locator('#win-help')).toBeVisible();
+});
+
+test('"Surprise me" re-rolls on the client and opens that pick in-window', async ({ page }) => {
+	// The prerendered href is seeded to the first topic (Red Fox); the destination must come from the
+	// CLIENT re-roll on focus/pointerdown, not the seed. Force the roll to the second topic and prove it
+	// lands there — so a regression that dropped the re-roll (freezing on the seed) would fail here.
+	await page.addInitScript(() => {
+		Math.random = () => 0.99; // with two topics → Math.floor(0.99 * 2) = index 1 (world/printing-press)
+	});
+	await enterAsExplorer(page);
+	await page.getByRole('button', { name: 'Library', exact: true }).click();
+	const library = page.locator('#win-library');
+
+	await library.getByRole('link', { name: 'Surprise me' }).click();
+
+	// It re-rolled to the NON-seed topic and opened it in-window, URL unchanged.
+	await expect(library.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
+	await expect(library.getByText('Read as')).toBeVisible();
+	await expect(page).toHaveURL('http://localhost:4173/');
+});

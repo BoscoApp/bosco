@@ -71,4 +71,13 @@ test.describe('accessibility floor', () => {
 		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
 		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
 	});
+
+	test('the standalone Library home (with "Surprise me") has no serious/critical violations', async ({
+		page
+	}) => {
+		await page.goto('/library/');
+		await page.waitForSelector('.lib-home');
+		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
+		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
+	});
 });

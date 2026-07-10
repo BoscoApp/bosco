@@ -2,7 +2,13 @@ import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import matter from 'gray-matter';
 import type { Plugin } from 'vite';
-import { topicFrontmatterSchema, isPublished, pickDefaultTier, type TopicMeta } from './schema';
+import {
+	topicFrontmatterSchema,
+	isPublished,
+	pickDefaultTier,
+	validateCrossLinks,
+	type TopicMeta
+} from './schema';
 
 const VIRTUAL_ID = 'virtual:bosco/content';
 const RESOLVED_ID = '\0' + VIRTUAL_ID;
@@ -129,6 +135,10 @@ function collect(root: string, preview: boolean): { main: string; eager: string 
 	}
 
 	published.sort((a, b) => a.meta.path.localeCompare(b.meta.path));
+
+	// Every "See also" link must resolve to another topic in THIS build (the gated set), so a
+	// production link can never dangle or point at unreviewed content. Fails the build otherwise.
+	validateCrossLinks(published.map((p) => ({ path: p.meta.path, related: p.meta.related })));
 
 	return { main: mainModule(published), eager: eagerModule(published) };
 }

@@ -120,7 +120,8 @@
 		cursor: pointer;
 	}
 	.lib-back:hover:not(:disabled) {
-		background: color-mix(in srgb, var(--sel) 14%, var(--surface-titlebar));
+		/* Solid token — color-mix() rejects the --surface-titlebar gradient (would blank to transparent). */
+		background: color-mix(in srgb, var(--sel) 14%, var(--plat-hi));
 	}
 	.lib-back:disabled {
 		color: color-mix(in srgb, var(--ink) 34%, var(--paper));

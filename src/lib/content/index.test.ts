@@ -34,6 +34,11 @@ describe('content loader (preview mode)', () => {
 		expect(getTopic('creatures', 'basilisk-draft')?.review_status).toBe('pending');
 	});
 
+	it('carries curated See-also links through as `related` paths', () => {
+		expect(getTopic('creatures', 'red-fox')?.related).toContain('world/printing-press');
+		expect(getTopic('world', 'printing-press')?.related).toContain('creatures/red-fox');
+	});
+
 	it('filters by category', () => {
 		const creatures = topicsByCategory('creatures');
 		expect(creatures.every((t) => t.category === 'creatures')).toBe(true);
