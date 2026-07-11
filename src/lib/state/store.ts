@@ -140,6 +140,23 @@ export class BoscoStore {
 		return (await this.records.getAll(this.collectionKey(collection))) as SyncRecord<T>[];
 	}
 
+	/**
+	 * Insert-if-absent: record `data` under `id` only when no LIVE record with that id already exists.
+	 * A live hit returns unchanged — no `put()`, no fresh `updatedAt` — so calling this repeatedly (the
+	 * album's "record on read") is idempotent: it never re-marks the record pending and never re-bumps
+	 * its timestamp. A tombstoned id (`deleted: true`, e.g. one synced in from another device) counts as
+	 * absent, so a later read can revive it. The reusable base for the card album and, later,
+	 * mastery / high-score / saved-art collections.
+	 */
+	async recordOnce<T>(collection: string, id: string, data: T): Promise<SyncRecord<T>> {
+		const key = this.collectionKey(collection);
+		const existing = (await this.records.getAll(key)).find((r) => r.id === id);
+		if (existing && !existing.deleted) return existing as SyncRecord<T>;
+		const record: SyncRecord<T> = { id, updatedAt: this.now(), data };
+		await this.records.put(key, record);
+		return record;
+	}
+
 	// --- Change tracking + sync ---------------------------------------------
 
 	/** Records changed since the last successful sync — what a push would send. */

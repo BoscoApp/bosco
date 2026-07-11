@@ -6,6 +6,7 @@
 export * from './types';
 export * from './backend';
 export * from './sync';
+export * from './album';
 export { migrate } from './migrations';
 export { BoscoStore, type StoreOptions } from './store';
 
