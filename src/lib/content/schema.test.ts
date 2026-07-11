@@ -1,5 +1,11 @@
 import { describe, it, expect } from 'vitest';
-import { topicFrontmatterSchema, isPublished, pickDefaultTier, validateCrossLinks } from './schema';
+import {
+	topicFrontmatterSchema,
+	isPublished,
+	pickDefaultTier,
+	validateCrossLinks,
+	validateArchives
+} from './schema';
 
 const valid = {
 	title: 'The Red Fox',
@@ -82,6 +88,31 @@ describe('validateCrossLinks (build-time See-also integrity)', () => {
 			validateCrossLinks([
 				{ path: 'creatures/red-fox', related: ['world/printing-press', 'world/printing-press'] },
 				press
+			])
+		).toThrow(/twice/);
+	});
+});
+
+describe('validateArchives (build-time Archives manifest integrity)', () => {
+	it('passes for topics with no archives', () => {
+		expect(() => validateArchives([{ path: 'creatures/red-fox', archives: [] }])).not.toThrow();
+	});
+
+	it('passes when a topic lists distinct archive files', () => {
+		expect(() =>
+			validateArchives([
+				{
+					path: 'creatures/red-fox',
+					archives: [{ file: 'brehm-1895.md' }, { file: 'seton-1909.md' }]
+				}
+			])
+		).not.toThrow();
+	});
+
+	it('throws on a duplicate archive file within one topic', () => {
+		expect(() =>
+			validateArchives([
+				{ path: 'creatures/red-fox', archives: [{ file: 'brehm.md' }, { file: 'brehm.md' }] }
 			])
 		).toThrow(/twice/);
 	});

@@ -60,6 +60,28 @@ test('a standalone topic page shows a "See also" section with its curated links'
 	await expect(seeAlso.getByRole('link', { name: /The Printing Press/ })).toBeVisible();
 });
 
+test('a Scholar-capable topic prerenders the Archives shelf with its empty teaser', async ({
+	page
+}) => {
+	await page.goto('/library/creatures/red-fox/');
+	const archives = page.locator('.archives');
+	await expect(archives.getByRole('heading', { name: 'The Archives' })).toBeVisible();
+	await expect(archives).toContainText('still stocking these shelves');
+	// It's a teaser, not a broken link farm — the shelf holds no anchors while no viewer exists.
+	await expect(archives.locator('a')).toHaveCount(0);
+});
+
+test('a category landing shows its count, reading-levels strip, and masthead frame', async ({
+	page
+}) => {
+	await page.goto('/library/creatures/');
+	await expect(page.getByRole('heading', { name: 'Creatures' })).toBeVisible();
+	// Red Fox is the only approved creature (the draft basilisk is gated out) and it offers all tiers.
+	await expect(page.locator('.cat-count')).toHaveText('1 article');
+	await expect(page.getByText('Written for Seedling, Explorer, Scholar')).toBeVisible();
+	await expect(page.locator('.art-frame')).toBeVisible();
+});
+
 test('a "See also" link browses to the related topic in-window without navigating', async ({
 	page
 }) => {

@@ -14,6 +14,7 @@
 	import { attachGlossary } from './glossary-toggletip';
 	import TierSwitch from './TierSwitch.svelte';
 	import SeeAlso from './SeeAlso.svelte';
+	import ArchivesShelf from './ArchivesShelf.svelte';
 
 	let {
 		topic,
@@ -103,6 +104,9 @@
 
 	<!-- Connective tissue: curated cross-links. Subsection of the article, so one level down. -->
 	<SeeAlso {topic} headingLevel={level + 1} />
+
+	<!-- The original source writings, for older readers. Shown on Scholar-capable topics; a subsection. -->
+	<ArchivesShelf {topic} headingLevel={level + 1} />
 
 	{#if topic.sources.length}
 		<footer class="art-sources">
