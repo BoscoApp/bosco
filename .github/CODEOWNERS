@@ -9,3 +9,6 @@
 /src/content/chapel/**        @manlycucumber
 /src/content/prayers/**       @manlycucumber
 /src/content/catechism/**     @manlycucumber
+
+# Faith glossary definitions are doctrine too — a term's definition ships only when approved here.
+/src/glossary/faith/**        @manlycucumber

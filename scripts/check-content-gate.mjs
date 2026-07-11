@@ -15,8 +15,11 @@ const BUILD_DIR = 'build';
 
 // Must NOT appear anywhere in a production build (the pending dummy topic).
 const MUST_BE_ABSENT = ['PENDING_SENTINEL_DO_NOT_SHIP', 'Draft Basilisk', 'basilisk-draft'];
-// Must appear (the approved dummy topics render in the Library listing).
-const MUST_BE_PRESENT = ['The Red Fox', 'The Printing Press'];
+// Must appear: the approved dummy topics render in the Library listing, and `data-gloss-def=` proves
+// an APPROVED glossary definition reached the built HTML — the positive half of the glossary doctrine
+// gate. (The negative half — a pending/unknown `gloss:` term failing the build — is proven in
+// src/lib/content/glossary.test.ts and remark-bosco.test.ts, since a gated-out term never ships to grep.)
+const MUST_BE_PRESENT = ['The Red Fox', 'The Printing Press', 'data-gloss-def='];
 
 const TEXT_EXT = new Set([
 	'.html',

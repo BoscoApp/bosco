@@ -15,15 +15,18 @@
 const KEY = Symbol.for('bosco.content.catalog');
 
 /**
+ * A published glossary entry: the plain-text definition plus where it came from and its review state.
+ * Only entries that pass the gate for this build are stored (production = `approved` only).
+ * @typedef {{ def: string, area: string, status: string }} GlossEntry
  * @typedef {{ preview: boolean }} Gate
- * @typedef {{ gate: Gate | null, topicPaths: Set<string> }} Store
+ * @typedef {{ gate: Gate | null, topicPaths: Set<string>, glossary: Map<string, GlossEntry> }} Store
  */
 
 /** @returns {Store} */
 function store() {
 	let s = /** @type {Record<symbol, Store>} */ (/** @type {unknown} */ (globalThis))[KEY];
 	if (!s) {
-		s = { gate: null, topicPaths: new Set() };
+		s = { gate: null, topicPaths: new Set(), glossary: new Map() };
 		/** @type {Record<symbol, Store>} */ (/** @type {unknown} */ (globalThis))[KEY] = s;
 	}
 	return s;
@@ -73,9 +76,29 @@ export function hasTopic(path) {
 	return store().topicPaths.has(path);
 }
 
+/**
+ * Replace the set of published glossary entries (id → {@link GlossEntry}). Like the topic set, this is
+ * already gated by the plugin, so in production only `approved` terms are present — a `gloss:` link to
+ * an unreviewed or unknown term simply isn't found, and the remark plugin fails the build.
+ * @param {Iterable<readonly [string, GlossEntry]>} entries
+ */
+export function setGlossary(entries) {
+	store().glossary = new Map(entries);
+}
+
+/**
+ * The published glossary entry for a term id, or `undefined` if none ships in this build.
+ * @param {string} id
+ * @returns {GlossEntry | undefined}
+ */
+export function lookupGloss(id) {
+	return store().glossary.get(id);
+}
+
 /** Clear the catalog (HMR): the plugin re-scans and re-populates immediately after. */
 export function invalidate() {
 	const s = store();
 	s.gate = null;
 	s.topicPaths = new Set();
+	s.glossary = new Map();
 }

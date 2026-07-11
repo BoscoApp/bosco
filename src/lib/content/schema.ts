@@ -1,9 +1,9 @@
 import { z } from 'zod';
-import { REVIEW_STATUSES, TOPIC_PATH_RE, isPublished } from './gate.js';
+import { REVIEW_STATUSES, TOPIC_PATH_RE, GLOSS_ID_RE, isPublished } from './gate.js';
 
 // The gate primitive lives in gate.js (the single, Node-loadable source shared with the remark
 // plugin). Re-export it so existing `from './schema'` imports keep working unchanged.
-export { REVIEW_STATUSES, TOPIC_PATH_RE, isPublished };
+export { REVIEW_STATUSES, TOPIC_PATH_RE, GLOSS_ID_RE, isPublished };
 
 /** Top-level content categories (also the folder names under `src/content/`). */
 export const CATEGORIES = ['creatures', 'faith', 'world'] as const;
@@ -83,6 +83,21 @@ export const topicFrontmatterSchema = z.object({
 });
 
 export type TopicFrontmatter = z.infer<typeof topicFrontmatterSchema>;
+
+/**
+ * A glossary entry's frontmatter, as authored in `src/glossary/{general,faith}/<id>.md`. The body of
+ * the file is the plain-text definition (not frontmatter). `review_status` is REQUIRED with no default
+ * — every term carries its OWN doctrine gate, so a faith definition can never ship unreviewed just
+ * because someone forgot a field. An invalid glossary file fails the build (fail-closed parity with
+ * topics). `term` is an optional human label (unused today; reserved for a future glossary index).
+ */
+export const glossaryEntryFrontmatterSchema = z.object({
+	review_status: z.enum(REVIEW_STATUSES),
+	term: z.string().min(1).optional(),
+	sources: z.array(sourceSchema).default([])
+});
+
+export type GlossaryEntryFrontmatter = z.infer<typeof glossaryEntryFrontmatterSchema>;
 
 /** Frontmatter plus derived location and the resolved default tier. */
 export interface TopicMeta extends TopicFrontmatter {

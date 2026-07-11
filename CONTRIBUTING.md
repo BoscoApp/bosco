@@ -60,6 +60,15 @@ content: drafting → content: needs-review → content: needs-doctrinal-review
   in this build), so a dangling or unreviewed cross-link fails `ci`. Never write an external
   `http(s)://` link in article prose — the build rejects it; external references belong in frontmatter
   `sources`. Do **not** place `bosco:` links inside verbatim doctrinal blocks.
+- **Glossary terms:** mark a word as tap-for-definition with the `gloss:` protocol —
+  `[term](gloss:term-id)`. Definitions live one-per-file at `src/glossary/{general,faith}/<term-id>.md`:
+  the file body is the plain-text definition and the frontmatter carries a **required** `review_status`
+  (no default — every term has its own doctrine gate). A `gloss:` link to a term that is unknown or not
+  `approved` in this build fails `ci`. Put **doctrinal** terms under `faith/`, which is owned in
+  [`.github/CODEOWNERS`](.github/CODEOWNERS) so a faith definition always requests the owner's review;
+  keep everyday words under `general/`. Definitions are adaptations, so the verbatim rule applies — do
+  **not** paraphrase catechism, Scripture, or prayers into a glossary definition, and do not place a
+  `gloss:` term inside a verbatim doctrinal block.
 - Files under doctrine paths (`src/content/faith/**`, `chapel`, `prayers`, `catechism`) are owned in
   [`.github/CODEOWNERS`](.github/CODEOWNERS), so every doctrine change requests the owner's review.
 

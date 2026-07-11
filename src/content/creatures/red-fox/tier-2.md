@@ -2,8 +2,8 @@ The red fox (_Vulpes vulpes_) is the most widespread wild member of the dog fami
 across most of the northern half of the world, from cold forests to grassy fields and the edges
 of cities.
 
-A fox has rusty-orange fur, black legs, and a long bushy tail called a **brush**, usually tipped
-with white. Foxes are famous for being clever hunters. They listen carefully for mice under the
+A fox has rusty-orange fur, black legs, and a long bushy tail called a [**brush**](gloss:brush),
+usually tipped with white. Foxes are famous for being clever hunters. They listen carefully for mice under the
 snow, then leap high and pounce straight down to catch them.
 
 Clever foxes even star in old **fables** — short stories that teach a lesson — which spread far and

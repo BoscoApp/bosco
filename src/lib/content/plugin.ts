@@ -4,12 +4,14 @@ import matter from 'gray-matter';
 import type { ModuleNode, Plugin } from 'vite';
 import {
 	topicFrontmatterSchema,
+	glossaryEntryFrontmatterSchema,
 	isPublished,
 	pickDefaultTier,
 	validateCrossLinks,
+	GLOSS_ID_RE,
 	type TopicMeta
 } from './schema';
-import { setGate, setTopicPaths, invalidate } from './catalog.js';
+import { setGate, setTopicPaths, setGlossary, invalidate } from './catalog.js';
 
 const VIRTUAL_ID = 'virtual:bosco/content';
 const RESOLVED_ID = '\0' + VIRTUAL_ID;
@@ -18,6 +20,7 @@ const RESOLVED_ID = '\0' + VIRTUAL_ID;
 const EAGER_ID = 'virtual:bosco/content-eager';
 const EAGER_RESOLVED_ID = '\0' + EAGER_ID;
 const CONTENT_ROOT = 'src/content';
+const GLOSSARY_ROOT = 'src/glossary';
 
 /**
  * Build-time content loader + doctrine gate.
@@ -36,12 +39,13 @@ export function boscoContent(): Plugin {
 	let root = process.cwd();
 	let preview = false;
 
-	// Push the gate flag + the shipping topic paths into the process-global catalog, so the remark
-	// plugin (a separate module realm loaded by svelte.config.js) validates `bosco:` cross-links
-	// against EXACTLY the set this build ships.
+	// Push the gate flag + the shipping topic paths + the shipping glossary into the process-global
+	// catalog, so the remark plugin (a separate module realm loaded by svelte.config.js) validates
+	// `bosco:` cross-links and `gloss:` terms against EXACTLY the set this build ships.
 	function populateCatalog() {
 		setGate(preview);
 		setTopicPaths(scan(root, preview).map((p) => p.meta.path));
+		setGlossary(scanGlossary(root, preview));
 	}
 
 	return {
@@ -70,10 +74,12 @@ export function boscoContent(): Plugin {
 		},
 
 		handleHotUpdate({ file, server }) {
-			if (!file.replace(/\\/g, '/').includes('/src/content/')) return;
-			// A content edit can add/remove a topic (changing which `bosco:` targets are valid) and its
-			// effect is baked into already-compiled article HTML. Re-scan, re-populate the catalog, and
-			// invalidate the virtual modules AND every compiled content `.md` so remark re-validates.
+			const norm = file.replace(/\\/g, '/');
+			if (!norm.includes('/src/content/') && !norm.includes('/src/glossary/')) return;
+			// A content OR glossary edit can add/remove a topic/term (changing which `bosco:` targets and
+			// `gloss:` terms are valid), and its effect is baked into already-compiled article HTML.
+			// Re-scan, re-populate the catalog, and invalidate the virtual modules AND every compiled
+			// content `.md` so remark re-validates against the new set.
 			resetScan();
 			invalidate();
 			populateCatalog();
@@ -180,6 +186,71 @@ function scanPublished(root: string, preview: boolean): Published[] {
 	validateCrossLinks(published.map((p) => ({ path: p.meta.path, related: p.meta.related })));
 
 	return published;
+}
+
+export interface GlossEntry {
+	def: string;
+	area: string;
+	status: string;
+}
+
+/** The glossary areas — `faith/` is doctrine (owner-reviewed via CODEOWNERS), `general/` is not. */
+const GLOSSARY_AREAS = ['general', 'faith'] as const;
+
+/**
+ * Read + gate every glossary term once, returning the published `id → entry` map the remark plugin
+ * looks `gloss:` links up against. Terms live one-per-file at `src/glossary/<area>/<id>.md`: the
+ * frontmatter carries the (required) `review_status`, the body is the plain-text definition.
+ *
+ * The gate runs HERE, exactly like topics: in a production build a non-`approved` term is never put in
+ * the map, so a `gloss:` link to it fails the build instead of shipping an unreviewed definition. A
+ * malformed file (bad id, invalid frontmatter, empty body, duplicate id) fails the build too —
+ * fail-closed. Exported so the doctrine gate can be proven directly in a unit test.
+ */
+export function scanGlossary(root: string, preview: boolean): Map<string, GlossEntry> {
+	const map = new Map<string, GlossEntry>();
+	const glossDir = join(root, GLOSSARY_ROOT);
+	if (!existsSync(glossDir)) return map;
+
+	// Every id seen across ALL areas/statuses, so two files claiming the same id is always an error —
+	// ambiguous even if the gate would drop one of them in this particular build.
+	const seen = new Set<string>();
+
+	for (const area of GLOSSARY_AREAS) {
+		const areaDir = join(glossDir, area);
+		if (!existsSync(areaDir)) continue;
+
+		for (const file of readdirSync(areaDir, { withFileTypes: true })) {
+			if (!file.isFile() || !file.name.endsWith('.md')) continue;
+			const id = file.name.slice(0, -'.md'.length);
+			const where = `${GLOSSARY_ROOT}/${area}/${file.name}`;
+
+			if (!GLOSS_ID_RE.test(id)) {
+				throw new Error(`Invalid glossary filename ${where} — the id must look like "term-id.md".`);
+			}
+			if (seen.has(id)) {
+				throw new Error(
+					`Duplicate glossary id "${id}" (${where}) — term ids must be unique across general/ and faith/.`
+				);
+			}
+			seen.add(id);
+
+			const { data, content } = matter(readFileSync(join(areaDir, file.name), 'utf8'));
+			const parsed = glossaryEntryFrontmatterSchema.safeParse(data);
+			if (!parsed.success) {
+				throw new Error(`Invalid glossary frontmatter in ${where}:\n${parsed.error.message}`);
+			}
+			const def = content.trim().replace(/\s+/g, ' ');
+			if (!def) {
+				throw new Error(`Glossary entry ${where} has an empty definition (the file body).`);
+			}
+
+			if (!isPublished(parsed.data.review_status, { preview })) continue;
+			map.set(id, { def, area, status: parsed.data.review_status });
+		}
+	}
+
+	return map;
 }
 
 /**
