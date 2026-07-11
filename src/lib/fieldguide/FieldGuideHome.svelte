@@ -1,11 +1,12 @@
 <!--
 	The Field Guide's hub: every published creature, laid out BOTH ways at once — by habitat, then by
 	kind. Host-agnostic (renders on the prerendered /field-guide/ page and inside the desktop window),
-	so the whole index is complete with no JS. Every creature is a real <a href> to its existing Library
-	article; the desktop intercepts plain left-clicks to open it in-window. Reads no album/profile state
-	— browsing here is not a checklist.
+	so the whole index is complete with no JS. Each group heading links to that axis's own page, and
+	each creature is a real <a href> to its existing Library article; the desktop intercepts plain
+	left-clicks to browse in-window. Reads no album/profile state — browsing here is not a checklist.
 -->
 <script lang="ts">
+	import { base } from '$app/paths';
 	import { topicsByCategory } from '$lib/content';
 	import { groupByHabitat, groupByKind } from './axes';
 	import TopicCard from '$lib/library/TopicCard.svelte';
@@ -38,9 +39,11 @@
 			<svelte:element this={`h${axisLevel}`} class="fg-axis-title">By habitat</svelte:element>
 			{#each byHabitat as group (group.value)}
 				<div class="fg-group">
-					<svelte:element this={`h${groupLevel}`} class="fg-group-title"
-						>{group.label}</svelte:element
-					>
+					<svelte:element this={`h${groupLevel}`} class="fg-group-title">
+						<a class="fg-group-link" href="{base}/field-guide/habitat/{group.value}/">
+							{group.label}
+						</a>
+					</svelte:element>
 					<ul class="fg-grid">
 						{#each group.topics as topic (topic.path)}
 							<li><TopicCard {topic} /></li>
@@ -54,9 +57,11 @@
 			<svelte:element this={`h${axisLevel}`} class="fg-axis-title">By kind</svelte:element>
 			{#each byKind as group (group.value)}
 				<div class="fg-group">
-					<svelte:element this={`h${groupLevel}`} class="fg-group-title"
-						>{group.label}</svelte:element
-					>
+					<svelte:element this={`h${groupLevel}`} class="fg-group-title">
+						<a class="fg-group-link" href="{base}/field-guide/kind/{group.value}/">
+							{group.label}
+						</a>
+					</svelte:element>
 					<ul class="fg-grid">
 						{#each group.topics as topic (topic.path)}
 							<li><TopicCard {topic} /></li>
@@ -129,7 +134,18 @@
 		font-family: var(--font-ui);
 		font-size: 13px;
 		font-weight: bold;
+	}
+	.fg-group-link {
 		color: var(--sel-deep);
+		text-decoration: none;
+	}
+	.fg-group-link:hover {
+		text-decoration: underline;
+	}
+	.fg-group-link:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+		border-radius: 3px;
 	}
 	.fg-grid {
 		list-style: none;

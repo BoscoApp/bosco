@@ -74,3 +74,16 @@ export function groupByKind<T extends CreatureLike>(
 		topics: creatures.filter((t) => t.kind === value)
 	})).filter((g) => g.topics.length > 0);
 }
+
+/**
+ * The habitat values actually PRESENT in a creature set, in enum order. Drives the axis routes'
+ * `entries()` (so only non-empty pages prerender) and their `load()` 404 (an absent/typo value fails).
+ */
+export function presentHabitats<T extends CreatureLike>(creatures: readonly T[]): Habitat[] {
+	return groupByHabitat(creatures).map((g) => g.value);
+}
+
+/** The kind values actually present in a creature set, in enum order. */
+export function presentKinds<T extends CreatureLike>(creatures: readonly T[]): CreatureKind[] {
+	return groupByKind(creatures).map((g) => g.value);
+}

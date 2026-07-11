@@ -14,6 +14,7 @@
 	import { anchorIntercept } from '../anchorIntercept';
 	import { FieldGuideBrowser } from '$lib/fieldguide/guide.svelte';
 	import FieldGuideHome from '$lib/fieldguide/FieldGuideHome.svelte';
+	import AxisView from '$lib/fieldguide/AxisView.svelte';
 	import ArticleView from '$lib/library/ArticleView.svelte';
 
 	const portal = getPortal();
@@ -34,7 +35,11 @@
 				focusHeading();
 				return true;
 			}
-			// Axis routes (/field-guide/habitat|kind/…) arrive in FG-3b; until then, real navigation.
+			if (rest.length === 2 && (rest[0] === 'habitat' || rest[0] === 'kind')) {
+				browser.axis(rest[0], rest[1]);
+				focusHeading();
+				return true;
+			}
 			return false;
 		}
 		if (pathname.startsWith(LIB_PREFIX)) {
@@ -81,6 +86,10 @@
 	<div class="fg-view">
 		{#if loc.view === 'index'}
 			<FieldGuideHome level={2} />
+		{:else if loc.view === 'axis'}
+			{#key `${loc.axis}/${loc.value}`}
+				<AxisView axis={loc.axis} value={loc.value} level={2} />
+			{/key}
 		{:else if topic}
 			{#key topic.path}
 				<ArticleView

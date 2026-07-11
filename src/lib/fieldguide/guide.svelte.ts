@@ -5,14 +5,16 @@
  * other open windows untouched. The prerendered /field-guide routes are the same views for deep links
  * and no-JS.
  *
- * FG-3a ships the hub (`index`) and the in-window creature article (`article`, rendered via the shared
- * ArticleView so any /library topic opens inline). The `axis` and `album` locations arrive with their
- * PRs (FG-3b, FG-5).
+ * Ships the hub (`index`), an axis page (`axis` — creatures filtered by one habitat/kind), and the
+ * in-window creature article (`article`, rendered via the shared ArticleView so any /library topic
+ * opens inline). The `album` location arrives with FG-5.
  */
 import type { Category } from '$lib/content';
 
 export type GuideLocation =
-	{ view: 'index' } | { view: 'article'; category: Category; slug: string };
+	| { view: 'index' }
+	| { view: 'axis'; axis: 'habitat' | 'kind'; value: string }
+	| { view: 'article'; category: Category; slug: string };
 
 export class FieldGuideBrowser {
 	location = $state<GuideLocation>({ view: 'index' });
@@ -29,6 +31,9 @@ export class FieldGuideBrowser {
 
 	index(): void {
 		this.#go({ view: 'index' });
+	}
+	axis(axis: 'habitat' | 'kind', value: string): void {
+		this.#go({ view: 'axis', axis, value });
 	}
 	article(category: Category, slug: string): void {
 		this.#go({ view: 'article', category, slug });
