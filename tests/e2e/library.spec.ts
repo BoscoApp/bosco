@@ -130,6 +130,39 @@ test('searching for something not in the Library shows a no-results message', as
 	await expect(page.locator('.ls-results')).toHaveCount(0);
 });
 
+test('an inline bosco: cross-link renders as a real Library link and opens in-window', async ({
+	page
+}) => {
+	await enterAsExplorer(page);
+	await page.getByRole('button', { name: 'Help', exact: true }).click();
+	await page.getByRole('button', { name: 'Library', exact: true }).click();
+	const library = page.locator('#win-library');
+	await library
+		.getByRole('link', { name: /The Red Fox/ })
+		.first()
+		.click();
+	await expect(library.getByRole('heading', { name: 'The Red Fox' })).toBeVisible();
+
+	// The Explorer prose carries an inline cross-link to the printing press (scoped to .art-body so the
+	// "See also" card's link can't satisfy it). It's a real /library route, opened in-window.
+	const crosslink = library.locator('.art-body').getByRole('link', { name: 'printing press' });
+	await expect(crosslink).toHaveAttribute('href', /\/library\/world\/printing-press\/$/);
+	await crosslink.click();
+
+	await expect(library.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
+	await expect(page).toHaveURL('http://localhost:4173/');
+	await expect(page.locator('#win-help')).toBeVisible();
+});
+
+test('a standalone article inline cross-link navigates to the real route', async ({ page }) => {
+	await page.goto('/library/creatures/red-fox/');
+	const crosslink = page.locator('.art-body').getByRole('link', { name: 'printing press' });
+	await expect(crosslink).toBeVisible();
+	await crosslink.click();
+	await expect(page).toHaveURL(/\/library\/world\/printing-press\/$/);
+	await expect(page.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
+});
+
 test('"Surprise me" re-rolls on the client and opens that pick in-window', async ({ page }) => {
 	// The prerendered href is seeded to the first topic (Red Fox); the destination must come from the
 	// CLIENT re-roll on focus/pointerdown, not the seed. Force the roll to the second topic and prove it

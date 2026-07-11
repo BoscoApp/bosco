@@ -164,6 +164,21 @@
 	.art-body :global(strong) {
 		font-weight: 700;
 	}
+	/* In-prose cross-links (bosco:). Solid underline in the selection colour (contrast-verified on
+	   --paper) — a deliberate, non-colour-only signal distinct from a future glossary term. */
+	.art-body :global(a) {
+		color: var(--sel-deep);
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	.art-body :global(a:hover) {
+		text-decoration-thickness: 2px;
+	}
+	.art-body :global(a:focus-visible) {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
 	.art-loading {
 		color: var(--ink-soft);
 		font-style: italic;

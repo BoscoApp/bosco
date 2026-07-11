@@ -5,3 +5,6 @@ of cities.
 A fox has rusty-orange fur, black legs, and a long bushy tail called a **brush**, usually tipped
 with white. Foxes are famous for being clever hunters. They listen carefully for mice under the
 snow, then leap high and pounce straight down to catch them.
+
+Clever foxes even star in old **fables** — short stories that teach a lesson — which spread far and
+wide once the [printing press](bosco:world/printing-press) made books cheap and easy to copy.

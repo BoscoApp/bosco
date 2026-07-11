@@ -1,7 +1,7 @@
 import { readFileSync, readdirSync, existsSync } from 'node:fs';
 import { join } from 'node:path';
 import matter from 'gray-matter';
-import type { Plugin } from 'vite';
+import type { ModuleNode, Plugin } from 'vite';
 import {
 	topicFrontmatterSchema,
 	isPublished,
@@ -9,6 +9,7 @@ import {
 	validateCrossLinks,
 	type TopicMeta
 } from './schema';
+import { setGate, setTopicPaths, invalidate } from './catalog.js';
 
 const VIRTUAL_ID = 'virtual:bosco/content';
 const RESOLVED_ID = '\0' + VIRTUAL_ID;
@@ -35,6 +36,14 @@ export function boscoContent(): Plugin {
 	let root = process.cwd();
 	let preview = false;
 
+	// Push the gate flag + the shipping topic paths into the process-global catalog, so the remark
+	// plugin (a separate module realm loaded by svelte.config.js) validates `bosco:` cross-links
+	// against EXACTLY the set this build ships.
+	function populateCatalog() {
+		setGate(preview);
+		setTopicPaths(scan(root, preview).map((p) => p.meta.path));
+	}
+
 	return {
 		name: 'bosco-content',
 
@@ -46,6 +55,8 @@ export function boscoContent(): Plugin {
 				config.command === 'serve' ||
 				process.env.CONTENT_PREVIEW === '1' ||
 				Boolean(process.env.VITEST);
+			// Runs before any Markdown is transformed, so the catalog is ready when remark reads it.
+			populateCatalog();
 		},
 
 		resolveId(id) {
@@ -54,21 +65,51 @@ export function boscoContent(): Plugin {
 		},
 
 		load(id) {
-			if (id === RESOLVED_ID) return collect(root, preview).main;
-			if (id === EAGER_RESOLVED_ID) return collect(root, preview).eager;
+			if (id === RESOLVED_ID) return mainModule(scan(root, preview));
+			if (id === EAGER_RESOLVED_ID) return eagerModule(scan(root, preview));
 		},
 
 		handleHotUpdate({ file, server }) {
-			if (file.replace(/\\/g, '/').includes('/src/content/')) {
-				for (const rid of [RESOLVED_ID, EAGER_RESOLVED_ID]) {
-					const mod = server.moduleGraph.getModuleById(rid);
-					if (mod) server.moduleGraph.invalidateModule(mod);
-				}
-				server.ws.send({ type: 'full-reload' });
-				return [];
+			if (!file.replace(/\\/g, '/').includes('/src/content/')) return;
+			// A content edit can add/remove a topic (changing which `bosco:` targets are valid) and its
+			// effect is baked into already-compiled article HTML. Re-scan, re-populate the catalog, and
+			// invalidate the virtual modules AND every compiled content `.md` so remark re-validates.
+			resetScan();
+			invalidate();
+			populateCatalog();
+			const graph = server.moduleGraph;
+			const mods = new Set<ModuleNode>();
+			for (const rid of [RESOLVED_ID, EAGER_RESOLVED_ID]) {
+				const m = graph.getModuleById(rid);
+				if (m) mods.add(m);
 			}
+			for (const m of graph.idToModuleMap.values()) {
+				if (
+					m.file &&
+					m.file.replace(/\\/g, '/').includes('/src/content/') &&
+					m.file.endsWith('.md')
+				) {
+					mods.add(m);
+				}
+			}
+			for (const m of mods) graph.invalidateModule(m);
+			server.ws.send({ type: 'full-reload' });
+			return [];
 		}
 	};
+}
+
+// One filesystem scan per (root, preview), memoized so configResolved and both virtual-module loads
+// share it; `resetScan()` drops it on HMR.
+let scanCache: { root: string; preview: boolean; value: Published[] } | null = null;
+function scan(root: string, preview: boolean): Published[] {
+	if (scanCache && scanCache.root === root && scanCache.preview === preview) return scanCache.value;
+	const value = scanPublished(root, preview);
+	scanCache = { root, preview, value };
+	return value;
+}
+function resetScan(): void {
+	scanCache = null;
 }
 
 interface Published {
@@ -79,12 +120,10 @@ interface Published {
 	defaultTier: number;
 }
 
-/** Read + gate every topic once, returning the source of both virtual modules. */
-function collect(root: string, preview: boolean): { main: string; eager: string } {
+/** Read + gate every topic once, returning the published set both virtual modules are built from. */
+function scanPublished(root: string, preview: boolean): Published[] {
 	const contentDir = join(root, CONTENT_ROOT);
-	if (!existsSync(contentDir)) {
-		return { main: 'export const topics = [];\n', eager: 'export const eager = {};\n' };
-	}
+	if (!existsSync(contentDir)) return [];
 
 	const published: Published[] = [];
 
@@ -140,7 +179,7 @@ function collect(root: string, preview: boolean): { main: string; eager: string 
 	// production link can never dangle or point at unreviewed content. Fails the build otherwise.
 	validateCrossLinks(published.map((p) => ({ path: p.meta.path, related: p.meta.related })));
 
-	return { main: mainModule(published), eager: eagerModule(published) };
+	return published;
 }
 
 /**

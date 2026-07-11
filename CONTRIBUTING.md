@@ -55,6 +55,11 @@ content: drafting → content: needs-review → content: needs-doctrinal-review
   `ci`. Doctrine never ships unreviewed.
 - **Verbatim rule:** catechism, Scripture, and prayers ship **verbatim**. AI may adapt _stories_ and
   general explanations, never doctrinal text.
+- **Inline cross-links:** link to another Library topic from prose with the `bosco:` protocol —
+  `[text](bosco:category/slug)`. The target is validated at build time (it must be a topic that ships
+  in this build), so a dangling or unreviewed cross-link fails `ci`. Never write an external
+  `http(s)://` link in article prose — the build rejects it; external references belong in frontmatter
+  `sources`. Do **not** place `bosco:` links inside verbatim doctrinal blocks.
 - Files under doctrine paths (`src/content/faith/**`, `chapel`, `prayers`, `catechism`) are owned in
   [`.github/CODEOWNERS`](.github/CODEOWNERS), so every doctrine change requests the owner's review.
 
