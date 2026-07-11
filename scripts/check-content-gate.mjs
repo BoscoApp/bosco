@@ -10,11 +10,19 @@
  */
 import { readdir, readFile } from 'node:fs/promises';
 import { join, extname } from 'node:path';
+import { FAKE_SENTINEL } from './content/generators/fake.mjs';
 
 const BUILD_DIR = 'build';
 
-// Must NOT appear anywhere in a production build (the pending dummy topic).
-const MUST_BE_ABSENT = ['PENDING_SENTINEL_DO_NOT_SHIP', 'Draft Basilisk', 'basilisk-draft'];
+// Must NOT appear anywhere in a production build: the pending dummy topic, and the content-pipeline's
+// FAKE-draft sentinel — so placeholder filler can never reach production even if its provenance sidecar
+// were tampered with (a provenance-independent second layer over guard:provenance's own fake check).
+const MUST_BE_ABSENT = [
+	'PENDING_SENTINEL_DO_NOT_SHIP',
+	'Draft Basilisk',
+	'basilisk-draft',
+	FAKE_SENTINEL
+];
 // Must appear: the approved dummy topics render in the Library listing, and `data-gloss-def=` proves
 // an APPROVED glossary definition reached the built HTML — the positive half of the glossary doctrine
 // gate. (The negative half — a pending/unknown `gloss:` term failing the build — is proven in

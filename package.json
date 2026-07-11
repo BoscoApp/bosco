@@ -21,7 +21,12 @@
 		"guard:content": "node scripts/check-content-gate.mjs",
 		"guard:colour": "node scripts/check-hardcoded-colour.mjs",
 		"guard:offline": "node scripts/check-offline.mjs",
-		"serve:static": "node scripts/serve-static.mjs"
+		"guard:provenance": "node scripts/check-provenance.mjs",
+		"serve:static": "node scripts/serve-static.mjs",
+		"content:new": "node scripts/content/new-spec.mjs",
+		"content:gen": "node scripts/content/generate.mjs",
+		"content:review": "node scripts/content/review-queue.mjs",
+		"credits:content": "node scripts/content/generate.mjs --sync-credits"
 	},
 	"dependencies": {
 		"zod": "^3.24.1"

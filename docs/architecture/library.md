@@ -162,7 +162,39 @@ art-agnostic (illustration Decision #4 stays the owner's, on real proof assets t
   text, no `tier` prop, identical on the route and in-window). `data-view-heading` stays on the title so
   the desktop's focus-on-move still lands there.
 
+## The content pipeline (PR5)
+
+Authoring-time tooling under `scripts/content/` — manual and out-of-band like `scripts/calendar/`, run by
+the owner, never imported by `src/**`, never run in CI (except a pure guard reader), zero new runtime deps.
+It turns one **spec** (`scripts/content/specs/<category>/<slug>.topic.md`) into a `review_status: pending`
+topic folder the plugin renders. Full runbook: [`scripts/content/README.md`](../../scripts/content/README.md).
+
+- **Two kinds, one fork.** An adapted (story/fact) topic runs three passes — **A** (source → Tier 2),
+  then **B** (→ Tier 1) and **C** (→ Tier 3) off the Tier-2 body. A verbatim (doctrine) topic runs none of
+  them: its spec body is a label-only `## tier-N` / `## all` block (no adaptable free text), and the
+  verbatim code path (`copyVerbatim`) takes **no generator** — so adapting doctrine is a code path that
+  does not exist, not a rule checked at runtime. `runPipeline` forks once on `kind`.
+- **The generator seam.** The passes call a `Generator` behind a seam. The default is a **deterministic
+  offline fake** (placeholder prose, sentinel-marked) so the whole pipeline is unit-tested with zero
+  network and no key. The real adapter (`generators/claude.mjs`, dependency-free global `fetch`) is
+  dynamic-imported **only** under `--generator=claude`, so nothing else can reach the network — the runtime
+  offline invariant is untouched.
+- **Provenance & the doctrine guard.** Emit writes a per-topic `provenance.json` sidecar (source + whether
+  each tier is verbatim or AI-adapted, with model/pass/date; verbatim tiers are SHA-256-frozen). `index.md`
+  is written **last** so a crashed generation leaves an inert, index-less folder rather than a
+  missing-tier build break. `pnpm guard:provenance` (in `ci`, reads source not `build/`) enforces the
+  doctrine invariant: every `faith/**` topic must have a sidecar; registry-listed paths must be verbatim;
+  a verbatim tier produced by a pass, a post-emit sha drift, or a fake-generated `approved` tier all fail.
+  It proves _non-adaptation-by-the-passes_ + _untampered-since-emit_ — **not** doctrinal fidelity, which is
+  the owner's human review. The build gate also greps the fake sentinel out of shipped output.
+- **The review queue.** `pnpm content:review` is the owner's worklist — every topic the production gate
+  excludes, doctrine badged, with the tier-file paths to open and read. Approving is the owner editing
+  `review_status` to `approved`; the tool never does.
+
+The three example specs / fixtures prove the machinery; **no content is emitted into `src/content` by this
+PR** (the validators are proven by unit tests over temp dirs, like `validateCrossLinks`/`validateArchives`).
+
 ## What's next in v0.3.0
 
-PR5 the AI content-pipeline tooling. Content (the 3-topic proof and the 18-topic launch set) is authored
-and doctrine-reviewed separately, at the owner's pace.
+The content itself — the 3-topic proof and the 18-topic launch set — authored through this pipeline and
+doctrine-reviewed at the owner's pace. That closes v0.3.0 Library.
