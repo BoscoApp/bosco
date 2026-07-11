@@ -1,6 +1,7 @@
 import adapter from '@sveltejs/adapter-static';
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import { mdsvex } from 'mdsvex';
+import boscoRemark from './src/lib/content/remark-bosco.js';
 
 /**
  * Bosco ships as a fully-prerendered static site. `adapter-static` with `strict: true`
@@ -14,7 +15,12 @@ import { mdsvex } from 'mdsvex';
  */
 const config = {
 	extensions: ['.svelte', '.md'],
-	preprocess: [vitePreprocess(), mdsvex({ extensions: ['.md'] })],
+	// boscoRemark rewrites inline `bosco:category/slug` links to real /library routes and validates
+	// them against the shipping topic set (base is '' — see the base assertion in remark-bosco.test.ts).
+	preprocess: [
+		vitePreprocess(),
+		mdsvex({ extensions: ['.md'], remarkPlugins: [boscoRemark({ base: '' })] })
+	],
 	kit: {
 		adapter: adapter({
 			pages: 'build',

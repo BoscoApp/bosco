@@ -1,4 +1,9 @@
 import { z } from 'zod';
+import { REVIEW_STATUSES, TOPIC_PATH_RE, isPublished } from './gate.js';
+
+// The gate primitive lives in gate.js (the single, Node-loadable source shared with the remark
+// plugin). Re-export it so existing `from './schema'` imports keep working unchanged.
+export { REVIEW_STATUSES, TOPIC_PATH_RE, isPublished };
 
 /** Top-level content categories (also the folder names under `src/content/`). */
 export const CATEGORIES = ['creatures', 'faith', 'world'] as const;
@@ -9,11 +14,10 @@ export const TIERS = [1, 2, 3] as const;
 export type Tier = (typeof TIERS)[number];
 
 /**
- * MDX-level review state. The doctrine gate ships ONLY `approved` topics to production.
- * The finer human workflow (needs-review, needs-doctrinal-review, changes-requested) lives
- * on the GitHub issue's `content:` label; here we only need the build decision.
+ * MDX-level review state (values defined in gate.js). The doctrine gate ships ONLY `approved` topics
+ * to production; the finer human workflow (needs-review, needs-doctrinal-review, changes-requested)
+ * lives on the GitHub issue's `content:` label.
  */
-export const REVIEW_STATUSES = ['draft', 'pending', 'approved'] as const;
 export type ReviewStatus = (typeof REVIEW_STATUSES)[number];
 
 /** Illustration is a theme axis: each asset can carry a variant per theme. */
@@ -21,9 +25,6 @@ export const THEMES = ['clubhouse', 'meadow'] as const;
 export type Theme = (typeof THEMES)[number];
 
 const tierLiteral = z.union([z.literal(1), z.literal(2), z.literal(3)]);
-
-/** A topic path (`category/slug`) as used to reference another topic in `related`. */
-export const TOPIC_PATH_RE = /^[a-z0-9-]+\/[a-z0-9-]+$/;
 
 export const mediaVariantSchema = z.object({
 	theme: z.enum(THEMES),
@@ -102,20 +103,6 @@ export function pickDefaultTier(tiers: readonly number[], preferred?: number): T
 	if (tiers.includes(want)) return want as Tier;
 	const nearest = [...tiers].sort((a, b) => Math.abs(a - want) - Math.abs(b - want) || a - b)[0];
 	return nearest as Tier;
-}
-
-export interface GateOptions {
-	/** When true, non-approved content is included (dev server + preview builds). */
-	preview: boolean;
-}
-
-/**
- * The single source of truth for "may this topic ship?".
- * Production builds (preview = false) include only `approved` topics — doctrine never ships
- * unreviewed. This is enforced at build time by the content Vite plugin, not at runtime.
- */
-export function isPublished(status: ReviewStatus, { preview }: GateOptions): boolean {
-	return preview || status === 'approved';
 }
 
 /**
