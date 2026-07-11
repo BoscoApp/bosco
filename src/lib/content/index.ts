@@ -40,5 +40,6 @@ export function eagerBody(path: string): EagerBody | undefined {
 	return eager[path];
 }
 
-export { CATEGORIES, TIERS } from './schema';
+export { CATEGORIES, TIERS, HABITATS, KINDS } from './schema';
 export type { Category, Tier, TopicMeta };
+export type { Habitat, CreatureKind } from './schema';

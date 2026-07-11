@@ -59,6 +59,13 @@ const routes = [
 	{
 		path: '/library/creatures/',
 		include: ['Creatures', '1 article', 'Written for Seedling, Explorer, Scholar']
+	},
+	// The Field Guide hub prerenders the WHOLE creature index with no JS — both groupings inline. Red
+	// Fox is the only approved creature, so it appears under its habitats (Woodland, Farmland) and its
+	// kind (Mammals); a no-JS reader gets the complete index on one page.
+	{
+		path: '/field-guide/',
+		include: ['The Field Guide', 'By habitat', 'By kind', 'Woodland', 'The Red Fox']
 	}
 ];
 
