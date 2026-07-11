@@ -87,6 +87,49 @@ test('a "See also" link browses to the related topic in-window without navigatin
 	await expect(page.locator('#win-help')).toBeVisible();
 });
 
+test('the standalone Library search finds a topic and links to its page', async ({ page }) => {
+	await page.goto('/library/');
+	await page.getByRole('searchbox', { name: 'Search the Library' }).fill('fox');
+
+	const results = page.locator('.ls-results');
+	await expect(results.getByRole('link', { name: /The Red Fox/ })).toBeVisible();
+	// The excerpt highlights the matched word.
+	await expect(results.locator('mark', { hasText: 'fox' }).first()).toBeVisible();
+
+	await results.getByRole('link', { name: /The Red Fox/ }).click();
+	await expect(page).toHaveURL(/\/library\/creatures\/red-fox\/$/);
+	await expect(page.getByRole('heading', { name: 'The Red Fox' })).toBeVisible();
+});
+
+test('a search result opens in-window without navigating and keeps other windows open', async ({
+	page
+}) => {
+	await enterAsExplorer(page);
+	// Open Help first, to prove a search-result move preserves other open windows.
+	await page.getByRole('button', { name: 'Help', exact: true }).click();
+	await page.getByRole('button', { name: 'Library', exact: true }).click();
+	const library = page.locator('#win-library');
+	await expect(library).toBeVisible();
+
+	await library.getByRole('searchbox', { name: 'Search the Library' }).fill('printing');
+	const result = library.locator('.ls-results').getByRole('link', { name: /The Printing Press/ });
+	await expect(result).toBeVisible();
+	await result.click();
+
+	// It moved in-window: the target article shows, the URL never changed (no SvelteKit nav), and the
+	// Help window survived the store move.
+	await expect(library.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
+	await expect(page).toHaveURL('http://localhost:4173/');
+	await expect(page.locator('#win-help')).toBeVisible();
+});
+
+test('searching for something not in the Library shows a no-results message', async ({ page }) => {
+	await page.goto('/library/');
+	await page.getByRole('searchbox', { name: 'Search the Library' }).fill('qqzznotathing');
+	await expect(page.getByText(/No articles matched/)).toBeVisible();
+	await expect(page.locator('.ls-results')).toHaveCount(0);
+});
+
 test('"Surprise me" re-rolls on the client and opens that pick in-window', async ({ page }) => {
 	// The prerendered href is seeded to the first topic (Red Fox); the destination must come from the
 	// CLIENT re-roll on focus/pointerdown, not the seed. Force the roll to the second topic and prove it

@@ -80,4 +80,14 @@ test.describe('accessibility floor', () => {
 		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
 		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
 	});
+
+	test('the Library home showing search results has no serious/critical violations', async ({
+		page
+	}) => {
+		await page.goto('/library/');
+		await page.getByRole('searchbox', { name: 'Search the Library' }).fill('fox');
+		await page.waitForSelector('.ls-results .ls-hit');
+		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
+		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
+	});
 });

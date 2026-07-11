@@ -9,6 +9,7 @@
 	import { CATEGORY_ORDER, CATEGORY_LABEL, CATEGORY_BLURB, CATEGORY_ACCENT } from './categories';
 	import TopicCard from './TopicCard.svelte';
 	import SurpriseButton from './SurpriseButton.svelte';
+	import SearchPanel from './SearchPanel.svelte';
 
 	/** Heading level: 1 on the standalone /library page, 2 inside a desktop window. */
 	let { level = 1 }: { level?: 1 | 2 } = $props();
@@ -32,6 +33,8 @@
 			<SurpriseButton />
 		</div>
 	</header>
+
+	<SearchPanel />
 
 	{#each shelves as { category, topics } (category)}
 		<section class="shelf">
