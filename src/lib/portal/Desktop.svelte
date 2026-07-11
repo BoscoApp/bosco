@@ -19,6 +19,7 @@
 	import WhoBody from './windows/WhoBody.svelte';
 	import RoomBody from './windows/RoomBody.svelte';
 	import LibraryBody from './windows/LibraryBody.svelte';
+	import FieldGuideBody from './windows/FieldGuideBody.svelte';
 
 	const portal = new Portal();
 	setPortal(portal);
@@ -116,6 +117,8 @@
 		<Window {def} wm={portal.wm}>
 			{#if def.id === 'win-library'}
 				<LibraryBody />
+			{:else if def.id === 'win-fieldguide'}
+				<FieldGuideBody />
 			{:else if ROOMS[def.id]}
 				<RoomBody room={ROOMS[def.id]} />
 			{:else}

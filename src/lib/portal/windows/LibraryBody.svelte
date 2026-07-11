@@ -12,6 +12,7 @@
 	import { getPortal } from '../portal.svelte';
 	import { getTopic, eagerBody, type Category } from '$lib/content';
 	import { CATEGORY_LABEL } from '$lib/library/categories';
+	import { anchorIntercept } from '../anchorIntercept';
 	import { LibraryBrowser } from '$lib/library/browser.svelte';
 	import LibraryHome from '$lib/library/LibraryHome.svelte';
 	import CategoryView from '$lib/library/CategoryView.svelte';
@@ -36,16 +37,7 @@
 		return true;
 	}
 
-	function onClick(e: MouseEvent) {
-		if (e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey) {
-			return;
-		}
-		const a = (e.target as HTMLElement).closest('a');
-		if (!a || !a.getAttribute('href')) return;
-		const url = new URL(a.href, location.href);
-		if (url.origin !== location.origin) return;
-		if (navigateTo(url.pathname)) e.preventDefault();
-	}
+	const onClick = anchorIntercept(navigateTo);
 
 	// After a move, put focus on the new view's heading so keyboard/SR users land in the right place.
 	async function focusHeading() {

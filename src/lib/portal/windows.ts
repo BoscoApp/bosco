@@ -37,7 +37,7 @@ export const WINDOWS: WinDef[] = [
 	{ id: 'win-about', title: 'About Bosco', icon: 'ic-about', small: true },
 	{ id: 'win-help', title: 'Help', icon: 'ic-help', small: true },
 	{ id: 'win-library', title: 'The Library', icon: 'ic-library', small: false },
-	{ id: 'win-fieldguide', title: 'The Field Guide', icon: 'ic-fieldguide', small: true },
+	{ id: 'win-fieldguide', title: 'The Field Guide', icon: 'ic-fieldguide', small: false },
 	{ id: 'win-chapel', title: 'The Chapel', icon: 'ic-chapel', small: true },
 	{ id: 'win-art', title: 'The Art Studio', icon: 'ic-art', small: true },
 	{ id: 'win-arcade', title: 'The Arcade', icon: 'ic-arcade', small: true },
@@ -71,9 +71,9 @@ export const DOORS: Door[] = [
 		id: 'win-fieldguide',
 		icon: 'ic-fieldguide',
 		accent: 'green',
-		kicker: 'Card Album',
+		kicker: 'Creature Guide',
 		title: 'The Field Guide',
-		blurb: 'Collect God’s creatures — a growing album of cards to keep.'
+		blurb: 'Meet God’s creatures — browse them by habitat or by kind.'
 	},
 	{
 		id: 'win-chapel',
@@ -122,24 +122,10 @@ export interface Room {
 	soon?: string;
 }
 
-// The Library (win-library) is a real destination as of v0.3.0 — it renders <LibraryBody>, not a
-// placeholder room. The remaining five rooms stay placeholders until their own versions.
+// The Library (win-library) and Field Guide (win-fieldguide) are real destinations now — they render
+// <LibraryBody> / <FieldGuideBody>, not placeholder rooms. The remaining four rooms stay placeholders
+// until their own versions.
 export const ROOMS: Record<string, Room> = {
-	'win-fieldguide': {
-		id: 'win-fieldguide',
-		icon: 'ic-fieldguide',
-		title: 'The Field Guide',
-		blurb: 'Meet God’s creatures — and earn a card each time you read.',
-		intro:
-			'Every creature you read about in the Library adds a collector’s card to your album. No streaks, no nagging — it simply remembers what you’ve met.',
-		items: [
-			'Browse by **habitat** or by **kind**.',
-			'Tap a creature to see it up close.',
-			'Your album lives on **this** computer — yours to keep.'
-		],
-		kind: 'soon',
-		soon: 'The album is being bound — opening in a later version.'
-	},
 	'win-chapel': {
 		id: 'win-chapel',
 		icon: 'ic-chapel',

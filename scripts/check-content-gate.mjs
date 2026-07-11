@@ -27,7 +27,9 @@ const MUST_BE_ABSENT = [
 // an APPROVED glossary definition reached the built HTML — the positive half of the glossary doctrine
 // gate. (The negative half — a pending/unknown `gloss:` term failing the build — is proven in
 // src/lib/content/glossary.test.ts and remark-bosco.test.ts, since a gated-out term never ships to grep.)
-const MUST_BE_PRESENT = ['The Red Fox', 'The Printing Press', 'data-gloss-def='];
+// `By habitat` is a Field-Guide-hub-only string, so it proves the /field-guide/ route prerendered its
+// creature index (not just that the desktop JS names the window) — the FG feature's positive gate.
+const MUST_BE_PRESENT = ['The Red Fox', 'The Printing Press', 'data-gloss-def=', 'By habitat'];
 
 const TEXT_EXT = new Set([
 	'.html',
