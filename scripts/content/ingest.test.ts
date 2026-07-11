@@ -32,8 +32,27 @@ describe('parseSpec', () => {
 	});
 
 	it('rejects an adapted spec with an empty body', () => {
-		const spec = `---\ncontent_kind: adapted\ntitle: X\ncategory: creatures\nslug: x\nsummary: s\ntiers: [2]\n---\n`;
+		// `world` (not `creatures`) so the spec passes frontmatter validation and reaches the
+		// empty-body check — creatures would fail earlier on the required habitat/kind.
+		const spec = `---\ncontent_kind: adapted\ntitle: X\ncategory: world\nslug: x\nsummary: s\ntiers: [2]\n---\n`;
 		expect(() => parseSpec(spec, { where: 'x' })).toThrow(/empty body/i);
+	});
+
+	it('rejects a creature spec missing Field Guide taxonomy (habitat/kind required for creatures)', () => {
+		const spec = `---\ncontent_kind: adapted\ntitle: X\ncategory: creatures\nslug: x\nsummary: s\ntiers: [2]\n---\nbody`;
+		expect(() => parseSpec(spec, { where: 'x' })).toThrow(/habitat|kind|frontmatter/i);
+	});
+
+	it('rejects habitat/kind on a non-creature spec', () => {
+		const spec = `---\ncontent_kind: adapted\ntitle: X\ncategory: world\nslug: x\nsummary: s\ntiers: [2]\nkind: mammal\n---\nbody`;
+		expect(() => parseSpec(spec, { where: 'x' })).toThrow(/creature|frontmatter/i);
+	});
+
+	it('accepts a creature spec with valid habitat + kind', () => {
+		const spec = `---\ncontent_kind: adapted\ntitle: X\ncategory: creatures\nslug: x\nsummary: s\ntiers: [2]\nhabitat: [woodland]\nkind: mammal\n---\nbody`;
+		const doc = parseSpec(spec, { where: 'x' });
+		expect(doc.meta.habitat).toEqual(['woodland']);
+		expect(doc.meta.kind).toBe('mammal');
 	});
 
 	it('rejects a verbatim spec with free text outside a block', () => {

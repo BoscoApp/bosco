@@ -3,6 +3,8 @@ content_kind: adapted
 title: The Red Fox
 category: creatures
 slug: red-fox
+habitat: [woodland, farmland]
+kind: mammal
 tiers: [1, 2, 3]
 default_tier: 2
 summary: A clever, adaptable little wild dog found across the whole northern world.

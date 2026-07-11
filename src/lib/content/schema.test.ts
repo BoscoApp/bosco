@@ -12,7 +12,9 @@ const valid = {
 	category: 'creatures',
 	summary: 'A clever little wild dog.',
 	tiers: [1, 2, 3],
-	review_status: 'approved'
+	review_status: 'approved',
+	habitat: ['woodland', 'farmland'],
+	kind: 'mammal'
 };
 
 describe('topicFrontmatterSchema', () => {
@@ -57,6 +59,35 @@ describe('topicFrontmatterSchema', () => {
 	it('rejects a malformed related path', () => {
 		expect(() => topicFrontmatterSchema.parse({ ...valid, related: ['notapath'] })).toThrow();
 		expect(() => topicFrontmatterSchema.parse({ ...valid, related: ['a/b/c'] })).toThrow();
+	});
+});
+
+describe('Field Guide taxonomy (habitat / kind, creature-only)', () => {
+	it('requires both habitat and kind on a creature', () => {
+		const { habitat: _h, kind: _k, ...noTaxonomy } = valid;
+		expect(() => topicFrontmatterSchema.parse(noTaxonomy)).toThrow();
+		expect(() => topicFrontmatterSchema.parse({ ...valid, habitat: undefined })).toThrow();
+		expect(() => topicFrontmatterSchema.parse({ ...valid, kind: undefined })).toThrow();
+	});
+
+	it('rejects an empty habitat list and unknown enum members', () => {
+		expect(() => topicFrontmatterSchema.parse({ ...valid, habitat: [] })).toThrow();
+		expect(() => topicFrontmatterSchema.parse({ ...valid, habitat: ['moon'] })).toThrow();
+		expect(() => topicFrontmatterSchema.parse({ ...valid, kind: 'dragon' })).toThrow();
+	});
+
+	it('accepts a creature with a valid multi-habitat + kind', () => {
+		const parsed = topicFrontmatterSchema.parse(valid);
+		expect(parsed.habitat).toEqual(['woodland', 'farmland']);
+		expect(parsed.kind).toBe('mammal');
+	});
+
+	it('forbids habitat/kind on a non-creature topic', () => {
+		// A world topic still carrying taxonomy is rejected...
+		expect(() => topicFrontmatterSchema.parse({ ...valid, category: 'world' })).toThrow();
+		// ...but the same world topic without it parses clean.
+		const { habitat: _h, kind: _k, ...worldClean } = { ...valid, category: 'world' };
+		expect(() => topicFrontmatterSchema.parse(worldClean)).not.toThrow();
 	});
 });
 
