@@ -60,6 +60,47 @@ describe('change tracking + sync', () => {
 	});
 });
 
+describe('recordOnce (insert-if-absent, idempotent)', () => {
+	it('records once, then is a no-op on repeat — same record, frozen updatedAt', async () => {
+		const { store } = makeStore();
+		store.createProfile('Rose');
+		const first = await store.recordOnce('album', 'red-fox', { v: 1 });
+		const again = await store.recordOnce('album', 'red-fox', { v: 1 });
+		expect(again.updatedAt).toBe(first.updatedAt); // no re-bump
+		expect(await store.getRecords('album')).toHaveLength(1);
+	});
+
+	it('does not re-mark a recorded card pending after a sync', async () => {
+		const { store } = makeStore();
+		store.createProfile('Rose');
+		await store.recordOnce('album', 'red-fox', { v: 1 });
+		await store.sync(); // NoopSyncAdapter — advances the cursor
+		await store.recordOnce('album', 'red-fox', { v: 1 }); // a repeat read
+		expect((await store.pendingChanges()).records).toHaveLength(0);
+	});
+
+	it('treats a tombstoned id as absent and revives it', async () => {
+		const { store, records } = makeStore();
+		const rose = store.createProfile('Rose');
+		// A tombstone as `mergeRecords` would keep after a delete synced in from another device.
+		await records.put(`${rose.id}:album`, {
+			id: 'red-fox',
+			updatedAt: 5,
+			deleted: true,
+			data: { v: 1 }
+		});
+		const revived = await store.recordOnce('album', 'red-fox', { v: 1 });
+		expect(revived.deleted).toBeUndefined();
+		const live = (await store.getRecords('album')).filter((r) => !r.deleted);
+		expect(live.map((r) => r.id)).toEqual(['red-fox']);
+	});
+
+	it('throws when there is no active profile', async () => {
+		const { store } = makeStore();
+		await expect(store.recordOnce('album', 'red-fox', { v: 1 })).rejects.toThrow(/active profile/i);
+	});
+});
+
 describe('backup', () => {
 	it('exports and imports non-destructively', async () => {
 		const src = makeStore();
