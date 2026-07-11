@@ -78,3 +78,30 @@ test('a cross-category cross-link inside a Field Guide article opens inline (ful
 	await expect(guide.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
 	await expect(page).toHaveURL('http://localhost:4173/');
 });
+
+test('a hub group heading opens its axis page in-window', async ({ page }) => {
+	await enterAsExplorer(page);
+	await openFieldGuide(page);
+	const guide = page.locator('#win-fieldguide');
+	// The "Woodland" habitat group heading is a link to that axis page.
+	await guide.getByRole('link', { name: 'Woodland' }).click();
+	await expect(guide.getByRole('heading', { name: 'Woodland' })).toBeVisible();
+	await expect(guide.getByText('1 creature')).toBeVisible();
+	await expect(page).toHaveURL('http://localhost:4173/');
+	await expect(guide.getByRole('link', { name: /The Red Fox/ }).first()).toBeVisible();
+});
+
+test('a standalone axis page prerenders its filtered creatures', async ({ page }) => {
+	await page.goto('/field-guide/kind/mammal/');
+	await expect(page.getByRole('heading', { name: 'Mammals', level: 1 })).toBeVisible();
+	await expect(page.getByRole('link', { name: /The Red Fox/ }).first()).toBeVisible();
+	await expect(page.getByRole('link', { name: /Open in Bosco/ })).toBeVisible();
+});
+
+test('an axis page for a gated-out kind 404s in production (bestiary is basilisk-only)', async ({
+	page
+}) => {
+	// `bestiary` is carried ONLY by the gated-out draft basilisk, so its axis page is never prerendered.
+	const res = await page.goto('/field-guide/kind/bestiary/');
+	expect(res?.status()).toBe(404);
+});

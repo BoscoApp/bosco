@@ -1,5 +1,12 @@
 import { describe, it, expect } from 'vitest';
-import { groupByHabitat, groupByKind, HABITAT_LABEL, KIND_LABEL } from './axes';
+import {
+	groupByHabitat,
+	groupByKind,
+	presentHabitats,
+	presentKinds,
+	HABITAT_LABEL,
+	KIND_LABEL
+} from './axes';
 import { HABITATS, KINDS } from '$lib/content';
 
 // Minimal creature-like fixtures — only the fields the axis helpers read.
@@ -35,5 +42,18 @@ describe('groupByKind', () => {
 		expect(groups.map((g) => g.value)).toEqual(['mammal', 'bird', 'fish']);
 		expect(groups.map((g) => g.label)).toEqual(['Mammals', 'Birds', 'Fish']);
 		expect(groups.find((g) => g.value === 'mammal')!.topics).toEqual([fox]);
+	});
+});
+
+describe('present axis values (drive axis-route entries + 404s)', () => {
+	it('lists present habitats/kinds in enum order, deduped across creatures', () => {
+		// fox: woodland+farmland, owl: woodland+sky, trout: river → woodland once, then river, sky, farmland.
+		expect(presentHabitats([fox, owl, trout])).toEqual(['woodland', 'river', 'sky', 'farmland']);
+		expect(presentKinds([fox, owl, trout])).toEqual(['mammal', 'bird', 'fish']);
+	});
+
+	it('is empty for an empty creature set (so no axis page is minted)', () => {
+		expect(presentHabitats([])).toEqual([]);
+		expect(presentKinds([])).toEqual([]);
 	});
 });

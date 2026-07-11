@@ -66,6 +66,12 @@ const routes = [
 	{
 		path: '/field-guide/',
 		include: ['The Field Guide', 'By habitat', 'By kind', 'Woodland', 'The Red Fox']
+	},
+	// An axis page prerenders its filtered creature grid no-JS. In production the fox is the only
+	// woodland creature, so its Woodland page shows exactly one card.
+	{
+		path: '/field-guide/habitat/woodland/',
+		include: ['Woodland', '1 creature', 'The Red Fox']
 	}
 ];
 

@@ -88,6 +88,15 @@ test.describe('accessibility floor', () => {
 		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
 	});
 
+	test('a standalone Field Guide axis page has no serious/critical violations', async ({
+		page
+	}) => {
+		await page.goto('/field-guide/habitat/woodland/');
+		await page.waitForSelector('.axis');
+		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
+		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
+	});
+
 	test('the Library home showing search results has no serious/critical violations', async ({
 		page
 	}) => {
