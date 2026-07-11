@@ -2,6 +2,7 @@
 	import { getTopic, eagerBody, type Category } from '$lib/content';
 	import { APP_NAME } from '$lib/meta';
 	import ArticleView from '$lib/library/ArticleView.svelte';
+	import RecordOnRead from '$lib/fieldguide/RecordOnRead.svelte';
 	import StandaloneChrome from '$lib/library/StandaloneChrome.svelte';
 
 	let { data } = $props();
@@ -19,5 +20,6 @@
 <StandaloneChrome title={topic.title}>
 	{#key topic.path}
 		<ArticleView {topic} tier={topic.defaultTier} eager={seed} />
+		<RecordOnRead {topic} />
 	{/key}
 </StandaloneChrome>

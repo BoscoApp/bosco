@@ -17,6 +17,7 @@
 	import LibraryHome from '$lib/library/LibraryHome.svelte';
 	import CategoryView from '$lib/library/CategoryView.svelte';
 	import ArticleView from '$lib/library/ArticleView.svelte';
+	import RecordOnRead from '$lib/fieldguide/RecordOnRead.svelte';
 
 	const portal = getPortal();
 	const browser = new LibraryBrowser();
@@ -78,6 +79,7 @@
 					eager={eagerBody(topic.path) ?? null}
 					level={2}
 				/>
+				<RecordOnRead {topic} />
 			{/key}
 		{:else}
 			<p class="lib-missing">That article isn’t in the Library yet.</p>

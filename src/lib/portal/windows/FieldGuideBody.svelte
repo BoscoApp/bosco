@@ -16,6 +16,7 @@
 	import FieldGuideHome from '$lib/fieldguide/FieldGuideHome.svelte';
 	import AxisView from '$lib/fieldguide/AxisView.svelte';
 	import ArticleView from '$lib/library/ArticleView.svelte';
+	import RecordOnRead from '$lib/fieldguide/RecordOnRead.svelte';
 
 	const portal = getPortal();
 	const browser = new FieldGuideBrowser();
@@ -98,6 +99,7 @@
 					eager={eagerBody(topic.path) ?? null}
 					level={2}
 				/>
+				<RecordOnRead {topic} />
 			{/key}
 		{:else}
 			<!-- Unreachable in the gated app (every link resolves); still a focus target for defence. -->
