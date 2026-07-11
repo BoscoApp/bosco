@@ -39,12 +39,16 @@ if (existsSync(outPath)) {
 	process.exit(1);
 }
 
+// Creatures MUST declare Field Guide taxonomy (habitat + kind); scaffold valid defaults to EDIT, not
+// TODO placeholders, so the stub parses as-is. See HABITATS/KINDS in scripts/content/lib/spec-schema.mjs.
+const taxonomy = category === 'creatures' ? `habitat: [woodland]\nkind: mammal\n` : '';
+
 const header = `---
 content_kind: ${kind}
 title: TODO Title
 category: ${category}
 slug: ${slug}
-tiers: [1, 2, 3]
+${taxonomy}tiers: [1, 2, 3]
 default_tier: 2
 summary: TODO one-sentence summary.
 sources:
@@ -67,3 +71,8 @@ Tier 2 (Explorer); Passes B and C derive Tier 1 (Seedling) and Tier 3 (Scholar) 
 mkdirSync(dirname(outPath), { recursive: true });
 writeFileSync(outPath, header + '\n' + body);
 console.log(`✓ Wrote ${outPath} (${kind}). Fill in the TODOs, then: pnpm content:gen ${outPath}`);
+if (category === 'creatures') {
+	console.log(
+		'  ↳ creature: set its habitat[] + kind (Field Guide axes) — see spec-schema.mjs enums.'
+	);
+}

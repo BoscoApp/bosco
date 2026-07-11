@@ -24,6 +24,43 @@ export type ReviewStatus = (typeof REVIEW_STATUSES)[number];
 export const THEMES = ['clubhouse', 'meadow'] as const;
 export type Theme = (typeof THEMES)[number];
 
+/**
+ * Habitats a creature can live in — the Field Guide's "by habitat" axis. A CLOSED enum, so a typo
+ * fails at parse and the axis can never mint an empty page from a mistake. Multi-valued on a topic
+ * (a fox is woodland AND farmland). Membership is a content call; grow it as the corpus grows.
+ */
+export const HABITATS = [
+	'woodland',
+	'grassland',
+	'wetland',
+	'ocean',
+	'river',
+	'desert',
+	'mountain',
+	'polar',
+	'sky',
+	'farmland',
+	'garden'
+] as const;
+export type Habitat = (typeof HABITATS)[number];
+
+/**
+ * A creature's kind (single-valued) — the Field Guide's "by kind" axis. `bestiary` covers symbolic /
+ * heraldic creatures (e.g. the basilisk) that aren't a zoological class. Closed enum, same reasoning.
+ */
+export const KINDS = [
+	'mammal',
+	'bird',
+	'fish',
+	'reptile',
+	'amphibian',
+	'insect',
+	'arachnid',
+	'mollusk',
+	'bestiary'
+] as const;
+export type CreatureKind = (typeof KINDS)[number];
+
 const tierLiteral = z.union([z.literal(1), z.literal(2), z.literal(3)]);
 
 export const mediaVariantSchema = z.object({
@@ -56,31 +93,70 @@ export const archiveSchema = z.object({
 });
 
 /** Topic frontmatter, as authored in each topic's `index.md`. */
-export const topicFrontmatterSchema = z.object({
-	title: z.string().min(1),
-	category: z.enum(CATEGORIES),
-	summary: z.string().min(1),
-	tiers: z.array(tierLiteral).min(1),
-	/**
-	 * Which tier a reader lands on before any choice — the ONE tier baked into the prerendered
-	 * page (so it has real prose offline and yields exactly one search record). Clamped to the
-	 * nearest declared tier; defaults to Explorer (2), matching the app-wide default in app.html.
-	 */
-	default_tier: tierLiteral.optional(),
-	review_status: z.enum(REVIEW_STATUSES),
-	sources: z.array(sourceSchema).default([]),
-	media: z.array(mediaSchema).default([]),
-	archives: z.array(archiveSchema).default([]),
-	/**
-	 * Curated "See also" cross-links: other topics' `category/slug` paths. Additive and optional.
-	 * Validated at build time by {@link validateCrossLinks} — every entry must resolve to another
-	 * topic that ships in the same build (so a production link can never dangle or point at
-	 * unreviewed content), with no self-reference and no duplicates.
-	 */
-	related: z.array(z.string().regex(TOPIC_PATH_RE, 'must look like "category/slug"')).default([]),
-	/** Optional liturgical-calendar join (observance id) for Faith topics. */
-	observance_id: z.string().optional()
-});
+export const topicFrontmatterSchema = z
+	.object({
+		title: z.string().min(1),
+		category: z.enum(CATEGORIES),
+		summary: z.string().min(1),
+		tiers: z.array(tierLiteral).min(1),
+		/**
+		 * Which tier a reader lands on before any choice — the ONE tier baked into the prerendered
+		 * page (so it has real prose offline and yields exactly one search record). Clamped to the
+		 * nearest declared tier; defaults to Explorer (2), matching the app-wide default in app.html.
+		 */
+		default_tier: tierLiteral.optional(),
+		review_status: z.enum(REVIEW_STATUSES),
+		sources: z.array(sourceSchema).default([]),
+		media: z.array(mediaSchema).default([]),
+		archives: z.array(archiveSchema).default([]),
+		/**
+		 * Curated "See also" cross-links: other topics' `category/slug` paths. Additive and optional.
+		 * Validated at build time by {@link validateCrossLinks} — every entry must resolve to another
+		 * topic that ships in the same build (so a production link can never dangle or point at
+		 * unreviewed content), with no self-reference and no duplicates.
+		 */
+		related: z.array(z.string().regex(TOPIC_PATH_RE, 'must look like "category/slug"')).default([]),
+		/** Optional liturgical-calendar join (observance id) for Faith topics. */
+		observance_id: z.string().optional(),
+		/**
+		 * Field Guide taxonomy — REQUIRED on `creatures`, FORBIDDEN elsewhere (both enforced by the
+		 * `.superRefine` below). `habitat` is multi-valued; `kind` is single. Closed enums so the
+		 * "by habitat" / "by kind" axes can never mint an empty page from a typo.
+		 */
+		habitat: z.array(z.enum(HABITATS)).min(1).optional(),
+		kind: z.enum(KINDS).optional()
+	})
+	.superRefine((fm, ctx) => {
+		const isCreature = fm.category === 'creatures';
+		if (isCreature && fm.habitat === undefined) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ['habitat'],
+				message: 'creatures must declare at least one habitat'
+			});
+		}
+		if (isCreature && fm.kind === undefined) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ['kind'],
+				message: 'creatures must declare a kind'
+			});
+		}
+		if (!isCreature && fm.habitat !== undefined) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ['habitat'],
+				message: 'habitat is only valid on creature topics'
+			});
+		}
+		if (!isCreature && fm.kind !== undefined) {
+			ctx.addIssue({
+				code: z.ZodIssueCode.custom,
+				path: ['kind'],
+				message: 'kind is only valid on creature topics'
+			});
+		}
+	});
 
 export type TopicFrontmatter = z.infer<typeof topicFrontmatterSchema>;
 

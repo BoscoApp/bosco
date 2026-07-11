@@ -3,6 +3,8 @@ content_kind: adapted
 title: The Test Badger
 category: creatures
 slug: test-badger
+habitat: [woodland, grassland]
+kind: mammal
 tiers: [1, 2, 3]
 default_tier: 2
 summary: A sturdy burrowing animal used as an adapted-pipeline fixture.

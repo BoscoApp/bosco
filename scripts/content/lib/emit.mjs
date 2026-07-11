@@ -72,6 +72,9 @@ function buildFrontmatter(ingest) {
 		tiers: m.tiers,
 		review_status: 'pending'
 	};
+	// Field Guide taxonomy (creatures only; the spec schema guarantees presence/absence by category).
+	if (m.habitat) fm.habitat = m.habitat;
+	if (m.kind) fm.kind = m.kind;
 	if (m.default_tier !== undefined) fm.default_tier = m.default_tier;
 	if (m.sources.length) fm.sources = m.sources;
 	if (m.related.length) fm.related = m.related;

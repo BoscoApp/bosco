@@ -1,6 +1,8 @@
 ---
 title: The Red Fox
 category: creatures
+habitat: [woodland, farmland]
+kind: mammal
 summary: A clever, adaptable little wild dog found across the whole northern world.
 tiers: [1, 2, 3]
 review_status: approved

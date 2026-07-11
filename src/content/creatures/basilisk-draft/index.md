@@ -1,6 +1,8 @@
 ---
 title: Draft Basilisk (do not ship)
 category: creatures
+habitat: [desert]
+kind: bestiary
 summary: An unreviewed placeholder topic that must never appear in a production build.
 tiers: [2, 3]
 review_status: pending
