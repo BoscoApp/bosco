@@ -72,10 +72,40 @@ Two pieces of navigation, both built from the ordinary link machinery so they ne
   fresh pick with no hydration mismatch; a no-JS reader gets the seeded topic. It reuses the delegated
   in-window intercept exactly like any other link. Renders nothing when the catalogue is empty.
 
-Deliberately **deferred to PR2b** (see below): inline prose cross-links and the glossary, which need a
-remark plugin that rewrites body text — a bigger risk surface (a gate-value the mdsvex preprocessor
-can't read, raw-HTML→Svelte brace-escaping, HMR cache invalidation, and a doctrine gate for glossary
-definitions of faith terms). That machinery gets its own focused review rather than riding along here.
+## Inline cross-links & glossary — the remark plugin (PR2b)
+
+Two author-facing protocols resolve inside mdsvex at build time via a remark plugin
+(`src/lib/content/remark-bosco.js`). Two facts shaped the design and are load-bearing:
+
+- **The plugin chain must be Node-loadable `.js`.** `svelte.config.js` builds the mdsvex config and is
+  loaded by SvelteKit with a raw Node `import()` that cannot transpile TypeScript — so `remark-bosco.js`
+  and the gate primitives it imports (`gate.js`, `catalog.js`) are `.js` with JSDoc types, not `.ts`.
+- **The gate crosses two module realms via `globalThis`.** The content plugin (`plugin.ts`) is bundled
+  into the Vite config by esbuild; the remark plugin is loaded from disk by `svelte.config.js`. They are
+  different module instances, so the shipping set can't ride a module variable — it lives on a
+  `Symbol.for('bosco.content.catalog')` slot the plugin's `configResolved` populates before any Markdown
+  is transformed, and `requireGate()` fails closed if it wasn't.
+
+**Cross-links (`bosco:`, PR2b-i).** `[text](bosco:category/slug)` → the real `/library/…/` route, after
+checking the target ships in this build; a dangling/unreviewed target (or any external prose URL) fails
+the build. The walk validates every URL-bearing mdast node — `link`, `image`, and the `definition` node
+a reference-style link hides its URL on — so nothing slips past.
+
+**Glossary (`gloss:`, PR2b-ii).** `[term](gloss:id)` → a `<button class="gloss-term">` carrying the
+term's definition in `data-gloss-def`, spliced (open tag · the link's original children · close tag)
+around the preserved, possibly-formatted term text — the shape proven to round-trip through mdsvex.
+Definitions live one file per term at `src/glossary/{general,faith}/<id>.md`: the body is the plain-text
+definition, the frontmatter's **required** `review_status` is the term's own doctrine gate. `scanGlossary`
+gates them exactly like topics (production = approved only), so a `gloss:` link to an unknown or
+unreviewed term fails the build; `faith/**` is owned in CODEOWNERS. The definition is escaped twice into
+the attribute — HTML-escape then brace-escape (`{`/`}` → numeric entities, so Svelte can't parse it as an
+expression) — and read back at runtime with `textContent`, never `innerHTML`.
+
+The term button is baked into the prerendered HTML, so it is **readable with no JavaScript**. A client
+controller (`glossary-toggletip.ts`, bound in `ArticleView`'s `{#key}`-scoped `$effect`) upgrades it into
+a _toggletip_: activating a term reveals its definition in a bubble and announces it once through a
+shared, visually-hidden `role="status"` region, dismissed on Esc / trigger-blur / outside-click. The
+interactive affordance is gated behind a JS-set `[data-gloss-ready]` marker, so no-JS degrades to prose.
 
 ## Offline search (Pagefind, PR3)
 
@@ -110,7 +140,6 @@ browser over that index — no server, no runtime network.
 
 ## What's next in v0.3.0
 
-PR2b inline cross-links + glossary (remark plugin + its own doctrine/a11y/compile checklist); PR4
-category-landing and Archives-shelf visual design; PR5 the AI content-pipeline tooling. Content (the
+PR4 category-landing and Archives-shelf visual design; PR5 the AI content-pipeline tooling. Content (the
 3-topic proof and the 18-topic launch set) is authored and doctrine-reviewed separately, at the owner's
 pace.

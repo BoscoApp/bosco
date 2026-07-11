@@ -163,6 +163,48 @@ test('a standalone article inline cross-link navigates to the real route', async
 	await expect(page.getByRole('heading', { name: 'The Printing Press' })).toBeVisible();
 });
 
+test('a glossary term reveals its definition on tap and Esc dismisses it', async ({ page }) => {
+	await enterAsExplorer(page);
+	await page.getByRole('button', { name: 'Library', exact: true }).click();
+	const library = page.locator('#win-library');
+	await library
+		.getByRole('link', { name: /The Red Fox/ })
+		.first()
+		.click();
+	await expect(library.getByRole('heading', { name: 'The Red Fox' })).toBeVisible();
+
+	// The Explorer prose marks "brush" as a glossary term — a button (not a link), whose accessible
+	// name flags it. The definition bubble is absent until the term is activated.
+	const term = library.getByRole('button', { name: /brush, glossary term/ });
+	await expect(term).toBeVisible();
+	const bubble = library.locator('.gloss-bubble');
+	await expect(bubble).toBeHidden();
+
+	await term.click();
+	await expect(bubble).toBeVisible();
+	await expect(bubble).toContainText('like a scarf'); // the brush definition
+
+	// Esc dismisses the toggletip and returns focus to the term.
+	await page.keyboard.press('Escape');
+	await expect(bubble).toBeHidden();
+	await expect(term).toBeFocused();
+});
+
+test('a glossary term works on the standalone prerendered article too', async ({ page }) => {
+	await page.goto('/library/creatures/red-fox/');
+	const term = page.getByRole('button', { name: /brush, glossary term/ });
+	await expect(term).toBeVisible();
+	await term.click();
+	const bubble = page.locator('.gloss-bubble');
+	await expect(bubble).toBeVisible();
+	await expect(bubble).toContainText('like a scarf');
+
+	// Clicking INSIDE the open bubble must NOT dismiss it — in Blink/WebKit pressing the non-focusable
+	// bubble would otherwise blur the trigger and close the very definition a child just poked.
+	await bubble.click();
+	await expect(bubble).toBeVisible();
+});
+
 test('"Surprise me" re-rolls on the client and opens that pick in-window', async ({ page }) => {
 	// The prerendered href is seeded to the first topic (Red Fox); the destination must come from the
 	// CLIENT re-roll on focus/pointerdown, not the seed. Force the roll to the second topic and prove it

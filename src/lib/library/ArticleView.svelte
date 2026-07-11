@@ -11,6 +11,7 @@
 	import type { Tier, Topic, EagerBody } from '$lib/content';
 	import { CATEGORY_LABEL } from './categories';
 	import { TIER_WORD, clampToOffered } from './tiers';
+	import { attachGlossary } from './glossary-toggletip';
 	import TierSwitch from './TierSwitch.svelte';
 	import SeeAlso from './SeeAlso.svelte';
 
@@ -64,6 +65,15 @@
 	function choose(t: Tier) {
 		override = t === baseline ? null : t;
 	}
+
+	// Upgrade the prerendered glossary-term buttons into toggletips once mounted. Bound to THIS body
+	// element, so Svelte tears the controller down when the {#key topic.path} wrapper recreates the
+	// article — the listeners, bubble, and live region never leak across topics. No-JS still renders
+	// the terms as plain readable text (the controller sets the [data-gloss-ready] styling marker).
+	let bodyEl = $state<HTMLElement | null>(null);
+	$effect(() => {
+		if (bodyEl) return attachGlossary(bodyEl);
+	});
 </script>
 
 <article class="article" data-tier={TIER_WORD[activeTier]}>
@@ -81,7 +91,7 @@
 		/>
 	</header>
 
-	<div class="art-body" data-pagefind-body>
+	<div class="art-body" data-pagefind-body bind:this={bodyEl}>
 		{#if Body}
 			<Body />
 		{:else}
@@ -147,6 +157,7 @@
 		color: var(--ink-soft);
 	}
 	.art-body {
+		position: relative; /* the glossary toggletip bubble anchors to this box */
 		font-size: calc(var(--fs-read, 16px) * var(--type-scale, 1));
 		line-height: var(--lh-body, 1.6);
 		color: var(--ink);
@@ -179,6 +190,72 @@
 		outline-offset: 2px;
 		border-radius: 2px;
 	}
+
+	/* Glossary terms. Baked into prerendered HTML as a bare <button>; with NO JavaScript they must read
+	   as ordinary prose (fix c) — hence the reset here and the interactive affordance gated behind the
+	   controller's [data-gloss-ready] marker below. */
+	.art-body :global(.gloss-term) {
+		margin: 0;
+		padding: 0;
+		border: 0;
+		background: none;
+		font: inherit;
+		color: inherit;
+		text-align: inherit;
+		cursor: text;
+	}
+	/* Fully :global — the `[data-gloss-ready]` marker is added at runtime by the toggletip controller,
+	   which Svelte's static "unused selector" analysis can't see; the chain is specific enough (only a
+	   ready article body's gloss terms) that it can't leak. */
+	:global(.art-body[data-gloss-ready] .gloss-term) {
+		cursor: help;
+		/* Dotted rule in a gold-brown ink — deliberately distinct from the solid selection-blue underline
+		   of a bosco: cross-link, so a definable term never looks like a place to navigate to. */
+		text-decoration: underline dotted var(--gloss-rule);
+		text-decoration-thickness: 1.5px;
+		text-underline-offset: 3px;
+	}
+	:global(.art-body[data-gloss-ready] .gloss-term:hover) {
+		text-decoration-thickness: 2px;
+	}
+	:global(.art-body[data-gloss-ready] .gloss-term:focus-visible) {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+		border-radius: 2px;
+	}
+
+	/* The toggletip bubble the controller positions below an activated term. */
+	.art-body :global(.gloss-bubble) {
+		position: absolute;
+		z-index: 5;
+		max-width: min(var(--measure-read), 32ch);
+		padding: 8px 11px;
+		font-family: var(--font-ui);
+		font-size: 13px;
+		line-height: 1.4;
+		color: var(--ink);
+		background: var(--surface-card);
+		border: 1px solid var(--gloss-rule);
+		border-radius: var(--radius-sm);
+		box-shadow: var(--shadow-pop);
+		opacity: 0;
+		transform: translateY(-2px);
+		transition:
+			opacity var(--motion-fast) ease,
+			transform var(--motion-fast) ease;
+	}
+	.art-body :global(.gloss-bubble.is-open) {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	/* fix (g): honour reduced-motion — the bubble still appears, just without the slide/fade. */
+	@media (prefers-reduced-motion: reduce) {
+		.art-body :global(.gloss-bubble) {
+			transition: none;
+			transform: none;
+		}
+	}
+
 	.art-loading {
 		color: var(--ink-soft);
 		font-style: italic;

@@ -23,6 +23,13 @@ export const REVIEW_STATUSES = /** @type {readonly ['draft', 'pending', 'approve
 export const TOPIC_PATH_RE = /^[a-z0-9-]+\/[a-z0-9-]+$/;
 
 /**
+ * A glossary term id — the target of an inline `gloss:id` link and the filename stem of a glossary
+ * entry (`src/glossary/{general,faith}/<id>.md`). A single flat id namespace (no category), so a
+ * `gloss:` link never has to know whether a term is general or doctrinal.
+ */
+export const GLOSS_ID_RE = /^[a-z0-9-]+$/;
+
+/**
  * The single source of truth for "may this content ship?". Production builds (`preview` = false)
  * include only `approved` content — doctrine never ships unreviewed. Enforced at build time by the
  * content plugin, not at runtime.

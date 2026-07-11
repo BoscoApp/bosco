@@ -107,6 +107,8 @@
 	--radius-pill: 12px;
 	--shadow-win: 0 2px 0 var(--edge-strong), 0 16px 40px rgba(15, 25, 20, 0.5);
 	--shadow-raised: 0 1px 0 var(--c-white) inset;
+	/* A soft drop shadow for small pop-over surfaces (e.g. the glossary toggletip bubble). */
+	--shadow-pop: 0 3px 10px rgba(15, 25, 20, 0.28);
 	--motion-fast: 0.13s;
 }
 
@@ -141,6 +143,9 @@
 	--ink-green: color-mix(in srgb, var(--green) 66%, #000000);
 	--line-gold: color-mix(in srgb, var(--gold) 42%, var(--paper));
 	--line-card: color-mix(in srgb, var(--gold) 16%, var(--c-plat));
+	/* Glossary-term rule: gold-deep pushed toward ink so the dotted underline reads clearly on
+	   --paper (contrast-checked >= 3:1) and stays distinct from the selection-blue prose links. */
+	--gloss-rule: color-mix(in srgb, var(--gold-deep) 62%, var(--ink));
 	--tb-stripe: color-mix(in srgb, var(--sel) 42%, #ffffff);
 	--surface-dayband: linear-gradient(
 		160deg,

@@ -42,7 +42,11 @@ const routes = [
 			'most widespread wild member of the dog family',
 			'data-pagefind-body',
 			'See also',
-			'The Printing Press'
+			'The Printing Press',
+			// The glossary term bakes into the prerendered HTML as a plain <button> with its definition in
+			// a data-attr — readable with no JS, upgraded to a toggletip on hydration.
+			'class="gloss-term"',
+			'data-gloss-def='
 		]
 	}
 ];
