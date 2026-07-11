@@ -150,3 +150,25 @@ export function validateCrossLinks(
 		}
 	}
 }
+
+/**
+ * Build-time integrity check for a topic's Archives manifest. Each `archives[]` entry names a
+ * public-domain source document by `file`; two entries pointing at the same `file` within one topic is
+ * an authoring mistake (a duplicate shelf row). Throws on the first duplicate. This locks the seam for
+ * when archive documents and their viewer arrive — no PRODUCTION topic declares archives yet (only the
+ * gated dev fixture does), so it effectively no-ops in a production build. (Where archive files live and
+ * how they are served is deliberately left to the viewer PR; this does not check the filesystem.)
+ */
+export function validateArchives(
+	topics: readonly { path: string; archives: readonly { file: string }[] }[]
+): void {
+	for (const t of topics) {
+		const seen = new Set<string>();
+		for (const a of t.archives) {
+			if (seen.has(a.file)) {
+				throw new Error(`Topic "${t.path}" lists the archive file "${a.file}" twice.`);
+			}
+			seen.add(a.file);
+		}
+	}
+}

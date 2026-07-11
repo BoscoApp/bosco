@@ -138,8 +138,31 @@ browser over that index — no server, no runtime network.
   in-window while standalone/no-JS follow the route. Match excerpts render with `{@html}` (trusted:
   first-party indexed text, escaped by Pagefind, with only `<mark>` injected).
 
+## Category landings & the Archives shelf (PR4)
+
+Category landings already existed (PR1); PR4 enriches them and adds the per-topic Archives shelf, all
+art-agnostic (illustration Decision #4 stays the owner's, on real proof assets that don't exist yet).
+
+- **Archives shelf** — `ArchivesShelf.svelte`, a sibling of `SeeAlso` rendered at the foot of an article
+  (broaden → deepen → cite). It lists a topic's `archives[]` (verbatim public-domain source writings) and
+  is gated on the topic **offering the Scholar tier** (`topic.tiers.includes(3)`), NOT the reader's live
+  level — a static, prerender-safe proxy for "deep enough to have grown-up sources", so the shelf (and,
+  today, its empty teaser) is in the no-JS static HTML and needs no tier prop or hydration. Entries are
+  **inert** (never `<a href>`): no viewer/route resolves an `archive.file` yet, and a dead link would 404
+  and breach the offline invariant; the future viewer PR swaps the row wrapper to a link with no data
+  change. The empty teaser sits behind a one-line `SHOW_EMPTY_TEASER` const. A pure `validateArchives`
+  (no duplicate `file` within a topic), run in `scanPublished`, locks the seam (a no-op until archives are
+  authored).
+- **Illustration seam** — `ArtFrame.svelte` is an art-agnostic, `aria-hidden`, token-styled placeholder
+  (a faint hatched "reserved" box — no `<img>`, no URL, no chosen aesthetic). Its one consumer is a slim
+  category masthead in `CategoryView`. When illustrations arrive, a theme-aware `<Illustration>` resolving
+  the active-theme `media[]` variant swaps in with the frame as its no-asset fallback.
+- **Category enrichment** — `CategoryView`'s header gains the masthead frame, an article count, and a
+  static "Written for Seedling · Explorer · Scholar" strip computed from the shelf's own topics (real DOM
+  text, no `tier` prop, identical on the route and in-window). `data-view-heading` stays on the title so
+  the desktop's focus-on-move still lands there.
+
 ## What's next in v0.3.0
 
-PR4 category-landing and Archives-shelf visual design; PR5 the AI content-pipeline tooling. Content (the
-3-topic proof and the 18-topic launch set) is authored and doctrine-reviewed separately, at the owner's
-pace.
+PR5 the AI content-pipeline tooling. Content (the 3-topic proof and the 18-topic launch set) is authored
+and doctrine-reviewed separately, at the owner's pace.

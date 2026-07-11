@@ -8,6 +8,7 @@ import {
 	isPublished,
 	pickDefaultTier,
 	validateCrossLinks,
+	validateArchives,
 	GLOSS_ID_RE,
 	type TopicMeta
 } from './schema';
@@ -184,6 +185,10 @@ function scanPublished(root: string, preview: boolean): Published[] {
 	// Every "See also" link must resolve to another topic in THIS build (the gated set), so a
 	// production link can never dangle or point at unreviewed content. Fails the build otherwise.
 	validateCrossLinks(published.map((p) => ({ path: p.meta.path, related: p.meta.related })));
+
+	// Each topic's Archives manifest is well-formed (no duplicate source file). Effectively a no-op in
+	// production (no approved topic ships archives yet); it locks the seam for the future Archives viewer.
+	validateArchives(published.map((p) => ({ path: p.meta.path, archives: p.meta.archives })));
 
 	return published;
 }

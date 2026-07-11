@@ -46,8 +46,19 @@ const routes = [
 			// The glossary term bakes into the prerendered HTML as a plain <button> with its definition in
 			// a data-attr — readable with no JS, upgraded to a toggletip on hydration.
 			'class="gloss-term"',
-			'data-gloss-def='
+			'data-gloss-def=',
+			// The Archives shelf is gated on the topic OFFERING Scholar (not the reader's live tier), so it
+			// prerenders into the static HTML — no-JS readable, not a JS-only afterthought. Red Fox offers
+			// Scholar and declares no archives, so its empty teaser must be present.
+			'The Archives',
+			'still stocking these shelves'
 		]
+	},
+	// A category landing renders offline with its enrichment: the article count and the static
+	// "reading levels this shelf offers" strip (Red Fox is the only approved creature and offers all three).
+	{
+		path: '/library/creatures/',
+		include: ['Creatures', '1 article', 'Written for Seedling, Explorer, Scholar']
 	}
 ];
 
