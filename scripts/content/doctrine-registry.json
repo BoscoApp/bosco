@@ -1,0 +1,15 @@
+{
+	"_comment": "Topic paths that MUST be verbatim: byte-copied public-domain doctrine (prayers, the Baltimore Catechism, Scripture, creeds), NEVER AI-adapted. The provenance guard fails if a listed topic is authored as `adapted`. A `*` matches within one path segment (e.g. faith/catechism-*). This registry is the SECOND check; the primary structural gate is that every faith/** topic must have a provenance.json (see scripts/content/lib/verify.mjs). Keep this list complete as doctrine is added — but note that a mislabeled prayer at an unlisted slug is still caught only if you keep it current, whereas the mandatory-faith-provenance rule always applies.",
+	"verbatim": [
+		"faith/catechism-*",
+		"faith/scripture-*",
+		"faith/creed-*",
+		"faith/*-prayer",
+		"faith/hail-mary",
+		"faith/our-father",
+		"faith/glory-be",
+		"faith/apostles-creed",
+		"faith/nicene-creed",
+		"faith/act-of-contrition"
+	]
+}

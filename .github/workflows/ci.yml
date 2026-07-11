@@ -55,6 +55,9 @@ jobs:
       - name: Content gate (no unreviewed content in production)
         run: pnpm guard:content
 
+      - name: Content provenance (doctrine byte-copied, never adapted)
+        run: pnpm guard:provenance
+
       - name: Offline smoke (static output serves with no backend)
         run: pnpm guard:offline
 

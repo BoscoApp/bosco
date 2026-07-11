@@ -9,6 +9,20 @@ and origin. **Unknown license ⇒ not committed.** This is a hard rule (see `REA
 | ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ | ------------------------------------------------------------------- | --------------------------------------------------------- |
 | introibo Core — 1962 liturgical corpus (corpus `1962-2026-07-02.1`, contract `1.0.0`, engine `0.4.0`) | The vendored `src/lib/calendar/calendar.json` (2026 feasts, ranks, colours, seasons) | CC0 1.0 (corpus data only; the engine is AGPL and **not** vendored) | introibo Core, via `contract()` — see `scripts/calendar/` |
 
+## Content
+
+Per-topic provenance for tool-authored library content lives in each topic's `provenance.json` sidecar
+(the source, and whether each tier is verbatim public-domain doctrine or AI-adapted — with model, pass,
+and date). This is factual provenance, not a byline. The list below is regenerated from those sidecars by
+`pnpm credits:content` — a human-readable index, not the source of truth. Hand-authored topics record
+their sources in each topic's own frontmatter.
+
+<!-- content:begin (managed by `pnpm credits:content`; do not edit by hand) -->
+
+_No tool-emitted topics yet._
+
+<!-- content:end -->
+
 ## Fonts
 
 Self-hosted, subset to woff2, and served same-origin from `/fonts/` (never a CDN — see

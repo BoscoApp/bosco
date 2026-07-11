@@ -71,6 +71,12 @@ content: drafting → content: needs-review → content: needs-doctrinal-review
   `gloss:` term inside a verbatim doctrinal block.
 - Files under doctrine paths (`src/content/faith/**`, `chapel`, `prayers`, `catechism`) are owned in
   [`.github/CODEOWNERS`](.github/CODEOWNERS), so every doctrine change requests the owner's review.
+- **Authoring pipeline:** topics are drafted through the tooling in `scripts/content/` (`pnpm content:new`
+  → `content:gen` → `content:review`) — manual, out-of-band, never run by `ci`. It emits `pending` topics;
+  only the owner flips one to `approved`. Doctrine is authored as **verbatim** (byte-copied), which
+  `pnpm guard:provenance` enforces in `ci`: every `faith/**` topic must carry a `provenance.json`, and a
+  doctrine path may not be AI-adapted. The default generator is an offline placeholder — regenerate with the
+  real adapter or hand-write before approving. See [`scripts/content/README.md`](scripts/content/README.md).
 
 ## Releases
 
