@@ -23,7 +23,13 @@ const routes = [
 	// must be present in the static HTML for a no-JS reader.
 	{
 		path: '/library/',
-		include: ['The Library', 'The Red Fox', 'The Printing Press', 'Surprise me']
+		include: [
+			'The Library',
+			'The Red Fox',
+			'The Printing Press',
+			'Surprise me',
+			'Search the Library'
+		]
 	},
 	// The canonical topic page must ship its default-tier PROSE in the prerendered HTML — not an
 	// empty {#await} shell. This phrase lives only in the Red Fox's Explorer (tier-2) body, so its
@@ -75,6 +81,25 @@ if (surpriseResolved !== '/library/creatures/red-fox/') {
 	failures.push(
 		`Surprise-me seed href is "${surpriseHref}" (expected the deterministic first topic)`
 	);
+}
+
+// The offline search bundle must SHIP and be reachable with no network — the runtime `pagefind.js`
+// served as JavaScript, and a search index carrying at least one record (proving the build's
+// `index:search` step ran over the prerendered pages). The browser-runtime search is proven by the
+// e2e; this is the browser-free, docker-run-none proof that the bundle is present and non-empty.
+const pfJs = await fetch(`${base}/pagefind/pagefind.js`);
+if (pfJs.status !== 200) {
+	failures.push(`/pagefind/pagefind.js -> HTTP ${pfJs.status} (search bundle missing)`);
+} else if (!/javascript/i.test(pfJs.headers.get('content-type') ?? '')) {
+	failures.push(`/pagefind/pagefind.js served as "${pfJs.headers.get('content-type')}" (not JS)`);
+}
+const pfEntry = await fetch(`${base}/pagefind/pagefind-entry.json`);
+if (pfEntry.status !== 200) {
+	failures.push(`/pagefind/pagefind-entry.json -> HTTP ${pfEntry.status} (no search index)`);
+} else {
+	const entry = await pfEntry.json();
+	const records = Object.values(entry.languages ?? {}).reduce((n, l) => n + (l.page_count ?? 0), 0);
+	if (records < 1) failures.push(`search index has ${records} record(s) (expected at least 1)`);
 }
 
 // A missing page must 404 (no silent SPA fallback under adapter-static).

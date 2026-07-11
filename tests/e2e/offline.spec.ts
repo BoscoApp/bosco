@@ -25,5 +25,12 @@ test('portal and library load with zero external requests', async ({ page }) => 
 	await expect(page.getByRole('heading', { name: 'The Library' })).toBeVisible();
 	await expect(page.getByText('The Red Fox')).toBeVisible();
 
+	// Exercise offline search too: loading the Pagefind runtime pulls its JS, wasm, index and result
+	// fragments at runtime, so a search must drive all of those and still make zero off-origin requests.
+	await page.getByRole('searchbox', { name: 'Search the Library' }).fill('fox');
+	await expect(
+		page.locator('.ls-results').getByRole('link', { name: /The Red Fox/ })
+	).toBeVisible();
+
 	expect(external, `unexpected external requests: ${external.join(', ')}`).toHaveLength(0);
 });

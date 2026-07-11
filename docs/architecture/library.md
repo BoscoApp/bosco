@@ -3,8 +3,9 @@
 The Library is Bosco's flagship: a kid's encyclopedia where every topic is written at three reading
 tiers. It has to satisfy three constraints at once — the locked **desktop metaphor** (destinations open
 as windows, never a page navigation), the **offline invariant** (`adapter-static` strict: every route
-prerendered, zero runtime network), and **offline search** (Pagefind indexes prerendered HTML, arriving
-in a later PR). This note records how those reconcile so later PRs don't re-litigate it.
+prerendered, zero runtime network), and **offline search** (Pagefind indexes the prerendered
+HTML at build time and runs entirely in the browser). This note records how those reconcile so later PRs
+don't re-litigate it.
 
 ## One set of views, two hosts
 
@@ -76,9 +77,40 @@ remark plugin that rewrites body text — a bigger risk surface (a gate-value th
 can't read, raw-HTML→Svelte brace-escaping, HMR cache invalidation, and a doctrine gate for glossary
 definitions of faith terms). That machinery gets its own focused review rather than riding along here.
 
+## Offline search (Pagefind, PR3)
+
+Search is static and offline: the build indexes the prerendered HTML, and all querying happens in the
+browser over that index — no server, no runtime network.
+
+- **The binary is vendored, not fetched.** `pagefind` is a devDependency whose platform binary ships as
+  ordinary npm packages (`@pagefind/<platform>`, an `optionalDependencies` set with **no** install
+  script), so `pnpm install --frozen-lockfile` resolves it from the lockfile with zero network at build
+  time. The lockfile records every platform, so CI's Linux runner gets `@pagefind/linux-x64`. _This was
+  the PR's gate — proven before any UI: install offline, then index offline._
+- **Indexing is a build step folded into `build`** (`vite build && pnpm index:search`), so the guards and
+  the offline smoke all see `build/pagefind/**`. `scripts/index-search.mjs` drives Pagefind's Node API,
+  then does two things worth noting: it asserts `pagefind-entry.json` reports **≥ 1 record** (a zero-record
+  index means the `data-pagefind-body` wrapper regressed — search would be silently empty), and it
+  **prunes Pagefind's default UI** files (`pagefind-ui.*`, `-modular-ui.*`, `-component-ui.*`, the
+  highlight helper). We ship our own UI, and one of those CSS files embeds bug-tracker URLs in a comment
+  that would (correctly) trip `guard:external`; pruning keeps the offline invariant intact and trims the
+  bundle. The kept core is `pagefind.js` + `pagefind-worker.js` + `wasm.*` + `*.pf_meta` + `fragment/` +
+  `index/`.
+- **One record per topic, for free.** Because only the default tier's prose sits in the prerendered DOM
+  (see above) and only the article body carries `data-pagefind-body`, Pagefind indexes exactly the
+  published topics — home/category/error pages are ignored, no `data-pagefind-ignore` choreography.
+- **Our own tokenised UI.** `SearchPanel.svelte` (on `LibraryHome`, so it appears both standalone and
+  in-window) loads the runtime with a runtime dynamic `import(/* @vite-ignore */ `${base}/pagefind/pagefind.js`)`
+  — the bundle is emitted by the build, not part of Vite's graph, and is absent under `vite dev`, so the
+  loader is browser-only and the panel degrades to "unavailable" if the load fails. `pagefind.ts` keeps a
+  cached loader and a pure, unit-tested `toHit()` that re-applies `base` to Pagefind's root-relative URLs.
+  Results are real `/library/**` `<a href>` links, so the desktop's delegated intercept opens them
+  in-window while standalone/no-JS follow the route. Match excerpts render with `{@html}` (trusted:
+  first-party indexed text, escaped by Pagefind, with only `<mark>` injected).
+
 ## What's next in v0.3.0
 
-PR2b inline cross-links + glossary (remark plugin + its own doctrine/a11y/compile checklist); PR3
-Pagefind offline search (`data-pagefind-body` is already placed); PR4 category-landing and Archives-shelf
-visual design; PR5 the AI content-pipeline tooling. Content (the 3-topic proof and the 18-topic launch
-set) is authored and doctrine-reviewed separately, at the owner's pace.
+PR2b inline cross-links + glossary (remark plugin + its own doctrine/a11y/compile checklist); PR4
+category-landing and Archives-shelf visual design; PR5 the AI content-pipeline tooling. Content (the
+3-topic proof and the 18-topic launch set) is authored and doctrine-reviewed separately, at the owner's
+pace.
