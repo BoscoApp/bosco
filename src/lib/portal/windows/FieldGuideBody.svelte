@@ -15,6 +15,7 @@
 	import { FieldGuideBrowser } from '$lib/fieldguide/guide.svelte';
 	import FieldGuideHome from '$lib/fieldguide/FieldGuideHome.svelte';
 	import AxisView from '$lib/fieldguide/AxisView.svelte';
+	import AlbumView from '$lib/fieldguide/AlbumView.svelte';
 	import ArticleView from '$lib/library/ArticleView.svelte';
 	import RecordOnRead from '$lib/fieldguide/RecordOnRead.svelte';
 
@@ -24,6 +25,9 @@
 	let root = $state<HTMLElement | null>(null);
 	const loc = $derived(browser.location);
 	const topic = $derived(loc.view === 'article' ? getTopic(loc.category, loc.slug) : undefined);
+	// Which profile's album to show. Keying AlbumView on it means a profile switch while the album is
+	// open swaps to the new child's cards (the desktop keeps this window mounted across switches).
+	const activeProfileId = $derived(portal.prefs.activeProfileId);
 
 	const FG_PREFIX = `${base}/field-guide/`;
 	const LIB_PREFIX = `${base}/library/`;
@@ -72,21 +76,34 @@
 		browser.back();
 		focusHeading();
 	}
+	function goAlbum() {
+		browser.album();
+		focusHeading();
+	}
 </script>
 
 <div class="fg-window" bind:this={root} onclickcapture={onClick}>
-	{#if loc.view !== 'index'}
-		<nav class="fg-crumbs" aria-label="Field Guide">
-			<button type="button" class="fg-back" onclick={goBack} disabled={!browser.canBack}>
-				&lsaquo; Back
-			</button>
-			<a class="crumb" href="{base}/field-guide/">Field Guide</a>
-		</nav>
-	{/if}
+	<div class="fg-bar">
+		{#if loc.view !== 'index'}
+			<nav class="fg-crumbs" aria-label="Field Guide">
+				<button type="button" class="fg-back" onclick={goBack} disabled={!browser.canBack}>
+					&lsaquo; Back
+				</button>
+				<a class="crumb" href="{base}/field-guide/">Field Guide</a>
+			</nav>
+		{/if}
+		{#if loc.view !== 'album'}
+			<button type="button" class="fg-album" onclick={goAlbum}>My album</button>
+		{/if}
+	</div>
 
 	<div class="fg-view">
 		{#if loc.view === 'index'}
 			<FieldGuideHome level={2} />
+		{:else if loc.view === 'album'}
+			{#key activeProfileId}
+				<AlbumView level={2} />
+			{/key}
 		{:else if loc.view === 'axis'}
 			{#key `${loc.axis}/${loc.value}`}
 				<AxisView axis={loc.axis} value={loc.value} level={2} />
@@ -117,6 +134,12 @@
 		gap: 12px;
 		min-height: 0;
 	}
+	.fg-bar {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		flex-wrap: wrap;
+	}
 	.fg-crumbs {
 		display: flex;
 		align-items: center;
@@ -124,6 +147,29 @@
 		flex-wrap: wrap;
 		font-family: var(--font-ui);
 		font-size: 12.5px;
+	}
+	/* The album affordance always sits at the right edge, whether or not crumbs precede it. */
+	.fg-album {
+		margin-left: auto;
+		appearance: none;
+		font-family: var(--font-ui);
+		font-size: 12.5px;
+		font-weight: bold;
+		padding: 4px 12px;
+		color: var(--ink);
+		background: var(--surface-titlebar);
+		border: 1px solid var(--edge-strong);
+		border-radius: var(--radius-sm);
+		cursor: pointer;
+	}
+	.fg-album:hover {
+		/* Solid token — color-mix() rejects the --surface-titlebar gradient (would blank to transparent). */
+		background: color-mix(in srgb, var(--sel) 14%, var(--plat-hi));
+	}
+	.fg-album:focus-visible {
+		outline: 2px solid var(--focus);
+		outline-offset: 2px;
+		border-radius: 3px;
 	}
 	.fg-back {
 		appearance: none;

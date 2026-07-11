@@ -97,6 +97,28 @@ test.describe('accessibility floor', () => {
 		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
 	});
 
+	test('the Field Guide album (with a recorded card) has no serious/critical violations', async ({
+		page
+	}) => {
+		await page.goto('/');
+		await page.waitForSelector('#win-who:not([hidden])');
+		await page.fill('#whoName', 'Rose');
+		await page.click('#win-who .btn-primary');
+		await page.waitForSelector('#win-home:not([hidden])');
+		await page.locator('.dock .d-ico', { hasText: 'Field Guide' }).click();
+		const guide = page.locator('#win-fieldguide');
+		// Read the fox first so the album exercises the card grid, not just the empty state.
+		await guide
+			.getByRole('link', { name: /The Red Fox/ })
+			.first()
+			.click();
+		await guide.getByRole('heading', { name: 'The Red Fox' }).waitFor();
+		await guide.getByRole('button', { name: 'My album' }).click();
+		await guide.getByRole('heading', { name: 'My album' }).waitFor();
+		const results = await new AxeBuilder({ page }).withTags(WCAG).analyze();
+		expect(seriousOf(results), JSON.stringify(seriousOf(results), null, 2)).toEqual([]);
+	});
+
 	test('the Library home showing search results has no serious/critical violations', async ({
 		page
 	}) => {
