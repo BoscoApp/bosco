@@ -136,3 +136,64 @@ pnpm guard:provenance        # doctrine byte-copied, never AI-adapted; faith/** 
 - The desktop keeps all windows mounted (hidden via the `hidden` attribute), and the same shared `ArticleView` renders on prerendered routes *and* in windows — write host-agnostic components.
 - This repo was developed on Windows (PowerShell); it is now on Linux. All tooling is cross-platform Node `.mjs`; line endings are governed by `.gitattributes`/`.editorconfig`. Nothing Windows-specific should remain, but prefer POSIX paths.
 - Before a large change, read the relevant `docs/architecture/*.md` — the offline/prerender/state contracts are written down and are load-bearing.
+
+## Project memory (carried over from the previous machine)
+
+> This is durable, non-obvious context that lived in the maintainer's local auto-memory and plan file on
+> the old machine — neither of which travels with the repo. Captured here so a fresh session has it.
+> Point-in-time as of this handoff (`develop` @ `d5cb339`); verify against live state before asserting.
+
+**Where the full spec lives.** The exhaustive 11-version roadmap, backlog, and rationale is the maintainer's
+plan file (`~/.claude/plans/…` on the old machine — **won't transfer**). The committed equivalents that *do*
+travel: [`ROADMAP.md`](ROADMAP.md) (the version table + backlog) and [`docs/architecture/*.md`](docs/architecture)
+(the design contracts). Treat those as the source of truth here.
+
+**Ratified design decisions (don't relitigate without the owner):**
+- **Field Guide diagrams/maps use SVG/DOM, NOT PixiJS** (unanimous workshop call, 2026-07-11): a WebGL canvas
+  renders nothing at prerender / with JS off (an offline-invariant hole) and is invisible to screen readers.
+  PixiJS stays reserved for the *Art Studio's* raster needs (v0.6.0) and is not yet a dependency.
+- **The Field Guide's second axis is `kind`, not `type`** (matches kid-facing copy; avoids the JS reserved word).
+- **The card album is "records, not rewards"** — JS-only, gate-enforced: no count, percent, `<progress>`/`<meter>`,
+  rarity, streak, or score. A silent record-on-read moment.
+- **Illustration aesthetic is deferred to the owner.** Every art surface renders an `ArtFrame`/placeholder plate;
+  the swap-point is one per asset class. Do not pick a style or commit an illustration.
+- **Working method:** each substantive PR gets an adversarial multi-agent review (independent lenses → per-finding
+  refutation) before merge; refuted-but-sound findings are often adopted as cheap defence-in-depth.
+
+**GitHub tracking state** (`github.com/BoscoApp/bosco`, public, default `develop`):
+- **12 milestones**, one per roadmap version: `v0.1.0`–`v1.2.0`. `v0.1.0`/`v0.2.0` **closed**; `v0.3.0`
+  (Library) and `v0.4.0` (Field Guide) **open**; the rest are placeholders. (`v1.2.0 — Bosco OS` is a
+  post-launch locked-down-Linux-appliance track — design note in the plan file.)
+- **Org Projects v2 board = "Bosco Roadmap" (project #2)** with single-select fields (Version, Area, Track,
+  Tier, Content-stage) — it is the status source of truth; the doctrinal-review-queue view is the owner's worklist.
+- **Epics** carry `epic` + an `area:*` label and link work as native sub-issues. The live Field Guide epic is
+  **[#92](https://github.com/BoscoApp/bosco/issues/92)** (FG-7 is its one open child). **Every content topic is
+  its own issue** with exactly one `content:*` label mirroring its `review_status`; a content issue is Done only
+  at `content: approved`.
+
+**Release state & how to cut the next one.** `v0.1.0` and `v0.2.0` are tagged (SSH-signed annotated tags) with
+GitHub Releases; `.release-please-manifest.json` is seeded to `0.2.0`, so **release-please is green** (nothing to
+release). The `v0.3.0` Library and `v0.4.0` Field Guide engines are merged but **unreleased**. Releases have been
+cut **manually** (see owner follow-up below re: the org Actions-PR policy that blocks automated release PRs). To
+cut, e.g., `v0.3.0`: promote `develop` → `main`, `git tag -s v0.3.0` at the release commit, `gh release create`,
+and set the manifest to `0.3.0`. `main` is protected and **requires signed, verified commits**.
+
+**Owner follow-ups that survive the machine move (a Claude session can't do these):**
+1. **Register the SSH _signing_ key on the new host/Git server and verify the maintainer's email**, or commits
+   won't show "Verified" and the **first `main` release will be rejected** by branch protection. (Signing is
+   distinct from the auth key; commits are already signed locally — `sig=G`.)
+2. **Org policy "Allow GitHub Actions to create and approve pull requests"** is (was) off, which blocks automated
+   release-please *and* Dependabot PRs. Not urgent while releases are hand-cut, but it's why release PRs are manual.
+
+**Regenerating the liturgical calendar (out-of-band; NOT part of build/dev).** `src/lib/calendar/calendar.json`
+is committed. To extend/regenerate it you need **PHP** and the sibling **introibo** repo (AGPL engine, CC0
+corpus data — Bosco vendors *data*, never engine code). It was at `../introibo.org` on the old machine and is
+**not part of this repo**; on the old Windows box PHP ran via WSL — on the new Linux container PHP is native.
+Recipe: run `scripts/calendar/dump-contracts.php <introibo autoload.php> <start> <end> > dump.json`, then
+`node scripts/calendar/vendor-calendar.mjs dump.json` → writes `calendar.json`. introibo's `1962` system is
+`roman:rubricae-1960`; the observance `id` is the durable **Library↔Chapel join** key (a future Faith topic
+declares the matching id). This is a rare, manual step — the committed JSON is what the app reads.
+
+**Immediate next work** (also in "Current State" above): **FG-7 — habitat range map** is the last Field Guide
+engine PR; then v0.4.0 is content-only. The standing content bottleneck (task-tracked as issues, owner-paced) is
+the v0.3.0 3-topic proof + 18-topic launch set — engine-complete, awaiting authoring + doctrinal review.
