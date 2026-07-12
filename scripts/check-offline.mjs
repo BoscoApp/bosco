@@ -51,7 +51,13 @@ const routes = [
 			// prerenders into the static HTML — no-JS readable, not a JS-only afterthought. Red Fox offers
 			// Scholar and declares no archives, so its empty teaser must be present.
 			'The Archives',
-			'still stocking these shelves'
+			'still stocking these shelves',
+			// The anatomy hotspot diagram bakes its whole teaching content into the prerendered HTML — the
+			// section heading plus every blurb — so a no-JS/print reader keeps the facts (the pins and the
+			// pin↔row highlight are a pure enhancement layered on top). This phrase lives only in the tail
+			// blurb, proving the baked <dl>, not just the heading, prerenders.
+			'Body parts to know',
+			'called a brush'
 		]
 	},
 	// A category landing renders offline with its enrichment: the article count and the static

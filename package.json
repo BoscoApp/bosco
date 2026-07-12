@@ -20,6 +20,7 @@
 		"guard:external": "node scripts/check-external-urls.mjs",
 		"guard:content": "node scripts/check-content-gate.mjs",
 		"guard:colour": "node scripts/check-hardcoded-colour.mjs",
+		"guard:svg": "node scripts/check-svg-clean.mjs",
 		"guard:offline": "node scripts/check-offline.mjs",
 		"guard:provenance": "node scripts/check-provenance.mjs",
 		"serve:static": "node scripts/serve-static.mjs",

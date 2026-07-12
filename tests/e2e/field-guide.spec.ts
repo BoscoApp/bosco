@@ -105,3 +105,40 @@ test('an axis page for a gated-out kind 404s in production (bestiary is basilisk
 	const res = await page.goto('/field-guide/kind/bestiary/');
 	expect(res?.status()).toBe(404);
 });
+
+test("the fox's anatomy diagram bakes readable blurbs and wires accessible, cross-highlighting pins", async ({
+	page
+}) => {
+	await enterAsExplorer(page);
+	await openFieldGuide(page);
+	const guide = page.locator('#win-fieldguide');
+	await guide
+		.getByRole('link', { name: /The Red Fox/ })
+		.first()
+		.click();
+	await expect(guide.getByRole('heading', { name: 'The Red Fox' })).toBeVisible();
+
+	const diagram = guide.locator('.hotspot');
+	// The teaching content is baked as real DOM — the heading and every blurb are present, so a no-JS or
+	// print reader keeps the facts. This phrase lives only in the tail blurb.
+	await expect(diagram.getByRole('heading', { name: 'Body parts to know' })).toBeVisible();
+	await expect(diagram).toContainText('called a brush');
+
+	// Each pin is a real <button> whose accessible name is its label.
+	const tail = diagram.getByRole('button', { name: 'Tail', exact: true });
+	await expect(tail).toBeVisible();
+
+	// aria-describedby points at the already-present blurb (the fact reaches AT with no JS-only reveal).
+	const describedby = await tail.getAttribute('aria-describedby');
+	expect(describedby).toBeTruthy();
+	await expect(page.locator(`#${describedby}`)).toHaveText(/called a brush/);
+
+	// The enhancer attached (its JS marker), and focusing a pin cross-highlights its matching list row.
+	await expect(diagram).toHaveAttribute('data-hotspots-ready', '');
+	await tail.focus();
+	await expect(diagram.locator('[data-hotspot-row="tail"]')).toHaveClass(/is-active/);
+
+	// A pin is inert to navigation — activating it never tears down the desktop.
+	await tail.click();
+	await expect(page).toHaveURL('http://localhost:4173/');
+});

@@ -46,6 +46,9 @@ jobs:
       - name: Colour guard (component colours come from tokens)
         run: pnpm guard:colour
 
+      - name: SVG cleanliness guard (committed SVGs are SVGO-clean)
+        run: pnpm guard:svg
+
       - name: Build (all routes prerender)
         run: pnpm build
 
