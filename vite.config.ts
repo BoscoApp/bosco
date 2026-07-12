@@ -5,8 +5,9 @@ import { boscoContent } from './src/lib/content/plugin';
 export default defineConfig({
 	plugins: [boscoContent(), sveltekit()],
 	test: {
-		// src/** unit tests, plus the authoring-time content-pipeline tooling under scripts/content/**
-		// (pure .mjs core exercised with a deterministic fake generator — zero network in CI).
-		include: ['src/**/*.{test,spec}.{js,ts}', 'scripts/content/**/*.{test,spec}.{js,ts}']
+		// src/** unit tests, plus guard-script and authoring-time-tooling logic under scripts/** (pure
+		// .mjs cores exercised directly — the content pipeline with a deterministic fake generator, the
+		// SVG guard against hand-built fixtures — zero network in CI).
+		include: ['src/**/*.{test,spec}.{js,ts}', 'scripts/**/*.{test,spec}.{js,ts}']
 	}
 });

@@ -9,6 +9,7 @@ import {
 	pickDefaultTier,
 	validateCrossLinks,
 	validateArchives,
+	validateFieldGuide,
 	GLOSS_ID_RE,
 	type TopicMeta
 } from './schema';
@@ -189,6 +190,17 @@ function scanPublished(root: string, preview: boolean): Published[] {
 	// Each topic's Archives manifest is well-formed (no duplicate source file). Effectively a no-op in
 	// production (no approved topic ships archives yet); it locks the seam for the future Archives viewer.
 	validateArchives(published.map((p) => ({ path: p.meta.path, archives: p.meta.archives })));
+
+	// Each creature's anatomy diagram (if any) resolves to a real media[] plate of kind "diagram" and
+	// every hotspot is well-formed (unique id, non-empty label + blurb, in-range coords). Dangling ⇒ fail.
+	validateFieldGuide(
+		published.map((p) => ({
+			path: p.meta.path,
+			category: p.category,
+			media: p.meta.media,
+			anatomy: p.meta.anatomy
+		}))
+	);
 
 	return published;
 }

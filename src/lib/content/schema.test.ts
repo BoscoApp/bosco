@@ -1,10 +1,12 @@
 import { describe, it, expect } from 'vitest';
 import {
 	topicFrontmatterSchema,
+	anatomySchema,
 	isPublished,
 	pickDefaultTier,
 	validateCrossLinks,
-	validateArchives
+	validateArchives,
+	validateFieldGuide
 } from './schema';
 
 const valid = {
@@ -146,6 +148,135 @@ describe('validateArchives (build-time Archives manifest integrity)', () => {
 				{ path: 'creatures/red-fox', archives: [{ file: 'brehm.md' }, { file: 'brehm.md' }] }
 			])
 		).toThrow(/twice/);
+	});
+});
+
+describe('anatomySchema (per-object shape)', () => {
+	const hotspot = { id: 'ears', label: 'Ears', blurb: 'Big ears hear well.', x: 26, y: 20 };
+
+	it('accepts a well-formed diagram with hotspots', () => {
+		const parsed = anatomySchema.parse({ diagram: 'fox-anatomy', hotspots: [hotspot] });
+		expect(parsed.diagram).toBe('fox-anatomy');
+		expect(parsed.hotspots).toHaveLength(1);
+		expect(parsed.hotspots[0].tier).toBeUndefined();
+	});
+
+	it('rejects an empty hotspot list, empty label/blurb/id, and out-of-range coords', () => {
+		expect(() => anatomySchema.parse({ diagram: 'd', hotspots: [] })).toThrow();
+		expect(() => anatomySchema.parse({ diagram: '', hotspots: [hotspot] })).toThrow();
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, label: '' }] })
+		).toThrow();
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, blurb: '' }] })
+		).toThrow();
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, id: '' }] })
+		).toThrow();
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, x: 101 }] })
+		).toThrow();
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, y: -1 }] })
+		).toThrow();
+	});
+
+	it('rejects a token-unsafe hotspot id (whitespace or uppercase would break the id / aria reference)', () => {
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, id: 'brush tail' }] })
+		).toThrow();
+		expect(() =>
+			anatomySchema.parse({ diagram: 'd', hotspots: [{ ...hotspot, id: 'Ears' }] })
+		).toThrow();
+	});
+
+	it('is optional on a topic and forbidden nowhere by the base schema (creature-only lives in the validator)', () => {
+		// The per-object schema does not couple anatomy to category; validateFieldGuide enforces that.
+		expect(topicFrontmatterSchema.parse(valid).anatomy).toBeUndefined();
+	});
+});
+
+describe('validateFieldGuide (build-time anatomy-diagram integrity)', () => {
+	const media = [{ id: 'fox-anatomy', kind: 'diagram' }];
+	const hotspots = [
+		{ id: 'ears', label: 'Ears', blurb: 'Big ears.', x: 26, y: 20 },
+		{ id: 'tail', label: 'Tail', blurb: 'A bushy brush.', x: 86, y: 56 }
+	];
+	const fox = {
+		path: 'creatures/red-fox',
+		category: 'creatures',
+		media,
+		anatomy: { diagram: 'fox-anatomy', hotspots }
+	};
+
+	it('passes for a topic with a resolving diagram and well-formed hotspots', () => {
+		expect(() => validateFieldGuide([fox])).not.toThrow();
+	});
+
+	it('passes for topics with no anatomy at all', () => {
+		expect(() =>
+			validateFieldGuide([
+				{ path: 'world/printing-press', category: 'world', media: [], anatomy: undefined }
+			])
+		).not.toThrow();
+	});
+
+	it('throws when a non-creature topic declares anatomy', () => {
+		expect(() => validateFieldGuide([{ ...fox, path: 'world/press', category: 'world' }])).toThrow(
+			/only valid on creatures/
+		);
+	});
+
+	it('throws when anatomy.diagram resolves to no media[] entry on the topic (dangling)', () => {
+		expect(() => validateFieldGuide([{ ...fox, media: [] }])).toThrow(/names no media\[\] entry/);
+	});
+
+	it('throws when the referenced media entry is not of kind "diagram"', () => {
+		expect(() =>
+			validateFieldGuide([{ ...fox, media: [{ id: 'fox-anatomy', kind: 'illustration' }] }])
+		).toThrow(/kind "diagram"/);
+	});
+
+	it('throws on a duplicate hotspot id', () => {
+		expect(() =>
+			validateFieldGuide([
+				{ ...fox, anatomy: { diagram: 'fox-anatomy', hotspots: [hotspots[0], hotspots[0]] } }
+			])
+		).toThrow(/repeats the anatomy hotspot id/);
+	});
+
+	it('throws on a token-unsafe hotspot id (self-contained: catches a bad id even bypassing the schema)', () => {
+		// A mid-string space is truthy (a bare `.trim()` check would miss it) but must still fail — the id
+		// becomes an aria-describedby IDREF, which is whitespace-separated.
+		expect(() =>
+			validateFieldGuide([
+				{
+					...fox,
+					anatomy: { diagram: 'fox-anatomy', hotspots: [{ ...hotspots[0], id: 'brush tail' }] }
+				}
+			])
+		).toThrow(/not token-safe/);
+	});
+
+	it('throws on an empty label or blurb (the accessible name / baked fact)', () => {
+		expect(() =>
+			validateFieldGuide([
+				{ ...fox, anatomy: { diagram: 'fox-anatomy', hotspots: [{ ...hotspots[0], label: '  ' }] } }
+			])
+		).toThrow(/empty label/);
+		expect(() =>
+			validateFieldGuide([
+				{ ...fox, anatomy: { diagram: 'fox-anatomy', hotspots: [{ ...hotspots[0], blurb: '' }] } }
+			])
+		).toThrow(/empty blurb/);
+	});
+
+	it('throws on out-of-range coordinates', () => {
+		expect(() =>
+			validateFieldGuide([
+				{ ...fox, anatomy: { diagram: 'fox-anatomy', hotspots: [{ ...hotspots[0], x: 120 }] } }
+			])
+		).toThrow(/outside the 0–100 range/);
 	});
 });
 

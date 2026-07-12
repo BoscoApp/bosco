@@ -15,6 +15,7 @@
 	import TierSwitch from './TierSwitch.svelte';
 	import SeeAlso from './SeeAlso.svelte';
 	import ArchivesShelf from './ArchivesShelf.svelte';
+	import HotspotDiagram from './HotspotDiagram.svelte';
 
 	let {
 		topic,
@@ -101,6 +102,12 @@
 	</div>
 	<!-- Persistent live region (always in the DOM) so a tier switch's brief load is announced. -->
 	<p class="visually-hidden" role="status">{Body ? '' : 'Loading this reading level…'}</p>
+
+	<!-- Anatomy diagram, when a creature declares one. Baked no-JS-complete; enhanced on mount. A
+	     subsection of the article, so its heading sits one level below the title. -->
+	{#if topic.anatomy}
+		<HotspotDiagram {topic} headingLevel={level + 1} />
+	{/if}
 
 	<!-- Connective tissue: curated cross-links. Subsection of the article, so one level down. -->
 	<SeeAlso {topic} headingLevel={level + 1} />

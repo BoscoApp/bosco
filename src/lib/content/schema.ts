@@ -92,6 +92,41 @@ export const archiveSchema = z.object({
 	license: z.string().optional()
 });
 
+/**
+ * A hotspot id is token-safe (lowercase letters, digits, hyphens) — it becomes both an HTML `id` and
+ * an `aria-describedby` IDREF (a whitespace-separated token list), so a space or other stray character
+ * would silently break the reference. Same shape + reasoning as the glossary's `GLOSS_ID_RE`.
+ */
+export const HOTSPOT_ID_RE = /^[a-z0-9-]+$/;
+
+/**
+ * A single labelled point on an anatomy diagram. `x`/`y` are PERCENTAGES (0–100) of the diagram box,
+ * so a hotspot survives the display size and the eventual art swap. `blurb` is the teaching content —
+ * baked into readable DOM unconditionally (see HotspotDiagram), never a JS-only reveal, so a no-JS or
+ * print reader keeps the fact. `tier` is reserved for a future per-tier blurb; unused today.
+ */
+export const hotspotSchema = z.object({
+	id: z.string().regex(HOTSPOT_ID_RE, 'must be a token-safe id (a–z, 0–9, hyphens)'),
+	label: z.string().min(1),
+	blurb: z.string().min(1),
+	x: z.number().min(0).max(100),
+	y: z.number().min(0).max(100),
+	tier: tierLiteral.optional()
+});
+export type Hotspot = z.infer<typeof hotspotSchema>;
+
+/**
+ * A creature's anatomy diagram: a `media[]` id for the base plate (an ArtFrame placeholder until the
+ * illustration lands — Decision #4) plus the labelled hotspots drawn over it. Optional on a topic;
+ * {@link validateFieldGuide} enforces at build time that it appears only on creatures, that `diagram`
+ * resolves to one of the topic's own `media[]` entries, and that every hotspot is well-formed.
+ */
+export const anatomySchema = z.object({
+	diagram: z.string().min(1),
+	hotspots: z.array(hotspotSchema).min(1)
+});
+export type Anatomy = z.infer<typeof anatomySchema>;
+
 /** Topic frontmatter, as authored in each topic's `index.md`. */
 export const topicFrontmatterSchema = z
 	.object({
@@ -124,7 +159,15 @@ export const topicFrontmatterSchema = z
 		 * "by habitat" / "by kind" axes can never mint an empty page from a typo.
 		 */
 		habitat: z.array(z.enum(HABITATS)).min(1).optional(),
-		kind: z.enum(KINDS).optional()
+		kind: z.enum(KINDS).optional(),
+		/**
+		 * Field Guide anatomy diagram (creatures only). The creature-only rule and the
+		 * `diagram → media[]` resolution live in {@link validateFieldGuide} at the build's
+		 * `scanPublished` site — not this per-object `.superRefine` — so all diagram integrity
+		 * (which needs the topic's `media[]` to cross-check) sits in one place, mirroring
+		 * {@link validateCrossLinks}/{@link validateArchives}.
+		 */
+		anatomy: anatomySchema.optional()
 	})
 	.superRefine((fm, ctx) => {
 		const isCreature = fm.category === 'creatures';
@@ -245,6 +288,88 @@ export function validateArchives(
 				throw new Error(`Topic "${t.path}" lists the archive file "${a.file}" twice.`);
 			}
 			seen.add(a.file);
+		}
+	}
+}
+
+/**
+ * Build-time integrity check for the Field Guide's per-creature anatomy diagram (FG-6), run over the
+ * gated shipping set at the `scanPublished` site (the {@link validateCrossLinks}/{@link validateArchives}
+ * precedent). For every topic that declares `anatomy`:
+ *   - it must be a `creatures` topic — anatomy is meaningless on faith/world content;
+ *   - `anatomy.diagram` must resolve to one of the topic's OWN `media[]` entries, and that entry must
+ *     be a `diagram` (so the art-swap seam points at the right asset class, never a stray illustration);
+ *   - every hotspot needs a stable, unique id, a non-empty `label` AND `blurb` (the label is the pin
+ *     button's accessible name and the blurb is the baked teaching text — an empty one ships a nameless
+ *     control or a blank fact), and in-range 0–100 percentage coords.
+ * Any dangling or malformed diagram throws, failing the build. Self-contained: it validates its inputs
+ * directly (not trusting the Zod schema), so it is provable in a unit test with hand-built topics.
+ */
+export function validateFieldGuide(
+	topics: readonly {
+		path: string;
+		category: string;
+		media: readonly { id: string; kind: string }[];
+		anatomy?: {
+			diagram: string;
+			hotspots: readonly { id: string; label: string; blurb: string; x: number; y: number }[];
+		};
+	}[]
+): void {
+	for (const t of topics) {
+		const anatomy = t.anatomy;
+		if (!anatomy) continue;
+
+		if (t.category !== 'creatures') {
+			throw new Error(
+				`Topic "${t.path}" declares "anatomy", but an anatomy diagram is only valid on creatures.`
+			);
+		}
+
+		const plate = t.media.find((m) => m.id === anatomy.diagram);
+		if (!plate) {
+			throw new Error(
+				`Topic "${t.path}" anatomy.diagram "${anatomy.diagram}" names no media[] entry on this topic.`
+			);
+		}
+		if (plate.kind !== 'diagram') {
+			throw new Error(
+				`Topic "${t.path}" anatomy.diagram "${anatomy.diagram}" must reference a media[] entry of ` +
+					`kind "diagram" (it is "${plate.kind}").`
+			);
+		}
+
+		if (anatomy.hotspots.length === 0) {
+			throw new Error(`Topic "${t.path}" anatomy has no hotspots.`);
+		}
+		const seen = new Set<string>();
+		for (const h of anatomy.hotspots) {
+			if (!HOTSPOT_ID_RE.test(h.id)) {
+				throw new Error(
+					`Topic "${t.path}" has an anatomy hotspot id "${h.id}" that is not token-safe (a–z, 0–9, ` +
+						`hyphens); it becomes an HTML id and an aria-describedby reference.`
+				);
+			}
+			if (seen.has(h.id)) {
+				throw new Error(`Topic "${t.path}" repeats the anatomy hotspot id "${h.id}".`);
+			}
+			seen.add(h.id);
+			if (!h.label.trim()) {
+				throw new Error(`Topic "${t.path}" anatomy hotspot "${h.id}" has an empty label.`);
+			}
+			if (!h.blurb.trim()) {
+				throw new Error(`Topic "${t.path}" anatomy hotspot "${h.id}" has an empty blurb.`);
+			}
+			for (const [axis, v] of [
+				['x', h.x],
+				['y', h.y]
+			] as const) {
+				if (!(v >= 0 && v <= 100)) {
+					throw new Error(
+						`Topic "${t.path}" anatomy hotspot "${h.id}" has ${axis}=${v}, outside the 0–100 range.`
+					);
+				}
+			}
 		}
 	}
 }
