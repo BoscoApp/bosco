@@ -30,7 +30,7 @@
 		"credits:content": "node scripts/content/generate.mjs --sync-credits"
 	},
 	"dependencies": {
-		"zod": "^3.24.1"
+		"zod": "^4.6.6"
 	},
 	"devDependencies": {
 		"@axe-core/playwright": "^4.12.1",
